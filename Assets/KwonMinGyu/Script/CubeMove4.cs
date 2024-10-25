@@ -4,11 +4,11 @@ enum CubePos
 {
     Up, Down, Right, Left
 }
-public class CubeMove : MonoBehaviour
+public class CubeMove4 : MonoBehaviour
 {
     [SerializeField] private float _rotationSpeed;
-    [SerializeField] private CameraMove _cameraMove;
-    [SerializeField] private CubeChecker _cubeChecker;
+    [SerializeField] private CameraMove4 _cameraMove;
+    [SerializeField] private CubeChecker4 _cubeChecker;
     [SerializeField] private BoxCollider _cubeUpCheck;
 
     CameraPos _cameraPos;

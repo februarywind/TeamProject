@@ -3,7 +3,7 @@ public enum CameraPos
 {
     Up, Down, Right, Left
 }
-public class CameraMove : MonoBehaviour
+public class CameraMove4 : MonoBehaviour
 {
     [SerializeField] private Transform _cubeTransform;  // Cube 오브젝트
     [SerializeField] private Vector3 _offset = new Vector3(0, 5, -8);  // 카메라 기본 위치
