@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 enum CubePos
@@ -10,6 +11,7 @@ public class CubeMove4 : MonoBehaviour
     [SerializeField] private CameraMove4 _cameraMove;
     [SerializeField] private CubeChecker4 _cubeChecker;
     [SerializeField] private BoxCollider _cubeUpCheck;
+    [SerializeField] private Rigidbody _rigidbody;
 
     CameraPos _cameraPos;
     CubePos _cubePos;
@@ -28,6 +30,8 @@ public class CubeMove4 : MonoBehaviour
         _moveDir[1] = new Vector3(0, -bound.size.y / 2, -bound.size.z / 2);
         _moveDir[2] = new Vector3(bound.size.x / 2, -bound.size.y / 2, 0);
         _moveDir[3] = new Vector3(-bound.size.x / 2, -bound.size.y / 2, 0);
+
+        _rigidbody = GetComponent<Rigidbody>();
     }
 
     void Update()
@@ -126,22 +130,6 @@ public class CubeMove4 : MonoBehaviour
     IEnumerator Roll(CubePos cubePos)
     {
         Vector3 positionToRotation = _moveDir[(int)cubePos];
-        switch (cubePos)
-        {
-            // 큐브의 이동 방향으로 _cubeUpCheck를 이동 
-            case CubePos.Up:
-                _cubeUpCheck.transform.position += new Vector3(0, 0, 1);
-                break;
-            case CubePos.Down:
-                _cubeUpCheck.transform.position += new Vector3(0, 0, -1);
-                break;
-            case CubePos.Right:
-                _cubeUpCheck.transform.position += new Vector3(1, 0, 0);
-                break;
-            case CubePos.Left:
-                _cubeUpCheck.transform.position += new Vector3(-1, 0, 0);
-                break;
-        }
 
         IsRolling = true;
         _cubeUpCheck.enabled = false; // 이동 중 다른 콜라이더와 접촉하지 않도록 _cubeUpCheck 비활성화
@@ -159,8 +147,34 @@ public class CubeMove4 : MonoBehaviour
         }
 
         transform.RotateAround(point, axis, 90 - angle); // 회전이 90도보다 적거나 많이 될 때 90도로 조정
+
         IsRolling = false;
+
+        _cubeUpCheck.transform.position = transform.position + Vector3.up; // _cubeUpCheck 큐브 위로 이동
         _cubeUpCheck.enabled = true;
-        Debug.Log(_cubeChecker.IsGround());
+
+        if (!_cubeChecker.IsGround())
+            CubeFall();
+    }
+
+    private void CubeFall()
+    {
+        IsRolling = true; // 떨어지는 중 회전 막기
+        _rigidbody.isKinematic = false; // 물리를 활성화
+        transform.GetComponent<BoxCollider>().size = new Vector3(0.9f, 0.9f, 0.9f); // 콜라이더 축소로 낙하 유도
+    }
+
+    // CubeFall()에서 물리가 활성화 될 때만 OnCollisionEnter가 실행될 수 있음
+    private void OnCollisionEnter(Collision collision)
+    {
+        IsRolling = false;
+        _rigidbody.isKinematic = true;
+
+        transform.GetComponent<BoxCollider>().size = Vector3.one; // 콜라이더 원복
+
+        _cubeUpCheck.transform.position = transform.position + Vector3.up; // _cubeUpCheck 큐브 위로 이동
+
+        // 낙하 이후 좌표값 보정
+        transform.position = new Vector3((float)Math.Round(transform.position.x), (float)Math.Round(transform.position.y), (float)Math.Round(transform.position.z));
     }
 }
