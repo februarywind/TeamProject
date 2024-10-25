@@ -32,6 +32,9 @@ public class CubeMove4 : MonoBehaviour
         _moveDir[3] = new Vector3(-bound.size.x / 2, -bound.size.y / 2, 0);
 
         _rigidbody = GetComponent<Rigidbody>();
+
+        if (!_cubeChecker.IsGround())
+            CubeFall();
     }
 
     void Update()
