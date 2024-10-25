@@ -5,8 +5,11 @@ using UnityEngine;
 public class CubeChecker4 : MonoBehaviour
 {
     [SerializeField] private LayerMask layerMask;
+    [SerializeField] private CubeMove4 move;
     public bool IsGround()
     {
-        return Physics.Raycast(transform.position, -transform.up, out RaycastHit hit, 3, layerMask);
+        RaycastHit hit;
+        bool _IsGround = Physics.Raycast(transform.position, -transform.up, out hit, 3, layerMask);
+        return _IsGround;
     }
 }
