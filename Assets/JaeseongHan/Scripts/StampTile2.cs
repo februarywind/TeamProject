@@ -62,7 +62,7 @@ public class StampTile2 : MonoBehaviour
             // 획득이면 해당 면에 스탬프 부착
             if (tileType.Equals(StampTileType.Get)) type.ChangeType = stampType;
             // 획득이 아니고(=> 사용이고) 타일이 같다면 
-            else if (stampType.Equals(type.GetStempType))
+            else if (stampType.Equals(type.GetStampType))
             {
                 // 한번 상호작용하면 더이상 안되게
                 collider.enabled = false;

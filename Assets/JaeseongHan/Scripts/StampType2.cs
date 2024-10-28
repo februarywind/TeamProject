@@ -17,7 +17,7 @@ public class StampType2 : MonoBehaviour
     /// <summary>
     /// 현재 면의 스탬프의 종류를 가져오는 프로퍼티
     /// </summary>
-    public StampType GetStempType { get { return curType; } }
+    public StampType GetStampType { get { return curType; } }
 
     /// <summary>
     /// 현재 면의 스탬프를 변경하는 프로퍼티
@@ -27,7 +27,7 @@ public class StampType2 : MonoBehaviour
     /// <summary>
     /// 스탬프의 이미지가 담겨있는 배열
     /// </summary>
-    public Sprite[] stempSprites = new Sprite[(int)StampType.Size];
+    public Sprite[] stampSprites = new Sprite[(int)StampType.Size];
 
     /// <summary>
     /// 스탬프를 초기화 시키는 함수
@@ -41,7 +41,7 @@ public class StampType2 : MonoBehaviour
 
     private void ChangeSprite()
     {
-        render.sprite = stempSprites[(int)curType];
+        render.sprite = stampSprites[(int)curType];
         render.drawMode = SpriteDrawMode.Sliced;
         render.size = new Vector2(1, 1);
     }
