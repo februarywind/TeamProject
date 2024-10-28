@@ -6,25 +6,25 @@ using UnityEngine.Events;
 // 한번에 몰아서 하나씩 넣기
 [RequireComponent(typeof(BoxCollider))]
 [RequireComponent(typeof(Rigidbody))]
-public class StempTile2 : MonoBehaviour
+public class StampTile2 : MonoBehaviour
 {
     [Header("Common")]
-    [SerializeField] StempType2.StempType stempType;    // 이 타일의 상호작용할 때 사용될 스탬프
-    [SerializeField] StempTileType tileType;            // 스탬프 상호작용 타입
+    [SerializeField] StampType2.StampType stampType;    // 이 타일의 상호작용할 때 사용될 스탬프
+    [SerializeField] StampTileType tileType;            // 스탬프 상호작용 타입
     [SerializeField] BoxCollider collider;              // 상호작용을 할 수 있는 장소
     [SerializeField] Rigidbody rigid;                   // 트리거 작동에 필요한 rigidbody
 
 
     [Header("Set")]
     [SerializeField] UnityEvent tileInteraction;        // 상호작용할 이벤트
-    public enum StempTileType { Get, Set }              // 획득, 사용
+    public enum StampTileType { Get, Set }              // 획득, 사용
 
     [SerializeField] SpriteRenderer render;     // 그림을 설정할 스프라이트
 
     /// <summary>
     /// 스탬프의 이미지가 담겨있는 배열
     /// </summary>
-    public Sprite[] stempSprites = new Sprite[(int)StempType2.StempType.Size];
+    public Sprite[] stampSprites = new Sprite[(int)StampType2.StampType.Size];
 
     private void Awake()
     {
@@ -48,21 +48,21 @@ public class StempTile2 : MonoBehaviour
 
     private void Start()
     {
-        render.sprite = stempSprites[(int)stempType];
+        render.sprite = stampSprites[(int)stampType];
         render.drawMode = SpriteDrawMode.Sliced;
         render.size = new Vector2(0.8f, 0.8f);
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        StempType2 type = other.gameObject.GetComponent<StempType2>();
+        StampType2 type = other.gameObject.GetComponent<StampType2>();
         Debug.Log(other.gameObject.name);
         if(type is not null)
         {
             // 획득이면 해당 면에 스탬프 부착
-            if (tileType.Equals(StempTileType.Get)) type.ChangeType = stempType;
+            if (tileType.Equals(StampTileType.Get)) type.ChangeType = stampType;
             // 획득이 아니고(=> 사용이고) 타일이 같다면 
-            else if (stempType.Equals(type.GetStempType))
+            else if (stampType.Equals(type.GetStampType))
             {
                 // 한번 상호작용하면 더이상 안되게
                 collider.enabled = false;
