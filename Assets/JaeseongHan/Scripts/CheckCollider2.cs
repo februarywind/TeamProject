@@ -8,10 +8,10 @@ using UnityEngine.Rendering;
 /// <summary>
 /// 콜라이더 
 /// </summary>
-public class CheckCollider1 : MonoBehaviour
+public class CheckCollider2 : MonoBehaviour
 {
-    [SerializeField] StempType1 type;               // 큐브에 달려있는 스탬프 확인
-    [SerializeField] UnityEvent[] interaction = new UnityEvent[(int)StempType1.StempType.Size];      // 각 스탬프의 상호작용들
+    [SerializeField] StempType2 type;               // 큐브에 달려있는 스탬프 확인
+    [SerializeField] UnityEvent[] interaction = new UnityEvent[(int)StempType2.StempType.Size];      // 각 스탬프의 상호작용들
     [SerializeField] BoxCollider boxCollider;       // 콜라이더
 
 
@@ -25,20 +25,20 @@ public class CheckCollider1 : MonoBehaviour
         // 임시로 번호키를 누르면 변경
         if(Input.GetKeyDown(KeyCode.Alpha1))
         {
-            type.ChangeType = StempType1.StempType.None;   
+            type.ChangeType = StempType2.StempType.None;   
         }
         else if (Input.GetKeyDown(KeyCode.Alpha2))
         {
-            type.ChangeType = StempType1.StempType.Red;   
+            type.ChangeType = StempType2.StempType.Red;   
 
         }
         else if (Input.GetKeyDown(KeyCode.Alpha3))
         {
-            type.ChangeType = StempType1.StempType.Blue;   
+            type.ChangeType = StempType2.StempType.Blue;   
         }
         else if (Input.GetKeyDown(KeyCode.Alpha4))
         {
-            type.ChangeType = StempType1.StempType.Yellow;   
+            type.ChangeType = StempType2.StempType.Yellow;   
         }
         // E를 누를때 && 박스 콜라이더가 있을 때(rolling이 아니다)
         else if(Input.GetKeyDown(KeyCode.E) && boxCollider.enabled)
@@ -49,7 +49,7 @@ public class CheckCollider1 : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        StempType1 type = other.GetComponent<StempType1>();
+        StempType2 type = other.GetComponent<StempType2>();
 
         // type 컴포넌트가 있다 -> cube에 붙어 있는 Stemp
         if (type is not null)
@@ -62,7 +62,7 @@ public class CheckCollider1 : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        StempType1 type = other.GetComponent<StempType1>();
+        StempType2 type = other.GetComponent<StempType2>();
 
         if (this.type.Equals(type))
         {

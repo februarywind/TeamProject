@@ -6,10 +6,10 @@ using UnityEngine.Events;
 // 한번에 몰아서 하나씩 넣기
 [RequireComponent(typeof(BoxCollider))]
 [RequireComponent(typeof(Rigidbody))]
-public class StempTile1 : MonoBehaviour
+public class StempTile2 : MonoBehaviour
 {
     [Header("Common")]
-    [SerializeField] StempType1.StempType stempType;    // 이 타일의 상호작용할 때 사용될 스탬프
+    [SerializeField] StempType2.StempType stempType;    // 이 타일의 상호작용할 때 사용될 스탬프
     [SerializeField] StempTileType tileType;            // 스탬프 상호작용 타입
     [SerializeField] BoxCollider collider;              // 상호작용을 할 수 있는 장소
     [SerializeField] Rigidbody rigid;                   // 트리거 작동에 필요한 rigidbody
@@ -24,7 +24,7 @@ public class StempTile1 : MonoBehaviour
     /// <summary>
     /// 스탬프의 이미지가 담겨있는 배열
     /// </summary>
-    public Sprite[] stempSprites = new Sprite[(int)StempType1.StempType.Size];
+    public Sprite[] stempSprites = new Sprite[(int)StempType2.StempType.Size];
 
     private void Awake()
     {
@@ -55,7 +55,7 @@ public class StempTile1 : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        StempType1 type = other.gameObject.GetComponent<StempType1>();
+        StempType2 type = other.gameObject.GetComponent<StempType2>();
         Debug.Log(other.gameObject.name);
         if(type is not null)
         {

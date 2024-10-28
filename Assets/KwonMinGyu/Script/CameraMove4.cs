@@ -1,66 +1,66 @@
 using UnityEngine;
-public enum CameraPos
+public enum CameraPos4
 {
     Up, Down, Right, Left
 }
 public class CameraMove4 : MonoBehaviour
 {
-    [SerializeField] private Transform _cubeTransform;  // Cube ¿ÀºêÁ§Æ®
-    [SerializeField] private Vector3 _offset = new Vector3(0, 5, -8);  // Ä«¸Þ¶ó ±âº» À§Ä¡
-    [SerializeField] private float _mouseSensitivity = 200f;  // ¸¶¿ì½º ¹Î°¨µµ
-    [SerializeField] private float _rotationUpLimit = 50f;  // Ä«¸Þ¶ó°¡ È¸ÀüÇÒ ¼ö ÀÖ´Â ÃÖ´ë °¢µµ (»óÇÏ Á¦ÇÑ)
-    [SerializeField] private float _rotationDownLimit = -20f;  // Ä«¸Þ¶ó°¡ È¸ÀüÇÒ ¼ö ÀÖ´Â ÃÖ´ë °¢µµ (»óÇÏ Á¦ÇÑ)
+    [SerializeField] private Transform _cubeTransform;  // Cube ì˜¤ë¸Œì íŠ¸
+    [SerializeField] private Vector3 _offset = new Vector3(0, 5, -8);  // ì¹´ë©”ë¼ ê¸°ë³¸ ìœ„ì¹˜
+    [SerializeField] private float _mouseSensitivity = 200f;  // ë§ˆìš°ìŠ¤ ë¯¼ê°ë„
+    [SerializeField] private float _rotationUpLimit = 50f;  // ì¹´ë©”ë¼ê°€ íšŒì „í•  ìˆ˜ ìžˆëŠ” ìµœëŒ€ ê°ë„ (ìƒí•˜ ì œí•œ)
+    [SerializeField] private float _rotationDownLimit = -20f;  // ì¹´ë©”ë¼ê°€ íšŒì „í•  ìˆ˜ ìžˆëŠ” ìµœëŒ€ ê°ë„ (ìƒí•˜ ì œí•œ)
 
-    private float _pitch = 0f;  // À§¾Æ·¡ °¢µµ (XÃà È¸Àü)
-    private float _yaw = 0f;  // ÁÂ¿ì °¢µµ (YÃà È¸Àü)
+    private float _pitch = 0f;  // ìœ„ì•„ëž˜ ê°ë„ (Xì¶• íšŒì „)
+    private float _yaw = 0f;  // ì¢Œìš° ê°ë„ (Yì¶• íšŒì „)
 
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
     }
 
-    // ¸Å ÇÁ·¹ÀÓ¸¶´Ù È£ÃâµÇ´Â Ä«¸Þ¶ó ¾÷µ¥ÀÌÆ®
+    // ë§¤ í”„ë ˆìž„ë§ˆë‹¤ í˜¸ì¶œë˜ëŠ” ì¹´ë©”ë¼ ì—…ë°ì´íŠ¸
     void LateUpdate()
     {
-        // ¸¶¿ì½º ÀÔ·Â ¹Þ±â
+        // ë§ˆìš°ìŠ¤ ìž…ë ¥ ë°›ê¸°
         float mouseX = Input.GetAxis("Mouse X") * _mouseSensitivity * Time.deltaTime;
         float mouseY = Input.GetAxis("Mouse Y") * _mouseSensitivity * Time.deltaTime;
 
-        // ¸¶¿ì½º ÀÔ·ÂÀ» ±âÁØÀ¸·Î Ä«¸Þ¶óÀÇ °¢µµ Á¶Á¤
+        // ë§ˆìš°ìŠ¤ ìž…ë ¥ì„ ê¸°ì¤€ìœ¼ë¡œ ì¹´ë©”ë¼ì˜ ê°ë„ ì¡°ì •
         _yaw += mouseX;
         _pitch -= mouseY;
 
-        // À§¾Æ·¡ °¢µµ Á¦ÇÑ (Å¥ºê¸¦ ³Ñ¾î°¡Áö ¾Êµµ·Ï)
+        // ìœ„ì•„ëž˜ ê°ë„ ì œí•œ (íë¸Œë¥¼ ë„˜ì–´ê°€ì§€ ì•Šë„ë¡)
         _pitch = Mathf.Clamp(_pitch, _rotationDownLimit, _rotationUpLimit);
 
-        // Ä«¸Þ¶óÀÇ È¸Àü Àû¿ë (Å¥ºê¸¦ Áß½ÉÀ¸·Î È¸Àü) 
+        // ì¹´ë©”ë¼ì˜ íšŒì „ ì ìš© (íë¸Œë¥¼ ì¤‘ì‹¬ìœ¼ë¡œ íšŒì „) 
         Quaternion rotation = Quaternion.Euler(_pitch, _yaw, 0f);
-        // Ä«¸Þ¶ó°¡ Å¥ºê¸¦ Áß½ÉÀ¸·Î È¸ÀüÇÏµµ·Ï À§Ä¡ °è»ê
-        transform.position = _cubeTransform.position + rotation * _offset;  // Quaternion * position = postionÀÇ °¢µµ º¯°æ
-        // Ä«¸Þ¶ó°¡ Ç×»ó Å¥ºê¸¦ ¹Ù¶óº¸µµ·Ï ¼³Á¤
+        // ì¹´ë©”ë¼ê°€ íë¸Œë¥¼ ì¤‘ì‹¬ìœ¼ë¡œ íšŒì „í•˜ë„ë¡ ìœ„ì¹˜ ê³„ì‚°
+        transform.position = _cubeTransform.position + rotation * _offset;  // Quaternion * position = postionì˜ ê°ë„ ë³€ê²½
+        // ì¹´ë©”ë¼ê°€ í•­ìƒ íë¸Œë¥¼ ë°”ë¼ë³´ë„ë¡ ì„¤ì •
         transform.LookAt(_cubeTransform.position);
     }
 
-    // Ä«¸Þ¶ó°¡ Å¥ºê¸¦ ±âÁØÀ¸·Î ¾î´À ¹æÇâ¿¡ ÀÖ´ÂÁö ±¸ÇÏ´Â ÇÔ¼ö
-    public CameraPos CameraPosition()
+    // ì¹´ë©”ë¼ê°€ íë¸Œë¥¼ ê¸°ì¤€ìœ¼ë¡œ ì–´ëŠ ë°©í–¥ì— ìžˆëŠ”ì§€ êµ¬í•˜ëŠ” í•¨ìˆ˜
+    public CameraPos4 CameraPosition()
     {
-        CameraPos _cameraPos = new CameraPos();
-        // Å¥ºê¸¦ ±âÁØÁ¡À¸·Î ÇÑ Ä«¸Þ¶óÀÇ xÁÂÇ¥
+        CameraPos4 _cameraPos = new CameraPos4();
+        // íë¸Œë¥¼ ê¸°ì¤€ì ìœ¼ë¡œ í•œ ì¹´ë©”ë¼ì˜ xì¢Œí‘œ
         float tempX = transform.position.x - _cubeTransform.position.x;
-        // Ä«¸Þ¶óÀÇ Ã¹ yÁÂÇ¥¸¦ ±âÁØÀ¸·Î ÀÌµ¿ÇÑ yÁÂÇ¥
+        // ì¹´ë©”ë¼ì˜ ì²« yì¢Œí‘œë¥¼ ê¸°ì¤€ìœ¼ë¡œ ì´ë™í•œ yì¢Œí‘œ
         float tempY = transform.position.y - (_offset.y + _cubeTransform.position.y);
 
-        // Ä«¸Þ¶óÀÇ ÁÂÇ¥°ªÀÌ ´ë·« +-_offset.z - 2 ÀÏ¶§ ¹æÇâ ÀüÈ¯
-        // yÃàÀÌ º¯ÇÒ ¶§ xÃà °ªÀÌ º¯ÇÏ±â ¶§¹®¿¡ tempY·Î º¸°­
+        // ì¹´ë©”ë¼ì˜ ì¢Œí‘œê°’ì´ ëŒ€ëžµ +-_offset.z - 2 ì¼ë•Œ ë°©í–¥ ì „í™˜
+        // yì¶•ì´ ë³€í•  ë•Œ xì¶• ê°’ì´ ë³€í•˜ê¸° ë•Œë¬¸ì— tempYë¡œ ë³´ê°•
         if (tempX + tempY > -_offset.z - 2)
-            _cameraPos = CameraPos.Right;
+            _cameraPos = CameraPos4.Right;
         else if (tempX - tempY < _offset.z + 2)
-            _cameraPos = CameraPos.Left;
-        // Ä«¸Þ¶óÀÇ À§Ä¡°¡ ¾ç ¿·ÀÌ ¾Æ´Ï°í zÁÂÇ¥°ªÀÌ ¾ç¼ö¶ó¸é Ä«¸Þ¶ó´Â Å¥ºêÀÇ À­ ¹æÇâ¿¡ ÀÖÀ½
+            _cameraPos = CameraPos4.Left;
+        // ì¹´ë©”ë¼ì˜ ìœ„ì¹˜ê°€ ì–‘ ì˜†ì´ ì•„ë‹ˆê³  zì¢Œí‘œê°’ì´ ì–‘ìˆ˜ë¼ë©´ ì¹´ë©”ë¼ëŠ” íë¸Œì˜ ìœ— ë°©í–¥ì— ìžˆìŒ
         else if (transform.position.z - _cubeTransform.position.z > 0)
-            _cameraPos = CameraPos.Up;
+            _cameraPos = CameraPos4.Up;
         else
-            _cameraPos = CameraPos.Down;
+            _cameraPos = CameraPos4.Down;
         //Debug.Log(_cameraPos);
         return _cameraPos;
     }

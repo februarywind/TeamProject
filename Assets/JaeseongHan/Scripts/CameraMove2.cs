@@ -2,12 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum CameraPos
+public enum CameraPos2
 {
     Up, Down, Right, Left
 }
 
-public class CameraMove1 : MonoBehaviour
+public class CameraMove2 : MonoBehaviour
 {
     [SerializeField] private Transform _cubeTransform;  // Cube 오브젝트
     [SerializeField] private Vector3 _offset = new Vector3(0, 5, -10);  // 카메라 기본 위치
@@ -44,20 +44,20 @@ public class CameraMove1 : MonoBehaviour
         // 카메라가 항상 큐브를 바라보도록 설정
         transform.LookAt(_cubeTransform.position);
     }
-    public CameraPos CameraPosition()
+    public CameraPos2 CameraPosition()
     {
-        CameraPos _cameraPos = new CameraPos();
+        CameraPos2 _cameraPos = new CameraPos2();
         float tempX = transform.position.x - _cubeTransform.position.x;
         float tempY = transform.position.y - (_offset.y + 1);
 
         if (tempX + tempY > 6)
-            _cameraPos = CameraPos.Right;
+            _cameraPos = CameraPos2.Right;
         else if (tempX - tempY < -6)
-            _cameraPos = CameraPos.Left;
+            _cameraPos = CameraPos2.Left;
         else if (transform.position.z - _cubeTransform.position.z > 0)
-            _cameraPos = CameraPos.Up;
+            _cameraPos = CameraPos2.Up;
         else
-            _cameraPos = CameraPos.Down;
+            _cameraPos = CameraPos2.Down;
         //Debug.Log(_cameraPos);
         return _cameraPos;
     }

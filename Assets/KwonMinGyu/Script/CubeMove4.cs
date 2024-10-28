@@ -1,7 +1,7 @@
 using System;
 using System.Collections;
 using UnityEngine;
-public enum CubePos
+public enum CubePos4
 {
     Up, Down, Right, Left
 }
@@ -14,8 +14,8 @@ public class CubeMove4 : MonoBehaviour
     [SerializeField] private BoxCollider _cubeUpCheck;
     [SerializeField] private Rigidbody _rigidbody;
 
-    CameraPos _cameraPos;
-    CubePos _cubePos;
+    CameraPos4 _cameraPos;
+    CubePos4 _cubePos;
 
     Vector3[] _moveDir = new Vector3[4];
     Bounds bound;
@@ -23,12 +23,12 @@ public class CubeMove4 : MonoBehaviour
     bool IsRolling;
 
     public bool slopeForward;
-    public CubePos slopeDir;
+    public CubePos4 slopeDir;
 
     void Start()
     {
-        // bound.size°ªÀ¸·Î Äİ¶óÀÌ´õÀÇ ¿ùµå±âÁØ size¸¦ ±¸ÇÒ ¼ö ÀÖÀ½
-        // ¾Æ·¡ °ªµéÀº RotateAroundÀÇ È¸Àü ±âÁØÁ¡ÀÌ µÊ
+        // bound.sizeê°’ìœ¼ë¡œ ì½œë¼ì´ë”ì˜ ì›”ë“œê¸°ì¤€ sizeë¥¼ êµ¬í•  ìˆ˜ ìˆìŒ
+        // ì•„ë˜ ê°’ë“¤ì€ RotateAroundì˜ íšŒì „ ê¸°ì¤€ì ì´ ë¨
         bound = GetComponent<BoxCollider>().bounds;
         _moveDir[0] = new Vector3(0, -bound.size.y / 2, bound.size.z / 2);
         _moveDir[1] = new Vector3(0, -bound.size.y / 2, -bound.size.z / 2);
@@ -53,20 +53,20 @@ public class CubeMove4 : MonoBehaviour
         // Move Forward
         if (_VMove == 1)
         {
-            // CameraPosition()·Î Ä«¸Ş¶ó ¹æÇâÀ» ±¸ÇØ È¸Àü ¹æÇâÀ» º¯°æ
+            // CameraPosition()ë¡œ ì¹´ë©”ë¼ ë°©í–¥ì„ êµ¬í•´ íšŒì „ ë°©í–¥ì„ ë³€ê²½
             switch (_cameraPos)
             {
-                case CameraPos.Up:
-                    _cubePos = CubePos.Down;
+                case CameraPos4.Up:
+                    _cubePos = CubePos4.Down;
                     break;
-                case CameraPos.Down:
-                    _cubePos = CubePos.Up;
+                case CameraPos4.Down:
+                    _cubePos = CubePos4.Up;
                     break;
-                case CameraPos.Right:
-                    _cubePos = CubePos.Left;
+                case CameraPos4.Right:
+                    _cubePos = CubePos4.Left;
                     break;
-                case CameraPos.Left:
-                    _cubePos = CubePos.Right;
+                case CameraPos4.Left:
+                    _cubePos = CubePos4.Right;
                     break;
             }
         }
@@ -76,17 +76,17 @@ public class CubeMove4 : MonoBehaviour
         {
             switch (_cameraPos)
             {
-                case CameraPos.Up:
-                    _cubePos = CubePos.Up;
+                case CameraPos4.Up:
+                    _cubePos = CubePos4.Up;
                     break;
-                case CameraPos.Down:
-                    _cubePos = CubePos.Down;
+                case CameraPos4.Down:
+                    _cubePos = CubePos4.Down;
                     break;
-                case CameraPos.Right:
-                    _cubePos = CubePos.Right;
+                case CameraPos4.Right:
+                    _cubePos = CubePos4.Right;
                     break;
-                case CameraPos.Left:
-                    _cubePos = CubePos.Left;
+                case CameraPos4.Left:
+                    _cubePos = CubePos4.Left;
                     break;
             }
         }
@@ -96,17 +96,17 @@ public class CubeMove4 : MonoBehaviour
         {
             switch (_cameraPos)
             {
-                case CameraPos.Up:
-                    _cubePos = CubePos.Left;
+                case CameraPos4.Up:
+                    _cubePos = CubePos4.Left;
                     break;
-                case CameraPos.Down:
-                    _cubePos = CubePos.Right;
+                case CameraPos4.Down:
+                    _cubePos = CubePos4.Right;
                     break;
-                case CameraPos.Right:
-                    _cubePos = CubePos.Up;
+                case CameraPos4.Right:
+                    _cubePos = CubePos4.Up;
                     break;
-                case CameraPos.Left:
-                    _cubePos = CubePos.Down;
+                case CameraPos4.Left:
+                    _cubePos = CubePos4.Down;
                     break;
             }
         }
@@ -116,23 +116,23 @@ public class CubeMove4 : MonoBehaviour
         {
             switch (_cameraPos)
             {
-                case CameraPos.Up:
-                    _cubePos = CubePos.Right;
+                case CameraPos4.Up:
+                    _cubePos = CubePos4.Right;
                     break;
-                case CameraPos.Down:
-                    _cubePos = CubePos.Left;
+                case CameraPos4.Down:
+                    _cubePos = CubePos4.Left;
                     break;
-                case CameraPos.Right:
-                    _cubePos = CubePos.Down;
+                case CameraPos4.Right:
+                    _cubePos = CubePos4.Down;
                     break;
-                case CameraPos.Left:
-                    _cubePos = CubePos.Up;
+                case CameraPos4.Left:
+                    _cubePos = CubePos4.Up;
                     break;
             }
         }
         if (!IsRolling)
         {
-            // °æ»ç·Î ¾Õ¿¡¼­ °æ»ç·Î ÂÊÀ¸·Î ÀÌµ¿½Ã °æ»ç·Î ÀÌµ¿ ÄÚ·çÆ¾ ½ÇÇà
+            // ê²½ì‚¬ë¡œ ì•ì—ì„œ ê²½ì‚¬ë¡œ ìª½ìœ¼ë¡œ ì´ë™ì‹œ ê²½ì‚¬ë¡œ ì´ë™ ì½”ë£¨í‹´ ì‹¤í–‰
             if (slopeForward && slopeDir == _cubePos)
             {
                 StartCoroutine(SlopeRoll(_cubePos));
@@ -142,12 +142,12 @@ public class CubeMove4 : MonoBehaviour
         }
     }
 
-    IEnumerator Roll(CubePos cubePos)
+    IEnumerator Roll(CubePos4 cubePos)
     {
         Vector3 positionToRotation = _moveDir[(int)cubePos];
 
         IsRolling = true;
-        _cubeUpCheck.enabled = false; // ÀÌµ¿ Áß ´Ù¸¥ Äİ¶óÀÌ´õ¿Í Á¢ÃËÇÏÁö ¾Êµµ·Ï _cubeUpCheck ºñÈ°¼ºÈ­
+        _cubeUpCheck.enabled = false; // ì´ë™ ì¤‘ ë‹¤ë¥¸ ì½œë¼ì´ë”ì™€ ì ‘ì´‰í•˜ì§€ ì•Šë„ë¡ _cubeUpCheck ë¹„í™œì„±í™”
 
         float angle = 0;
         Vector3 point = transform.position + positionToRotation;
@@ -156,28 +156,28 @@ public class CubeMove4 : MonoBehaviour
         while (angle < 90f)
         {
             float angleSpeed = Time.deltaTime * _rotationSpeed;
-            transform.RotateAround(point, axis, angleSpeed); // (±âÁØÁ¡, ¹æÇâ, È¸Àü°ª)À¸·Î È¸Àü
+            transform.RotateAround(point, axis, angleSpeed); // (ê¸°ì¤€ì , ë°©í–¥, íšŒì „ê°’)ìœ¼ë¡œ íšŒì „
             angle += angleSpeed;
             yield return null;
         }
 
-        transform.RotateAround(point, axis, 90 - angle); // È¸ÀüÀÌ 90µµº¸´Ù Àû°Å³ª ¸¹ÀÌ µÉ ¶§ 90µµ·Î Á¶Á¤
+        transform.RotateAround(point, axis, 90 - angle); // íšŒì „ì´ 90ë„ë³´ë‹¤ ì ê±°ë‚˜ ë§ì´ ë  ë•Œ 90ë„ë¡œ ì¡°ì •
 
         IsRolling = false;
 
-        _cubeUpCheck.transform.position = transform.position + Vector3.up; // _cubeUpCheck Å¥ºê À§·Î ÀÌµ¿
+        _cubeUpCheck.transform.position = transform.position + Vector3.up; // _cubeUpCheck íë¸Œ ìœ„ë¡œ ì´ë™
         _cubeUpCheck.enabled = true;
 
         if (!_cubeChecker.IsGround())
             CubeFall();
     }
 
-    IEnumerator SlopeRoll(CubePos cubePos)
+    IEnumerator SlopeRoll(CubePos4 cubePos)
     {
         Vector3 positionToRotation = _moveDir[(int)cubePos];
 
         IsRolling = true;
-        _cubeUpCheck.enabled = false; // ÀÌµ¿ Áß ´Ù¸¥ Äİ¶óÀÌ´õ¿Í Á¢ÃËÇÏÁö ¾Êµµ·Ï _cubeUpCheck ºñÈ°¼ºÈ­
+        _cubeUpCheck.enabled = false; // ì´ë™ ì¤‘ ë‹¤ë¥¸ ì½œë¼ì´ë”ì™€ ì ‘ì´‰í•˜ì§€ ì•Šë„ë¡ _cubeUpCheck ë¹„í™œì„±í™”
 
         float angle = 0;
         Vector3 point = transform.position + positionToRotation;
@@ -193,20 +193,20 @@ public class CubeMove4 : MonoBehaviour
 
         transform.RotateAround(point, axis, 134f - angle);
 
-        // °æ»ç·Î ³¡ÀÇ ¸ñÇ¥ ÀúÀå
+        // ê²½ì‚¬ë¡œ ëì˜ ëª©í‘œ ì €ì¥
         Vector3 _slopePoint = new();
         switch (_cubePos)
         {
-            case CubePos.Up:
+            case CubePos4.Up:
                 _slopePoint = new Vector3(0, -3.3f, 3.3f);
                 break;
-            case CubePos.Down:
+            case CubePos4.Down:
                 _slopePoint = new Vector3(0, -3.3f, -3.3f);
                 break;
-            case CubePos.Right:
+            case CubePos4.Right:
                 _slopePoint = new Vector3(3.3f, -3.3f, 0);
                 break;
-            case CubePos.Left:
+            case CubePos4.Left:
                 _slopePoint = new Vector3(-3.3f, -3.3f, 0);
                 break;
         }
@@ -238,22 +238,22 @@ public class CubeMove4 : MonoBehaviour
 
     private void CubeFall()
     {
-        IsRolling = true; // ¶³¾îÁö´Â Áß È¸Àü ¸·±â
-        _rigidbody.isKinematic = false; // ¹°¸®¸¦ È°¼ºÈ­
-        transform.GetComponent<BoxCollider>().size = new Vector3(0.9f, 0.9f, 0.9f); // Äİ¶óÀÌ´õ Ãà¼Ò·Î ³«ÇÏ À¯µµ
+        IsRolling = true; // ë–¨ì–´ì§€ëŠ” ì¤‘ íšŒì „ ë§‰ê¸°
+        _rigidbody.isKinematic = false; // ë¬¼ë¦¬ë¥¼ í™œì„±í™”
+        transform.GetComponent<BoxCollider>().size = new Vector3(0.9f, 0.9f, 0.9f); // ì½œë¼ì´ë” ì¶•ì†Œë¡œ ë‚™í•˜ ìœ ë„
     }
 
-    // CubeFall()¿¡¼­ ¹°¸®°¡ È°¼ºÈ­ µÉ ¶§¸¸ OnCollisionEnter°¡ ½ÇÇàµÉ ¼ö ÀÖÀ½
+    // CubeFall()ì—ì„œ ë¬¼ë¦¬ê°€ í™œì„±í™” ë  ë•Œë§Œ OnCollisionEnterê°€ ì‹¤í–‰ë  ìˆ˜ ìˆìŒ
     private void OnCollisionEnter(Collision collision)
     {
         IsRolling = false;
         _rigidbody.isKinematic = true;
 
-        transform.GetComponent<BoxCollider>().size = Vector3.one; // Äİ¶óÀÌ´õ ¿øº¹
+        transform.GetComponent<BoxCollider>().size = Vector3.one; // ì½œë¼ì´ë” ì›ë³µ
 
-        _cubeUpCheck.transform.position = transform.position + Vector3.up; // _cubeUpCheck Å¥ºê À§·Î ÀÌµ¿
+        _cubeUpCheck.transform.position = transform.position + Vector3.up; // _cubeUpCheck íë¸Œ ìœ„ë¡œ ì´ë™
 
-        // ³«ÇÏ ÀÌÈÄ ÁÂÇ¥°ª º¸Á¤
+        // ë‚™í•˜ ì´í›„ ì¢Œí‘œê°’ ë³´ì •
         transform.position = new Vector3((float)Math.Round(transform.position.x), (float)Math.Round(transform.position.y), (float)Math.Round(transform.position.z));
     }
 }

@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class SlopeBlack4 : MonoBehaviour
 {
-    [SerializeField] private CubePos slopeDir;
+    [SerializeField] private CubePos4 slopeDir;
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag != "Player") return;

@@ -2,18 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-enum CubePos
+enum CubePos2
 {
     Up, Down, Right, Left
 }
 
-public class CubeMove1 : MonoBehaviour
+public class CubeMove2 : MonoBehaviour
 {
     [SerializeField] private float _rotationSpeed;
     [SerializeField] private BoxCollider _cubeUpCheck;
-    [SerializeField] private CameraMove1 _cameraMove;
-    CameraPos _cameraPos;
-    CubePos _cubePos;
+    [SerializeField] private CameraMove2 _cameraMove;
+    CameraPos2 _cameraPos;
+    CubePos2 _cubePos;
     bool IsRolling;
 
     Bounds bound;
@@ -42,17 +42,17 @@ public class CubeMove1 : MonoBehaviour
         {
             switch (_cameraPos)
             {
-                case CameraPos.Up:
-                    _cubePos = CubePos.Down;
+                case CameraPos2.Up:
+                    _cubePos = CubePos2.Down;
                     break;
-                case CameraPos.Down:
-                    _cubePos = CubePos.Up;
+                case CameraPos2.Down:
+                    _cubePos = CubePos2.Up;
                     break;
-                case CameraPos.Right:
-                    _cubePos = CubePos.Left;
+                case CameraPos2.Right:
+                    _cubePos = CubePos2.Left;
                     break;
-                case CameraPos.Left:
-                    _cubePos = CubePos.Right;
+                case CameraPos2.Left:
+                    _cubePos = CubePos2.Right;
                     break;
             }
         }
@@ -62,17 +62,17 @@ public class CubeMove1 : MonoBehaviour
         {
             switch (_cameraPos)
             {
-                case CameraPos.Up:
-                    _cubePos = CubePos.Up;
+                case CameraPos2.Up:
+                    _cubePos = CubePos2.Up;
                     break;
-                case CameraPos.Down:
-                    _cubePos = CubePos.Down;
+                case CameraPos2.Down:
+                    _cubePos = CubePos2.Down;
                     break;
-                case CameraPos.Right:
-                    _cubePos = CubePos.Right;
+                case CameraPos2.Right:
+                    _cubePos = CubePos2.Right;
                     break;
-                case CameraPos.Left:
-                    _cubePos = CubePos.Left;
+                case CameraPos2.Left:
+                    _cubePos = CubePos2.Left;
                     break;
             }
         }
@@ -82,17 +82,17 @@ public class CubeMove1 : MonoBehaviour
         {
             switch (_cameraPos)
             {
-                case CameraPos.Up:
-                    _cubePos = CubePos.Left;
+                case CameraPos2.Up:
+                    _cubePos = CubePos2.Left;
                     break;
-                case CameraPos.Down:
-                    _cubePos = CubePos.Right;
+                case CameraPos2.Down:
+                    _cubePos = CubePos2.Right;
                     break;
-                case CameraPos.Right:
-                    _cubePos = CubePos.Up;
+                case CameraPos2.Right:
+                    _cubePos = CubePos2.Up;
                     break;
-                case CameraPos.Left:
-                    _cubePos = CubePos.Down;
+                case CameraPos2.Left:
+                    _cubePos = CubePos2.Down;
                     break;
             }
         }
@@ -102,17 +102,17 @@ public class CubeMove1 : MonoBehaviour
         {
             switch (_cameraPos)
             {
-                case CameraPos.Up:
-                    _cubePos = CubePos.Right;
+                case CameraPos2.Up:
+                    _cubePos = CubePos2.Right;
                     break;
-                case CameraPos.Down:
-                    _cubePos = CubePos.Left;
+                case CameraPos2.Down:
+                    _cubePos = CubePos2.Left;
                     break;
-                case CameraPos.Right:
-                    _cubePos = CubePos.Down;
+                case CameraPos2.Right:
+                    _cubePos = CubePos2.Down;
                     break;
-                case CameraPos.Left:
-                    _cubePos = CubePos.Up;
+                case CameraPos2.Left:
+                    _cubePos = CubePos2.Up;
                     break;
             }
         }
@@ -120,21 +120,21 @@ public class CubeMove1 : MonoBehaviour
             StartCoroutine(Roll(_cubePos));
     }
 
-    IEnumerator Roll(CubePos cubePos)
+    IEnumerator Roll(CubePos2 cubePos)
     {
         Vector3 positionToRotation = _moveDir[(int)cubePos];
         switch (cubePos)
         {
-            case CubePos.Up:
+            case CubePos2.Up:
                 _cubeUpCheck.transform.position += new Vector3(0, 0, 1);
                 break;
-            case CubePos.Down:
+            case CubePos2.Down:
                 _cubeUpCheck.transform.position += new Vector3(0, 0, -1);
                 break;
-            case CubePos.Right:
+            case CubePos2.Right:
                 _cubeUpCheck.transform.position += new Vector3(1, 0, 0);
                 break;
-            case CubePos.Left:
+            case CubePos2.Left:
                 _cubeUpCheck.transform.position += new Vector3(-1, 0, 0);
                 break;
         }

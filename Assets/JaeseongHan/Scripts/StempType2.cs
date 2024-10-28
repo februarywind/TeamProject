@@ -3,7 +3,7 @@ using UnityEngine;
 /// <summary>
 /// 스탬프를 입히는 스크립트
 /// </summary>
-public class StempType1 : MonoBehaviour
+public class StempType2 : MonoBehaviour
 {
     [SerializeField] StempType curType;         // 현재 이 면의 스탬프
     [SerializeField] SpriteRenderer render;     // 그림을 설정할 스프라이트
