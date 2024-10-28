@@ -8,7 +8,7 @@ using UnityEngine.Tilemaps;
 // 한번에 몰아서 하나씩 넣기
 [RequireComponent(typeof(BoxCollider))]
 [RequireComponent(typeof(Rigidbody))]
-public class ClearStempTile2 : MonoBehaviour
+public class ClearStampTile2 : MonoBehaviour
 {
     [Header("Common")]
     [SerializeField] BoxCollider collider;              // 상호작용을 할 수 있는 장소
@@ -19,7 +19,7 @@ public class ClearStempTile2 : MonoBehaviour
     private enum State { ONE , ALL }
 
     [Header("PlayerStemps")]
-    [SerializeField] StempType2[] stemps = new StempType2[6];   // 플레이어의 부착한 모든 면
+    [SerializeField] StampType2[] stemps = new StampType2[6];   // 플레이어의 부착한 모든 면
 
     private void Awake()
     {
@@ -44,7 +44,7 @@ public class ClearStempTile2 : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        StempType2 type = other.GetComponent<StempType2>();
+        StampType2 type = other.GetComponent<StampType2>();
 
         if(type is not null)
         {
@@ -60,7 +60,7 @@ public class ClearStempTile2 : MonoBehaviour
     }
 
     // 스탬프 단면 지우기
-    private void ClearStempOne(StempType2 type)
+    private void ClearStempOne(StampType2 type)
     {
         type.ClearTile();
     }
@@ -68,7 +68,7 @@ public class ClearStempTile2 : MonoBehaviour
     // 스탬프 다 지우기
     private void ClearStempAll()
     {
-        foreach(StempType2 type in stemps)
+        foreach(StampType2 type in stemps)
         {
             type.ClearTile();
         }

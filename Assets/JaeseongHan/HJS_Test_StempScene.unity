@@ -419,7 +419,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09df0c42f25611442b8c0daac881a64c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stempType: 1
+  stampType: 1
   tileType: 1
   collider: {fileID: 0}
   rigid: {fileID: 0}
@@ -439,11 +439,11 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   render: {fileID: 764829899}
-  stempSprites:
+  stampSprites:
   - {fileID: 0}
   - {fileID: 21300000, guid: bf670cb2d00804525aa1448f684b3c3b, type: 3}
+  - {fileID: 21300000, guid: cec60a7055c064a05995347d1814bd9c, type: 3}
   - {fileID: 21300000, guid: 2ae03f3ab16384724b598413d008c4d1, type: 3}
-  - {fileID: 21300000, guid: 271ea8e9b26a94b2d8a6773b72812c27, type: 3}
 --- !u!65 &764829898
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -965,81 +965,6 @@ MonoBehaviour:
   - {fileID: 1485467731}
   - {fileID: 1381442121}
   - {fileID: 227017076}
-  clearStemp:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1639812114}
-        m_TargetAssemblyTypeName: StempType2, Assembly-CSharp
-        m_MethodName: ClearTile
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 169067015}
-        m_TargetAssemblyTypeName: StempType2, Assembly-CSharp
-        m_MethodName: ClearTile
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1197332509}
-        m_TargetAssemblyTypeName: StempType2, Assembly-CSharp
-        m_MethodName: ClearTile
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1485467731}
-        m_TargetAssemblyTypeName: StempType2, Assembly-CSharp
-        m_MethodName: ClearTile
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1381442121}
-        m_TargetAssemblyTypeName: StempType2, Assembly-CSharp
-        m_MethodName: ClearTile
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 227017076}
-        m_TargetAssemblyTypeName: StempType2, Assembly-CSharp
-        m_MethodName: ClearTile
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!1 &1381442117 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5335772654419091554, guid: d248c8855fc5d9e4badb13b3683e25cc, type: 3}
@@ -1328,9 +1253,6 @@ MonoBehaviour:
   - {fileID: 1485467731}
   - {fileID: 1381442121}
   - {fileID: 227017076}
-  clearStemp:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1 &1639812110 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1044315745595380194, guid: d248c8855fc5d9e4badb13b3683e25cc, type: 3}
@@ -1565,7 +1487,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09df0c42f25611442b8c0daac881a64c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stempType: 1
+  stampType: 1
   tileType: 0
   collider: {fileID: 0}
   rigid: {fileID: 0}
@@ -1573,11 +1495,11 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   render: {fileID: 1751292295}
-  stempSprites:
+  stampSprites:
   - {fileID: 0}
   - {fileID: 21300000, guid: bf670cb2d00804525aa1448f684b3c3b, type: 3}
+  - {fileID: 21300000, guid: cec60a7055c064a05995347d1814bd9c, type: 3}
   - {fileID: 21300000, guid: 2ae03f3ab16384724b598413d008c4d1, type: 3}
-  - {fileID: 21300000, guid: 271ea8e9b26a94b2d8a6773b72812c27, type: 3}
 --- !u!54 &1751292297
 Rigidbody:
   m_ObjectHideFlags: 0
