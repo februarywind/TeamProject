@@ -12,7 +12,7 @@ public class SlopeBlack4 : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag != "Player") return;
+        if (!other.CompareTag("Player")) return;
         CubeMove4 cubeMove4 = other.GetComponent<CubeMove4>();
         cubeMove4.IsSlopeForward = true;
         cubeMove4.SlopeDir = _slopeDir;
@@ -20,7 +20,7 @@ public class SlopeBlack4 : MonoBehaviour
     }
     private void OnTriggerExit(Collider other)
     {
-        if (other.tag != "Player") return;
+        if (!other.CompareTag("Player")) return;
         CubeMove4 cubeMove4 = other.GetComponent<CubeMove4>();
         cubeMove4.IsSlopeForward = false;
     }
