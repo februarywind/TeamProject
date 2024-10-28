@@ -11,8 +11,8 @@ using UnityEngine.Rendering;
 public class CheckCollider2 : MonoBehaviour
 {
     [SerializeField] StampType2 type;               // 큐브에 달려있는 스탬프 확인
-    [SerializeField] UnityEvent[] interaction = new UnityEvent[(int)StampType2.StampType.Size];      // 각 스탬프의 상호작용들
     [SerializeField] BoxCollider boxCollider;       // 콜라이더
+    [SerializeField] UseStampAbility2 useStampAbility;  // 스탬프 능력을 관리하는 스크립트
 
     private void Awake()
     {
@@ -39,11 +39,6 @@ public class CheckCollider2 : MonoBehaviour
         {
             type.ChangeType = StampType2.StampType.Yellow;   
         }
-        // E를 누를때 && 박스 콜라이더가 있을 때(rolling이 아니다)
-        else if(Input.GetKeyDown(KeyCode.E) && boxCollider.enabled)
-        {
-            interaction[(int)type.GetStempType]?.Invoke();
-        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -54,6 +49,7 @@ public class CheckCollider2 : MonoBehaviour
         if (type is not null)
         {
             this.type = type;
+            useStampAbility.ChangeAbility(type.GetStampType);
             Debug.Log($"enter object : {other.gameObject.name}");
         }
     }
@@ -65,6 +61,7 @@ public class CheckCollider2 : MonoBehaviour
         if (this.type.Equals(type))
         {
             this.type = null;
+            useStampAbility.ChangeAbility(StampType2.StampType.None);
         }
     }
 }
