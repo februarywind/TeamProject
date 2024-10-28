@@ -29,6 +29,11 @@ public class StempType2 : MonoBehaviour
     /// </summary>
     public Sprite[] stempSprites = new Sprite[(int)StempType.Size];
 
+    /// <summary>
+    /// 스탬프를 초기화 시키는 함수
+    /// </summary>
+    public void ClearTile() => ChangeType = StempType.None;
+
     private void Awake()
     {
         render = GetComponent<SpriteRenderer>();
