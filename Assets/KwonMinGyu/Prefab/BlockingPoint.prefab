@@ -58,4 +58,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb0260839485a214a97c6f20ba0d5425, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _blockingDir: 0300000001000000
+  _blockingDir: 00000000

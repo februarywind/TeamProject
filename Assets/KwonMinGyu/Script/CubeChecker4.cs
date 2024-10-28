@@ -9,7 +9,7 @@ public class CubeChecker4 : MonoBehaviour
     public bool IsGround()
     {
         RaycastHit hit;
-        bool _IsGround = Physics.Raycast(transform.position, -transform.up, out hit, 3, layerMask);
+        bool _IsGround = Physics.Raycast(transform.position, -transform.up, out hit, 1.7f, layerMask);
         // Debug.Log(Vector3.Angle(Vector3.up, hit.normal)); // 경사로 각도 확인
         return _IsGround;
     }

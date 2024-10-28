@@ -20,25 +20,25 @@ public class CubeMove4 : MonoBehaviour
 
     // 카메라 방향을 구하기 위한 CameraMove 스크립트
     [SerializeField] private CameraMove4 _cameraMove;
-    CameraPos4 _cameraPos;
+    private CameraPos4 _cameraPos;
 
     // 카메라 뱡향에 따른 큐브 회전을 위한 필드
     private Vector3[] _moveDir = new Vector3[4];
     private CubePos4 _cubePos;
     private Bounds bound;
 
-    // true일 때 플레이어의 입력이 막힌다.
+    // true일 때 플레이어의 입력이 막힘
     private bool _IsRolling;
 
     // 경사로 이동속도
     [SerializeField] private float _slopeSpeed;
 
-    // 경사로 확인 필드 SlopeBlack와 Trigger될 때 자동 입력됨
+    // 경사로 확인 필드, SlopeBlack와 Trigger될 때 자동 입력됨
     public bool IsSlopeForward;
     public CubePos4 SlopeDir;
     public Vector2 SlopeDistance;
 
-    // 특정 칸에서 큐브 이동을 막기 위한 필드
+    // 특정 칸에서 큐브 이동을 막기 위한 필드, CubeMoveBlocking와 Trigger될 때 자동 입력됨
     public bool IsBlockingForward;
     public CubePos4[] BlockingDir;
 
@@ -162,7 +162,7 @@ public class CubeMove4 : MonoBehaviour
             // 경사로 앞에서 경사로 쪽으로 이동시 경사로 이동 코루틴 실행
             if (IsSlopeForward && SlopeDir == _cubePos)
             {
-                StartCoroutine(SlopeRoll(_cubePos));
+                StartCoroutine(SlopeMove(_cubePos));
                 return;
             }
 
@@ -172,46 +172,69 @@ public class CubeMove4 : MonoBehaviour
 
     IEnumerator Roll(CubePos4 cubePos)
     {
-        Vector3 positionToRotation = _moveDir[(int)cubePos];
-
+        // 중복 이동 방지
         _IsRolling = true;
-        _cubeUpCheck.enabled = false; // 이동 중 다른 콜라이더와 접촉하지 않도록 _cubeUpCheck 비활성화
 
-        float angle = 0;
+        // 이동 중 다른 콜라이더와 접촉하지 않도록 CubeCheck 비활성화
+        _cubeUpCheck.enabled = false; 
+
+        // 회전 방향에 따른 기준점을 구함
+        Vector3 positionToRotation = _moveDir[(int)cubePos];
         Vector3 point = transform.position + positionToRotation;
-        Vector3 axis = Vector3.Cross(Vector3.up, positionToRotation).normalized;
-        Debug.Log(axis);
 
+        // Vector3.up와 회전 방향의 외적을 구해서 회전 축으로 한다
+        Vector3 axis = Vector3.Cross(Vector3.up, positionToRotation).normalized;
+
+        // 90도 만큼 회전
+        float angle = 0;
         while (angle < 90f)
         {
+            // 1초당 _rotationSpeed 만큼 회전
             float angleSpeed = Time.deltaTime * _rotationSpeed;
-            transform.RotateAround(point, axis, angleSpeed); // (기준점, 방향, 회전값)으로 회전
+
+            // (기준점, 회천축, 회전값)으로 회전
+            transform.RotateAround(point, axis, angleSpeed);
+
+            // 회전값 저장
             angle += angleSpeed;
+
             yield return null;
         }
 
-        transform.RotateAround(point, axis, 90 - angle); // 회전이 90도보다 적거나 많이 될 때 90도로 조정
+        // 회전이 90도보다 적거나 많이 될 때 90도로 조정
+        transform.RotateAround(point, axis, 90 - angle); 
 
-        _IsRolling = false;
 
-        _cubeUpCheck.transform.position = transform.position + Vector3.up; // CubeCheck를 큐브 위로 이동
+        // CubeCheck를 큐브 위로 이동 후 콜라이더 활성화
+        _cubeUpCheck.transform.position = transform.position + Vector3.up; 
         _cubeUpCheck.enabled = true;
 
+        // 회전 종료, 이동 가능
+        _IsRolling = false;
+
+        // 회전 후 공중이라면 추락
         if (!_cubeChecker.IsGround())
             CubeFall();
     }
 
-    IEnumerator SlopeRoll(CubePos4 cubePos)
+    IEnumerator SlopeMove(CubePos4 cubePos)
     {
-        Vector3 positionToRotation = _moveDir[(int)cubePos];
-
+        // 중복 이동 방지
         _IsRolling = true;
+
+        // 이동 중 다른 콜라이더와 접촉하지 않도록 CubeCheck 비활성화
         _cubeUpCheck.enabled = false;
 
-        float angle = 0;
+        // 회전 방향에 따른 기준점을 구함
+        Vector3 positionToRotation = _moveDir[(int)cubePos];
         Vector3 point = transform.position + positionToRotation;
+
+        // Vector3.up와 회전 방향의 외적을 구해서 회전 축으로 한다
         Vector3 axis = Vector3.Cross(Vector3.up, positionToRotation).normalized;
 
+
+        // 90도 + 경사로의 각도(26.1423) 만큼 회전
+        float angle = 0;
         while (angle < 116.1423f)
         {
             float angleSpeed = Time.deltaTime * _rotationSpeed;
@@ -220,12 +243,15 @@ public class CubeMove4 : MonoBehaviour
             yield return null;
         }
 
+        // 회전이 116도보다 적거나 많이 될 때 116도로 조정
         transform.RotateAround(point, axis, 116.1423f - angle);
 
-        // 경사로 끝의 목표 저장
-        Vector3 _slopePoint = transform.position;
+        // 116도 회전 이후 다음 계단까지 거리를 더하여 경사로 길이를 보정
         SlopeDistance.x += 0.1f;
         SlopeDistance.y += 0.5f;
+
+        // 현재 위치에서 경사로 길이를 더하여 목표점을 구함
+        Vector3 _slopePoint = transform.position;
         switch (_cubePos)
         {
             case CubePos4.Up:
@@ -241,15 +267,21 @@ public class CubeMove4 : MonoBehaviour
                 _slopePoint += new Vector3(-SlopeDistance.x, -SlopeDistance.y, 0);
                 break;
         }
+
+        // 목표점과 가까워질 때까지 이동
         while (true)
         {
             transform.position = Vector3.MoveTowards(transform.position, _slopePoint, _slopeSpeed * Time.deltaTime);
-            if (_slopePoint.sqrMagnitude - transform.position.sqrMagnitude < 0.01f)
+            if (Mathf.Abs(_slopePoint.sqrMagnitude - transform.position.sqrMagnitude) < 0.01f)
                 break;
             yield return null;
         }
+
+        // 가장 자연스럽게 회전되는 위치로 회전 기준점을 변경
+        point = transform.position + new Vector3(2 * positionToRotation.x * 0.2f, 2 * positionToRotation.y * 0.7f, 2 * positionToRotation.z * 0.2f);
+
+        // 경사로 목표점에 도달시 180도 까지 회전
         angle = 116.1423f;
-        point = transform.position + (-Vector3.up * 0.5f * MathF.Sqrt(2)) + (-Vector3.forward * 0.25f);
         while (angle < 180f)
         {
             float angleSpeed = Time.deltaTime * _rotationSpeed;
@@ -257,33 +289,49 @@ public class CubeMove4 : MonoBehaviour
             angle += angleSpeed;
             yield return null;
         }
-        transform.RotateAround(point, axis, 180f - angle);
-        _IsRolling = false;
 
+        // 회전이 180도보다 적거나 많이 될 때 180도로 조정
+        transform.RotateAround(point, axis, 180f - angle);
+
+        // CubeCheck를 큐브 위로 이동 후 콜라이더 활성화
         _cubeUpCheck.transform.position = transform.position + Vector3.up;
         _cubeUpCheck.enabled = true;
 
+        // 경사로 끝에서 position을 반올림해서 보정
         transform.position = new Vector3((float)Math.Round(transform.position.x), (float)Math.Round(transform.position.y), (float)Math.Round(transform.position.z));
+
+        // 경사로 종료, 이동 가능
+        _IsRolling = false;
     }
 
     private void CubeFall()
     {
-        _IsRolling = true; // 낙하 중 회전 막기
-        _rigidbody.isKinematic = false; // 물리를 활성화
-        transform.GetComponent<BoxCollider>().size = new Vector3(0.9f, 0.9f, 0.9f); // 콜라이더 축소로 낙하 유도
+        // 낙하 중 이동 막기
+        _IsRolling = true; 
+
+        // 물리 활성화
+        _rigidbody.isKinematic = false; 
+        
+        // 콜라이더 축소로 낙하 유도
+        transform.GetComponent<BoxCollider>().size = new Vector3(0.9f, 0.9f, 0.9f); 
     }
 
     // CubeFall()에서 물리가 활성화 될 때만 OnCollisionEnter가 실행될 수 있음
     private void OnCollisionEnter(Collision collision)
     {
-        _IsRolling = false;
+        // 물리 비활성화
         _rigidbody.isKinematic = true;
 
-        transform.GetComponent<BoxCollider>().size = Vector3.one; // 콜라이더 원복
+        // 콜라이더 원복
+        transform.GetComponent<BoxCollider>().size = Vector3.one; 
 
-        _cubeUpCheck.transform.position = transform.position + Vector3.up; // _cubeUpCheck 큐브 위로 이동
+        // CubeCheck를 큐브 위로 이동
+        _cubeUpCheck.transform.position = transform.position + Vector3.up; 
 
-        // 낙하 이후 좌표값 보정
+        // 낙하 이후 position을 반올림해서 보정
         transform.position = new Vector3((float)Math.Round(transform.position.x), (float)Math.Round(transform.position.y), (float)Math.Round(transform.position.z));
+
+        // 낙하 종료, 이동 가능
+        _IsRolling = false;
     }
 }
