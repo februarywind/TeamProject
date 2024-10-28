@@ -63,4 +63,5 @@ public class YellowMover3 : MonoBehaviour
         playerTransform.position = endPosition; // 마지막 위치 설정
         isMoving = false; // 이동 완료
     }
+
 }

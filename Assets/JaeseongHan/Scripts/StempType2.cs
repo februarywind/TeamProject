@@ -32,6 +32,7 @@ public class StempType2 : MonoBehaviour
     private void Awake()
     {
         render = GetComponent<SpriteRenderer>();
+        ChangeSprite();
     }
 
     private void ChangeSprite()
