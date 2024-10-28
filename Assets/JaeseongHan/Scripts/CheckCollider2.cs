@@ -13,7 +13,6 @@ public class CheckCollider2 : MonoBehaviour
     [SerializeField] StempType2 type;               // 큐브에 달려있는 스탬프 확인
     [SerializeField] UnityEvent[] interaction = new UnityEvent[(int)StempType2.StempType.Size];      // 각 스탬프의 상호작용들
     [SerializeField] BoxCollider boxCollider;       // 콜라이더
-    public StempType2.StempType CurrentStampType => type?.GetStempType ?? StempType2.StempType.None;
 
     private void Awake()
     {

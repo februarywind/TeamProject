@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class YellowMover3 : MonoBehaviour
+public class Yellow : MonoBehaviour
 {
     [SerializeField] float moveDistance = 4f; // 이동 거리
     [SerializeField] float moveSpeed = 20f; // 이동 속도
@@ -11,6 +11,7 @@ public class YellowMover3 : MonoBehaviour
 
     private bool isMoving = false; // 이동 중인지 여부
     private Transform playerTransform; // 플레이어 오브젝트의 transform
+    private Rigidbody playerRigidbody; // 플레이어 오브젝트의 Rigidbody
 
     void Start()
     {
@@ -18,13 +19,14 @@ public class YellowMover3 : MonoBehaviour
         if (player != null)
         {
             playerTransform = player.transform; // 플레이어 오브젝트의 transform을 가져옴
+            playerRigidbody = player.GetComponent<Rigidbody>(); // Rigidbody 컴포넌트를 가져옴
         }
     }
 
     void Update()
     {
         // 플레이어 오브젝트가 존재할 때만 이동 처리
-        if (playerTransform != null && !isMoving &&
+        if (playerTransform != null && playerRigidbody != null && !isMoving &&
             Mathf.Abs(playerTransform.eulerAngles.x) < xRotationThreshold &&
             Mathf.Abs(playerTransform.eulerAngles.z) < zRotationThreshold &&
             Input.GetMouseButtonDown(0))
@@ -55,15 +57,17 @@ public class YellowMover3 : MonoBehaviour
         Vector3 startPosition = playerTransform.position; // 플레이어 오브젝트의 시작 위치
         Vector3 endPosition = startPosition + direction; // 끝 위치 계산
         float elapsedTime = 0;
-    
+
         while (elapsedTime < moveDistance / moveSpeed)
         {
-            playerTransform.position = Vector3.Lerp(startPosition, endPosition, elapsedTime / (moveDistance / moveSpeed)); // 플레이어 오브젝트 위치 업데이트
+            // 물리 엔진을 통해 이동
+            Vector3 newPosition = Vector3.Lerp(startPosition, endPosition, elapsedTime / (moveDistance / moveSpeed));
+            playerRigidbody.MovePosition(newPosition); // Rigidbody를 사용하여 위치 업데이트
             elapsedTime += Time.deltaTime;
             yield return null;
         }
-    
-        playerTransform.position = endPosition; // 마지막 위치 설정
+
+        playerRigidbody.MovePosition(endPosition); // 마지막 위치 설정
         isMoving = false; // 이동 완료
     }
 }
