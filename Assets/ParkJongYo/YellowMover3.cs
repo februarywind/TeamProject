@@ -4,64 +4,63 @@ using UnityEngine;
 
 public class YellowMover3 : MonoBehaviour
 {
-    [SerializeField] float moveDistance = 4f; // ÀÌµ¿ °Å¸®
-    [SerializeField] float moveSpeed = 20f; // ÀÌµ¿ ¼Óµµ
-    [SerializeField] float xRotationThreshold = 0.1f; // X È¸Àü Çã¿ë ¹üÀ§
-    [SerializeField] float zRotationThreshold = 0.1f; // Z È¸Àü Çã¿ë ¹üÀ§
-    [SerializeField] float targetYPosition = 0.5f; // Y À§Ä¡ Çã¿ë °ª
+    [SerializeField] float moveDistance = 4f; // ì´ë™ ê±°ë¦¬
+    [SerializeField] float moveSpeed = 20f; // ì´ë™ ì†ë„
+    [SerializeField] float xRotationThreshold = 0.1f; // X íšŒì „ í—ˆìš© ë²”ìœ„
+    [SerializeField] float zRotationThreshold = 0.1f; // Z íšŒì „ í—ˆìš© ë²”ìœ„
 
-    private bool isMoving = false; // ÀÌµ¿ ÁßÀÎÁö ¿©ºÎ
-    private Transform playerTransform; // ºÎ¸ğ ¿ÀºêÁ§Æ®ÀÇ transform
+    private bool isMoving = false; // ì´ë™ ì¤‘ì¸ì§€ ì—¬ë¶€
+    private Transform playerTransform; // ë¶€ëª¨ ì˜¤ë¸Œì íŠ¸ì˜ transform
 
     void Start()
     {
-        playerTransform = transform.parent; // ºÎ¸ğ ¿ÀºêÁ§Æ®ÀÇ transformÀ» °¡Á®¿È
+        playerTransform = transform.parent; // ë¶€ëª¨ ì˜¤ë¸Œì íŠ¸ì˜ transformì„ ê°€ì ¸ì˜´
     }
 
     void Update()
     {
-        // ÀÌµ¿ ÁßÀÌÁö ¾Ê°í, Á¶°ÇÀ» ¸¸Á·ÇÒ ¶§¸¸ ¸¶¿ì½º ¿ŞÂÊ Å° ÀÔ·ÂÀ» È®ÀÎ
+        // ì´ë™ ì¤‘ì´ì§€ ì•Šê³ , ì¡°ê±´ì„ ë§Œì¡±í•  ë•Œë§Œ ë§ˆìš°ìŠ¤ ì™¼ìª½ í‚¤ ì…ë ¥ì„ í™•ì¸
         if (!isMoving &&
             Mathf.Abs(playerTransform.eulerAngles.x) < xRotationThreshold &&
             Mathf.Abs(playerTransform.eulerAngles.z) < zRotationThreshold &&
-            Mathf.Abs(playerTransform.position.y - targetYPosition) < 0.01f &&
             Input.GetMouseButtonDown(0))
         {
-            // Ä«¸Ş¶ó°¡ ¹Ù¶óº¸´Â ¹æÇâÀ¸·Î ÀÌµ¿ º¤ÅÍ °è»ê
-            Vector3 moveDirection = Camera.main.transform.forward; // Ä«¸Ş¶ó ¹æÇâ
-            moveDirection.y = 0; // Y Ãà ÀÌµ¿ ¹æÁö
+            // ì¹´ë©”ë¼ê°€ ë°”ë¼ë³´ëŠ” ë°©í–¥ìœ¼ë¡œ ì´ë™ ë²¡í„° ê³„ì‚°
+            Vector3 moveDirection = Camera.main.transform.forward; // ì¹´ë©”ë¼ ë°©í–¥
+            moveDirection.y = 0; // Y ì¶• ì´ë™ ë°©ì§€
 
-            // X ¶Ç´Â Z ¹æÇâÀ¸·Î¸¸ ÀÌµ¿ÇÏµµ·Ï Á¦ÇÑ
+            // X ë˜ëŠ” Z ë°©í–¥ìœ¼ë¡œë§Œ ì´ë™í•˜ë„ë¡ ì œí•œ
             if (Mathf.Abs(moveDirection.x) > Mathf.Abs(moveDirection.z))
             {
-                moveDirection.z = 0; // Z ¹æÇâ Á¦°Å
+                moveDirection.z = 0; // Z ë°©í–¥ ì œê±°
             }
             else
             {
-                moveDirection.x = 0; // X ¹æÇâ Á¦°Å
+                moveDirection.x = 0; // X ë°©í–¥ ì œê±°
             }
 
-            moveDirection.Normalize(); // ¹æÇâ Á¤±ÔÈ­
-            moveDirection *= moveDistance; // ÀÌµ¿ °Å¸® ¼³Á¤
-            StartCoroutine(SmoothMove(moveDirection)); // ÀÌµ¿
+            moveDirection.Normalize(); // ë°©í–¥ ì •ê·œí™”
+            moveDirection *= moveDistance; // ì´ë™ ê±°ë¦¬ ì„¤ì •
+            StartCoroutine(SmoothMove(moveDirection)); // ì´ë™
         }
     }
 
     IEnumerator SmoothMove(Vector3 direction)
     {
-        isMoving = true; // ÀÌµ¿ ½ÃÀÛ
-        Vector3 startPosition = playerTransform.position; // ºÎ¸ğ ¿ÀºêÁ§Æ®ÀÇ ½ÃÀÛ À§Ä¡
-        Vector3 endPosition = startPosition + direction; // ³¡ À§Ä¡ °è»ê
+        isMoving = true; // ì´ë™ ì‹œì‘
+        Vector3 startPosition = playerTransform.position; // ë¶€ëª¨ ì˜¤ë¸Œì íŠ¸ì˜ ì‹œì‘ ìœ„ì¹˜
+        Vector3 endPosition = startPosition + direction; // ë ìœ„ì¹˜ ê³„ì‚°
         float elapsedTime = 0;
+
 
         while (elapsedTime < moveDistance / moveSpeed)
         {
-            playerTransform.position = Vector3.Lerp(startPosition, endPosition, elapsedTime / (moveDistance / moveSpeed)); // ºÎ¸ğ ¿ÀºêÁ§Æ® À§Ä¡ ¾÷µ¥ÀÌÆ®
+            playerTransform.position = Vector3.Lerp(startPosition, endPosition, elapsedTime / (moveDistance / moveSpeed)); // ë¶€ëª¨ ì˜¤ë¸Œì íŠ¸ ìœ„ì¹˜ ì—…ë°ì´íŠ¸
             elapsedTime += Time.deltaTime;
             yield return null;
         }
 
-        playerTransform.position = endPosition; // ¸¶Áö¸· À§Ä¡ ¼³Á¤
-        isMoving = false; // ÀÌµ¿ ¿Ï·á
+        playerTransform.position = endPosition; // ë§ˆì§€ë§‰ ìœ„ì¹˜ ì„¤ì •
+        isMoving = false; // ì´ë™ ì™„ë£Œ
     }
 }
