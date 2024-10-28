@@ -9,14 +9,14 @@ public class CubeMoveBlocking4 : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag != "Player") return;
+        if (!other.CompareTag("Player")) return;
         CubeMove4 cubeMove4 = other.GetComponent<CubeMove4>();
         cubeMove4.IsBlockingForward = true;
         cubeMove4.BlockingDir = _blockingDir;
     }
     private void OnTriggerExit(Collider other)
     {
-        if (other.tag != "Player") return;
+        if (!other.CompareTag("Player")) return;
         CubeMove4 cubeMove4 = other.GetComponent<CubeMove4>();
         cubeMove4.IsBlockingForward = false;
     }
