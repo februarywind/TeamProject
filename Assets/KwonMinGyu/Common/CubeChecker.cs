@@ -1,20 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static StampType2;
 
 public class CubeChecker : MonoBehaviour
 {
     [SerializeField] private LayerMask layerMask;
-    [SerializeField] private CubeMove4 move;
-    [SerializeField] private StampType2 _activeStamp;
-    [SerializeField] private StampType2.StampType _activeStampType;
-    [SerializeField] private BlueMover3 _blue;
-    [SerializeField] private YellowMover3 _yellow;
+    [SerializeField] private CubeMove move;
+    [SerializeField] private StampType _activeStamp;
+    [SerializeField] private StampType.Type _activeStampType;
+    [SerializeField] private BlueMover _blue;
+    [SerializeField] private YellowMover _yellow;
     private void Start()
     {
-        _blue = GetComponent<BlueMover3>();
-        _yellow = GetComponent<YellowMover3>();
+        _blue = GetComponent<BlueMover>();
+        _yellow = GetComponent<YellowMover>();
     }
     public bool IsGround()
     {
@@ -25,19 +24,19 @@ public class CubeChecker : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        _activeStamp = other.GetComponent<StampType2>();
+        _activeStamp = other.GetComponent<StampType>();
         if (_activeStamp == null) return;
         _activeStampType = _activeStamp.GetStampType;
         switch (_activeStampType) 
         { 
-            case StampType2.StampType.None:
+            case StampType.Type.None:
                 ActiveNone();
                 break;
-            case StampType2.StampType.Blue:
+            case StampType.Type.Blue:
                 ActiveNone();
                 _blue.enabled = true; 
                 break;
-            case StampType2.StampType.Yellow:
+            case StampType.Type.Yellow:
                 ActiveNone();
                 _yellow.enabled = true; 
                 break;
