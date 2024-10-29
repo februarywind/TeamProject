@@ -19,7 +19,6 @@ public class YellowMover : MonoBehaviour
         if (player != null)
         {
             playerTransform = player.transform; // 플레이어 오브젝트의 transform을 가져옴
-            cubeMove = player.GetComponent<CubeMove>(); // CubeMove4 스크립트 가져오기
         }
     }
 
@@ -30,12 +29,6 @@ public class YellowMover : MonoBehaviour
         {
             if (Input.GetMouseButtonDown(0))
             {
-                // 이동 중에는 CubeMove4의 입력을 비활성화
-                if (cubeMove != null)
-                {
-                    cubeMove.SetInputEnabled(false);
-                }
-
                 // 카메라가 바라보는 방향으로 이동 벡터 계산
                 Vector3 moveDirection = Camera.main.transform.forward; // 카메라 방향
                 moveDirection.y = 0; // Y 축 이동 방지
@@ -74,10 +67,7 @@ public class YellowMover : MonoBehaviour
         playerTransform.position = endPosition; // 마지막 위치 설정
         isMoving = false; // 이동 완료
 
-        // 이동 완료 후 CubeMove4의 입력을 다시 활성화
-        if (cubeMove != null)
-        {
-            cubeMove.SetInputEnabled(true);
-        }
+        // 추가
+        cubeMove.IsRolling = false;
     }
 }
