@@ -73,6 +73,8 @@ public class ClearStampTile : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if (!enabled) return;
+
         StampType type = other.GetComponent<StampType>();
 
         if (type is not null)
