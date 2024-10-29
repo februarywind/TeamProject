@@ -31,10 +31,10 @@ public class YellowMover3 : MonoBehaviour
             if (Input.GetMouseButtonDown(0))
             {
                 // 이동 중에는 CubeMove4의 입력을 비활성화
-                if (cubeMove != null)
-                {
-                    cubeMove.SetInputEnabled(false);
-                }
+                //if (cubeMove != null)
+                //{
+                //    cubeMove.SetInputEnabled(false);
+                //}
 
                 // 카메라가 바라보는 방향으로 이동 벡터 계산
                 Vector3 moveDirection = Camera.main.transform.forward; // 카메라 방향
@@ -75,9 +75,9 @@ public class YellowMover3 : MonoBehaviour
         isMoving = false; // 이동 완료
 
         // 이동 완료 후 CubeMove4의 입력을 다시 활성화
-        if (cubeMove != null)
-        {
-            cubeMove.SetInputEnabled(true);
-        }
+        //if (cubeMove != null)
+        //{
+        //    cubeMove.SetInputEnabled(true);
+        //}
     }
 }

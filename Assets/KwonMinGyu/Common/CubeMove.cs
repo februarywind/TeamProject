@@ -214,8 +214,7 @@ public class CubeMove : MonoBehaviour
         IsRolling = false;
 
         // 회전 후 공중이라면 추락
-        if (!_cubeChecker.IsGround())
-            CubeFall();
+        FallCheck();
     }
 
     IEnumerator SlopeMove(CubePos cubePos)
@@ -340,5 +339,10 @@ public class CubeMove : MonoBehaviour
 
         // 스탬프 콜라이더들 활성화
         foreach (BoxCollider box in stampPoints) box.enabled = true;
+    }
+    public void FallCheck()
+    {
+        if (!_cubeChecker.IsGround())
+            CubeFall();
     }
 }

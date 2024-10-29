@@ -28,6 +28,7 @@ public class StampTile : MonoBehaviour
 
     private void Awake()
     {
+        render = GetComponent<SpriteRenderer>();
         collider = GetComponent<BoxCollider>();
         rigid = GetComponent<Rigidbody>();
 
@@ -56,6 +57,8 @@ public class StampTile : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if (!enabled) return;
+
         StampType type = other.gameObject.GetComponent<StampType>();
 
         // type != null -> 스탬프가 충돌했다

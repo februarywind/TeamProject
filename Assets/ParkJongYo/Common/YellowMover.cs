@@ -1,17 +1,21 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class YellowMover : MonoBehaviour
 {
     [SerializeField] float moveDistance = 4f; // 이동 거리
     [SerializeField] float moveSpeed = 20f; // 이동 속도
-    [SerializeField] float xRotationThreshold = 0.1f; // X 회전 허용 범위
-    [SerializeField] float zRotationThreshold = 0.1f; // Z 회전 허용 범위
 
     private bool isMoving = false; // 이동 중인지 여부
     private Transform playerTransform; // 플레이어 오브젝트의 transform
-    private CubeMove cubeMove; // CubeMove4 스크립트 참조
+    [SerializeField] private CubeMove cubeMove; // CubeMove 스크립트 참조
+    [SerializeField] private CubeChecker cubeChecker;
+
+    // Raycast가 검사하는 레이어
+    [SerializeField] private LayerMask _yellowMask;
+
+    // 인스펙터에서 입력되는 거리를 저장 함
+    private float _moveDistance;
 
     void Start()
     {
@@ -20,6 +24,7 @@ public class YellowMover : MonoBehaviour
         {
             playerTransform = player.transform; // 플레이어 오브젝트의 transform을 가져옴
         }
+        _moveDistance = moveDistance;
     }
 
     void Update()
@@ -44,7 +49,12 @@ public class YellowMover : MonoBehaviour
                 }
 
                 moveDirection.Normalize(); // 방향 정규화
+
+                // Raycast로 이동 거리를 변경함
+                moveDistance = StartRay(moveDirection);
+
                 moveDirection *= moveDistance; // 이동 거리 설정
+
                 StartCoroutine(SmoothMove(moveDirection)); // 이동
             }
         }
@@ -69,5 +79,20 @@ public class YellowMover : MonoBehaviour
 
         // 추가
         cubeMove.IsRolling = false;
+        cubeChecker.transform.position = cubeMove.transform.position + Vector3.up * 0.5f;
+        cubeMove.FallCheck();
+    }
+    private float StartRay(Vector3 _dir)
+    {
+        // 노랑색 스템프의 이동 방향으로 Raycast
+        Physics.Raycast(transform.position, _dir, out RaycastHit hit, _moveDistance + 1, _yellowMask);
+
+        Debug.Log(hit.transform);
+
+        // 검사되는 물체가 없다면 최대 거리로 리턴
+        if (hit.transform == null) return _moveDistance;
+
+        // 큐브와 블록이 맞닿아 있을 때 거리가 1이므로 검출되는 거리 - 1을 리턴
+        return (int)Vector3.Distance(transform.position, hit.transform.position) - 1;
     }
 }
