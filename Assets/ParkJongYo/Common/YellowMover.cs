@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class YellowMover3 : MonoBehaviour
+public class YellowMover : MonoBehaviour
 {
     [SerializeField] float moveDistance = 4f; // 이동 거리
     [SerializeField] float moveSpeed = 20f; // 이동 속도
@@ -11,7 +11,7 @@ public class YellowMover3 : MonoBehaviour
 
     private bool isMoving = false; // 이동 중인지 여부
     private Transform playerTransform; // 플레이어 오브젝트의 transform
-    private CubeMove4 cubeMove; // CubeMove4 스크립트 참조
+    private CubeMove cubeMove; // CubeMove4 스크립트 참조
 
     void Start()
     {
@@ -19,7 +19,7 @@ public class YellowMover3 : MonoBehaviour
         if (player != null)
         {
             playerTransform = player.transform; // 플레이어 오브젝트의 transform을 가져옴
-            cubeMove = player.GetComponent<CubeMove4>(); // CubeMove4 스크립트 가져오기
+            cubeMove = player.GetComponent<CubeMove>(); // CubeMove4 스크립트 가져오기
         }
     }
 
