@@ -14,6 +14,7 @@ public class CubeMove4 : MonoBehaviour
     // 큐브 윗면 체크 및 바닥 체크를 위한 CubeChecker 스크립트
     [SerializeField] private CubeChecker4 _cubeChecker;
     [SerializeField] private BoxCollider _cubeUpCheck;
+    [SerializeField] private BoxCollider[] stampPoints; // 스탬프 콜라이더들
 
     // 큐브 낙하를 위한 Rigidbody
     [SerializeField] private Rigidbody _rigidbody;
@@ -28,7 +29,7 @@ public class CubeMove4 : MonoBehaviour
     private Bounds bound;
 
     // true일 때 플레이어의 입력이 막힘
-    private bool _IsRolling;
+    public bool IsRolling;
 
     // 경사로 이동속도
     [SerializeField] private float _slopeSpeed;
@@ -153,7 +154,7 @@ public class CubeMove4 : MonoBehaviour
             }
         }
 
-        if (!_IsRolling)
+        if (!IsRolling)
         {
             // 이동 못하는 방향으로 이동 시 리턴
             if (IsBlockingForward && BlockingDir.Contains(_cubePos))
@@ -173,10 +174,10 @@ public class CubeMove4 : MonoBehaviour
     IEnumerator Roll(CubePos4 cubePos)
     {
         // 중복 이동 방지
-        _IsRolling = true;
+        IsRolling = true;
 
         // 이동 중 다른 콜라이더와 접촉하지 않도록 CubeCheck 비활성화
-        _cubeUpCheck.enabled = false; 
+        _cubeUpCheck.enabled = false;
 
         // 회전 방향에 따른 기준점을 구함
         Vector3 positionToRotation = _moveDir[(int)cubePos];
@@ -202,15 +203,15 @@ public class CubeMove4 : MonoBehaviour
         }
 
         // 회전이 90도보다 적거나 많이 될 때 90도로 조정
-        transform.RotateAround(point, axis, 90 - angle); 
+        transform.RotateAround(point, axis, 90 - angle);
 
 
         // CubeCheck를 큐브 위로 이동 후 콜라이더 활성화
-        _cubeUpCheck.transform.position = transform.position + Vector3.up; 
+        _cubeUpCheck.transform.position = transform.position + Vector3.up * 0.5f;
         _cubeUpCheck.enabled = true;
 
         // 회전 종료, 이동 가능
-        _IsRolling = false;
+        IsRolling = false;
 
         // 회전 후 공중이라면 추락
         if (!_cubeChecker.IsGround())
@@ -220,7 +221,7 @@ public class CubeMove4 : MonoBehaviour
     IEnumerator SlopeMove(CubePos4 cubePos)
     {
         // 중복 이동 방지
-        _IsRolling = true;
+        IsRolling = true;
 
         // 이동 중 다른 콜라이더와 접촉하지 않도록 CubeCheck 비활성화
         _cubeUpCheck.enabled = false;
@@ -294,26 +295,29 @@ public class CubeMove4 : MonoBehaviour
         transform.RotateAround(point, axis, 180f - angle);
 
         // CubeCheck를 큐브 위로 이동 후 콜라이더 활성화
-        _cubeUpCheck.transform.position = transform.position + Vector3.up;
+        _cubeUpCheck.transform.position = transform.position + Vector3.up * 0.5f;
         _cubeUpCheck.enabled = true;
 
         // 경사로 끝에서 position을 반올림해서 보정
         transform.position = new Vector3((float)Math.Round(transform.position.x), (float)Math.Round(transform.position.y), (float)Math.Round(transform.position.z));
 
         // 경사로 종료, 이동 가능
-        _IsRolling = false;
+        IsRolling = false;
     }
 
     private void CubeFall()
     {
+        // 스탬프 콜라이더들 비활성화
+        foreach (BoxCollider box in stampPoints) box.enabled = false;
+
         // 낙하 중 이동 막기
-        _IsRolling = true; 
+        IsRolling = true;
 
         // 물리 활성화
-        _rigidbody.isKinematic = false; 
-        
+        _rigidbody.isKinematic = false;
+
         // 콜라이더 축소로 낙하 유도
-        transform.GetComponent<BoxCollider>().size = new Vector3(0.9f, 0.9f, 0.9f); 
+        transform.GetComponent<BoxCollider>().size = new Vector3(0.9f, 0.9f, 0.9f);
     }
 
     // CubeFall()에서 물리가 활성화 될 때만 OnCollisionEnter가 실행될 수 있음
@@ -323,15 +327,18 @@ public class CubeMove4 : MonoBehaviour
         _rigidbody.isKinematic = true;
 
         // 콜라이더 원복
-        transform.GetComponent<BoxCollider>().size = Vector3.one; 
+        transform.GetComponent<BoxCollider>().size = Vector3.one;
 
         // CubeCheck를 큐브 위로 이동
-        _cubeUpCheck.transform.position = transform.position + Vector3.up; 
+        _cubeUpCheck.transform.position = transform.position + Vector3.up * 0.5f;
 
         // 낙하 이후 position을 반올림해서 보정
         transform.position = new Vector3((float)Math.Round(transform.position.x), (float)Math.Round(transform.position.y), (float)Math.Round(transform.position.z));
 
         // 낙하 종료, 이동 가능
-        _IsRolling = false;
+        IsRolling = false;
+
+        // 스탬프 콜라이더들 활성화
+        foreach (BoxCollider box in stampPoints) box.enabled = true;
     }
 }
