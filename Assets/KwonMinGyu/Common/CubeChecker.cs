@@ -8,7 +8,7 @@ public class CubeChecker : MonoBehaviour
     [SerializeField] private LayerMask layerMask;
     [SerializeField] private CubeMove4 move;
     [SerializeField] private StampType2 _activeStamp;
-    [SerializeField] private StampType _activeStampType;
+    [SerializeField] private StampType2.StampType _activeStampType;
     [SerializeField] private BlueMover3 _blue;
     [SerializeField] private YellowMover3 _yellow;
     private void Start()
@@ -30,14 +30,14 @@ public class CubeChecker : MonoBehaviour
         _activeStampType = _activeStamp.GetStampType;
         switch (_activeStampType) 
         { 
-            case StampType.None:
+            case StampType2.StampType.None:
                 ActiveNone();
                 break;
-            case StampType.Blue:
+            case StampType2.StampType.Blue:
                 ActiveNone();
                 _blue.enabled = true; 
                 break;
-            case StampType.Yellow:
+            case StampType2.StampType.Yellow:
                 ActiveNone();
                 _yellow.enabled = true; 
                 break;

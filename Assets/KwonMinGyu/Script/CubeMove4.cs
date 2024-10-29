@@ -41,7 +41,7 @@ public class CubeMove4 : MonoBehaviour
 
     // 특정 칸에서 큐브 이동을 막기 위한 필드, CubeMoveBlocking와 Trigger될 때 자동 입력됨
     public bool IsBlockingForward;
-    public CubePos4[] BlockingDir;
+    public CubePos4[] BlockingDir; 
 
     void Start()
     {
@@ -340,5 +340,5 @@ public class CubeMove4 : MonoBehaviour
 
         // 스탬프 콜라이더들 활성화
         foreach (BoxCollider box in stampPoints) box.enabled = true;
-    }
+    } 
 }
