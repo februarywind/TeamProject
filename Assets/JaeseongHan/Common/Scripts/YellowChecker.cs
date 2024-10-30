@@ -36,11 +36,12 @@ public class YellowChecker : MonoBehaviour
         {
             canMove = false;
         }
+        else if (canMove
+            && hit.collider.gameObject.name.Contains("slope")) canMove = false;
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        // Todo: 레이어 충돌을 Map만 -> 코드 간략화
         canMove = false;
     }
 }
