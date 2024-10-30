@@ -68,7 +68,7 @@ public class CubeMove : MonoBehaviour
         float _HMove = Input.GetAxisRaw("Horizontal");
         float _VMove = Input.GetAxisRaw("Vertical");
 
-        if (_HMove == 0 && _VMove == 0) return;
+        if (_HMove == 0 && _VMove == 0 || IsRolling) return;
 
         // 처음 큐브 위치를 기준으로 카메라 방향을 구함
         _cameraPos = _cameraMove.CameraPosition();
@@ -154,21 +154,19 @@ public class CubeMove : MonoBehaviour
             }
         }
 
-        if (!IsRolling)
+        // 이동 못하는 방향으로 이동 시 리턴
+        if (IsBlockingForward && BlockingDir.Contains(_cubePos))
+            return;
+
+        // 경사로 앞에서 경사로 쪽으로 이동시 경사로 이동 코루틴 실행
+        if (IsSlopeForward && SlopeDir == _cubePos)
         {
-            // 이동 못하는 방향으로 이동 시 리턴
-            if (IsBlockingForward && BlockingDir.Contains(_cubePos))
-                return;
-
-            // 경사로 앞에서 경사로 쪽으로 이동시 경사로 이동 코루틴 실행
-            if (IsSlopeForward && SlopeDir == _cubePos)
-            {
-                StartCoroutine(SlopeMove(_cubePos));
-                return;
-            }
-
-            StartCoroutine(Roll(_cubePos));
+            StartCoroutine(SlopeMove(_cubePos));
+            return;
         }
+
+        StartCoroutine(Roll(_cubePos));
+
     }
 
     IEnumerator Roll(CubePos cubePos)

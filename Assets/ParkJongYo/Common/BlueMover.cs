@@ -14,7 +14,7 @@ public class BlueMover : MonoBehaviour
             // CubeMove 입력 막기
             cubeMove.enabled = false;
         }
-        else
+        else if (!isRotating)
         {
             cubeMove.enabled = true;
         }
