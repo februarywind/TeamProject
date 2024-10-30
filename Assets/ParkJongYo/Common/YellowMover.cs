@@ -95,10 +95,10 @@ public class YellowMover : MonoBehaviour
             if (hit.transform.CompareTag("CrackedRock"))
             {
                 StartCoroutine(DestroyCrackedRock(hit.transform.gameObject)); // CrackedRock 파괴 코루틴 시작
-                return Mathf.Floor(Vector3.Distance(transform.position, hit.point)); // 충돌 위치 바로 앞에서 멈춤
+                return _moveDistance; // CrackedRock 파괴 후에도 원래 이동 거리(4)로 설정
             }
 
-            // 큐브와 블록이 맞닿아 있을 때 거리를 1로 정확히 맞춤
+            // CrackedRock이 아닌 다른 장애물과 맞닿아 있을 때는 해당 위치에서 멈춤
             return Mathf.Floor(Vector3.Distance(transform.position, hit.point));
         }
 
