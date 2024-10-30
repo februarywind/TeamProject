@@ -6,8 +6,6 @@ public class YellowMover3 : MonoBehaviour
 {
     [SerializeField] float moveDistance = 4f; // 이동 거리
     [SerializeField] float moveSpeed = 20f; // 이동 속도
-    [SerializeField] float xRotationThreshold = 0.1f; // X 회전 허용 범위
-    [SerializeField] float zRotationThreshold = 0.1f; // Z 회전 허용 범위
 
     private bool isMoving = false; // 이동 중인지 여부
     private Transform playerTransform; // 플레이어 오브젝트의 transform
