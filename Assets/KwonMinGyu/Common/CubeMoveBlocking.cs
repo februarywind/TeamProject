@@ -7,7 +7,7 @@ public class CubeMoveBlocking : MonoBehaviour
     // 이동을 막을 방향
     [SerializeField] private CubePos[] _blockingDir;
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
         if (!other.CompareTag("Player")) return;
         CubeMove cubeMove = other.GetComponent<CubeMove>();

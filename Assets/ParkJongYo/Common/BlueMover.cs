@@ -45,12 +45,12 @@ public class BlueMover : MonoBehaviour
         {
             // 플레이어 오브젝트의 각도를 회전
             currentAngle = Mathf.MoveTowardsAngle(currentAngle, targetAngle, rotSpeed);
-            player.transform.eulerAngles = new Vector3(player.transform.eulerAngles.x, currentAngle, player.transform.eulerAngles.z); // X와 Z를 0으로 설정
+            player.transform.eulerAngles = new Vector3(player.transform.eulerAngles.x, currentAngle, player.transform.eulerAngles.z);
             yield return null; // 다음 프레임까지 대기
         }
 
         // 목표 각도에 도달한 후 최종 각도로 설정
-        player.transform.eulerAngles = new Vector3(player.transform.eulerAngles.x, targetAngle, player.transform.eulerAngles.z); // X와 Z를 0으로 설정
+        player.transform.eulerAngles = new Vector3(player.transform.eulerAngles.x, targetAngle, player.transform.eulerAngles.z);
         isRotating = false; // 회전 완료 표시
     }
 }

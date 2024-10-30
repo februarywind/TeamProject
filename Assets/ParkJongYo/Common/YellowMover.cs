@@ -62,6 +62,9 @@ public class YellowMover : MonoBehaviour
 
     IEnumerator SmoothMove(Vector3 direction)
     {
+        // 이동 중 큐브의 회전을 막음
+        cubeMove.IsRolling = true;
+
         isMoving = true; // 이동 시작
         Vector3 startPosition = playerTransform.position; // 플레이어 오브젝트의 시작 위치
         Vector3 endPosition = startPosition + direction; // 끝 위치 계산
@@ -77,9 +80,12 @@ public class YellowMover : MonoBehaviour
         playerTransform.position = endPosition; // 마지막 위치 설정
         isMoving = false; // 이동 완료
 
-        // 추가
-        cubeMove.IsRolling = false;
         cubeChecker.transform.position = cubeMove.transform.position + Vector3.up * 0.5f;
+
+        // 큐브 회전이 가능 하도록 원복
+        cubeMove.IsRolling = false;
+
+        // 이동 후 공중이라면 낙하
         cubeMove.FallCheck();
     }
     private float StartRay(Vector3 _dir)
@@ -87,7 +93,7 @@ public class YellowMover : MonoBehaviour
         // 노랑색 스템프의 이동 방향으로 Raycast
         Physics.Raycast(transform.position, _dir, out RaycastHit hit, _moveDistance + 1, _yellowMask);
 
-        Debug.Log(hit.transform);
+        //Debug.Log(hit.transform);
 
         // 검사되는 물체가 없다면 최대 거리로 리턴
         if (hit.transform == null) return _moveDistance;
