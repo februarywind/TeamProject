@@ -33,6 +33,12 @@ public class BlueMover : MonoBehaviour
             StartCoroutine(Rotate(cubeMove.transform, rotationAngle)); // 왼쪽으로 90도 회전
         }
     }
+    // 큐브 회전과 동시에 e키를 누를 시 cubeMove가 비활성화 되는 버그가 발생
+    // 파란 스탬프 비 활성화 시 cubeMove를 true로 바꿔서 해결 함
+    private void OnDisable()
+    {
+        cubeMove.enabled = true;
+    }
 
     private IEnumerator Rotate(Transform player, float angle)
     {
