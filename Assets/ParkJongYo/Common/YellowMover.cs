@@ -80,13 +80,11 @@ public class YellowMover : MonoBehaviour
         playerTransform.position = endPosition; // 마지막 위치 설정
         isMoving = false; // 이동 완료
 
-        cubeChecker.transform.position = cubeMove.transform.position + Vector3.up * 0.5f;
+        // cubeChecker를 큐브 위로 이동
+        cubeChecker.RePosition(cubeMove.transform.position);
 
         // 큐브 회전이 가능 하도록 원복
         cubeMove.IsRolling = false;
-
-        // 이동 후 공중이라면 낙하
-        cubeMove.FallCheck();
     }
     private float StartRay(Vector3 _dir)
     {

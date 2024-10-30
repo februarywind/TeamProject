@@ -205,7 +205,7 @@ public class CubeMove : MonoBehaviour
 
 
         // CubeCheck를 큐브 위로 이동 후 CubeCheck 활성화
-        _cubeChecker.transform.position = transform.position + Vector3.up * 0.5f;
+        _cubeChecker.RePosition(transform.position);
         _cubeCheckerObj.SetActive(true);
 
         // 회전 종료, 이동 가능
@@ -292,7 +292,7 @@ public class CubeMove : MonoBehaviour
         transform.RotateAround(point, axis, 180f - angle);
 
         // CubeCheck를 큐브 위로 이동 후 CubeCheck를 활성화
-        _cubeChecker.transform.position = transform.position + Vector3.up * 0.5f;
+        _cubeChecker.RePosition(transform.position);
         _cubeCheckerObj.SetActive(true);
 
         // 경사로 끝에서 position을 반올림해서 보정
@@ -327,7 +327,7 @@ public class CubeMove : MonoBehaviour
         transform.GetComponent<BoxCollider>().size = Vector3.one;
 
         // CubeCheck를 큐브 위로 이동
-        _cubeChecker.transform.position = transform.position + Vector3.up * 0.5f;
+        _cubeChecker.RePosition(transform.position);
 
         // 낙하 이후 position을 반올림해서 보정
         transform.position = new Vector3((float)Math.Round(transform.position.x), (float)Math.Round(transform.position.y), (float)Math.Round(transform.position.z));
