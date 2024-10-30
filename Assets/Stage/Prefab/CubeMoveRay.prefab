@@ -60,7 +60,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _cubeMove: {fileID: 0}
-  _cubePos: 0
+  _blockingDir: 0
   _layerMask:
     serializedVersion: 2
     m_Bits: 1
@@ -141,7 +141,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _cubeMove: {fileID: 0}
-  _cubePos: 3
+  _blockingDir: 3
   _layerMask:
     serializedVersion: 2
     m_Bits: 1
@@ -222,7 +222,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _cubeMove: {fileID: 0}
-  _cubePos: 2
+  _blockingDir: 2
   _layerMask:
     serializedVersion: 2
     m_Bits: 1
@@ -303,7 +303,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _cubeMove: {fileID: 0}
-  _cubePos: 1
+  _blockingDir: 1
   _layerMask:
     serializedVersion: 2
     m_Bits: 1
