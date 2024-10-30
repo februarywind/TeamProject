@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 724580179211808895}
   - component: {fileID: 4122222142517943843}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: YellowWall
   m_TagString: Untagged
   m_Icon: {fileID: 0}

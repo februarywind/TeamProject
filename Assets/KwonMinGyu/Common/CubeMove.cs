@@ -4,7 +4,7 @@ using System.Linq;
 using UnityEngine;
 public enum CubePos
 {
-    Up, Down, Right, Left
+    Up, Down, Right, Left, None
 }
 public class CubeMove : MonoBehaviour
 {
@@ -12,8 +12,8 @@ public class CubeMove : MonoBehaviour
     [SerializeField] private float _rotationSpeed;
 
     // 큐브 윗면 체크 및 바닥 체크를 위한 CubeChecker 스크립트
+    [SerializeField] private GameObject _cubeCheckerObj;
     [SerializeField] private CubeChecker _cubeChecker;
-    [SerializeField] private BoxCollider _cubeUpCheck;
     [SerializeField] private BoxCollider[] stampPoints; // 스탬프 콜라이더들
 
     // 큐브 낙하를 위한 Rigidbody
@@ -41,7 +41,7 @@ public class CubeMove : MonoBehaviour
 
     // 특정 칸에서 큐브 이동을 막기 위한 필드, CubeMoveBlocking와 Trigger될 때 자동 입력됨
     public bool IsBlockingForward;
-    public CubePos[] BlockingDir;
+    public CubePos[] BlockingDir = { CubePos.None, CubePos.None, CubePos.None, CubePos.None };
 
     void Start()
     {
@@ -68,7 +68,7 @@ public class CubeMove : MonoBehaviour
         float _HMove = Input.GetAxisRaw("Horizontal");
         float _VMove = Input.GetAxisRaw("Vertical");
 
-        if (_HMove == 0 && _VMove == 0) return;
+        if (_HMove == 0 && _VMove == 0 || IsRolling) return;
 
         // 처음 큐브 위치를 기준으로 카메라 방향을 구함
         _cameraPos = _cameraMove.CameraPosition();
@@ -154,21 +154,19 @@ public class CubeMove : MonoBehaviour
             }
         }
 
-        if (!IsRolling)
+        // 이동 못하는 방향으로 이동 시 리턴
+        if (BlockingDir.Contains(_cubePos))
+            return;
+
+        // 경사로 앞에서 경사로 쪽으로 이동시 경사로 이동 코루틴 실행
+        if (IsSlopeForward && SlopeDir == _cubePos)
         {
-            // 이동 못하는 방향으로 이동 시 리턴
-            if (IsBlockingForward && BlockingDir.Contains(_cubePos))
-                return;
-
-            // 경사로 앞에서 경사로 쪽으로 이동시 경사로 이동 코루틴 실행
-            if (IsSlopeForward && SlopeDir == _cubePos)
-            {
-                StartCoroutine(SlopeMove(_cubePos));
-                return;
-            }
-
-            StartCoroutine(Roll(_cubePos));
+            StartCoroutine(SlopeMove(_cubePos));
+            return;
         }
+
+        StartCoroutine(Roll(_cubePos));
+
     }
 
     IEnumerator Roll(CubePos cubePos)
@@ -176,8 +174,8 @@ public class CubeMove : MonoBehaviour
         // 중복 이동 방지
         IsRolling = true;
 
-        // 이동 중 다른 콜라이더와 접촉하지 않도록 CubeCheck 비활성화
-        _cubeUpCheck.enabled = false;
+        // 이동 중 스탬프 사용을 막기 위해 CubeCheck 비활성화
+        _cubeCheckerObj.SetActive(false);
 
         // 회전 방향에 따른 기준점을 구함
         Vector3 positionToRotation = _moveDir[(int)cubePos];
@@ -206,9 +204,9 @@ public class CubeMove : MonoBehaviour
         transform.RotateAround(point, axis, 90 - angle);
 
 
-        // CubeCheck를 큐브 위로 이동 후 콜라이더 활성화
-        _cubeUpCheck.transform.position = transform.position + Vector3.up * 0.5f;
-        _cubeUpCheck.enabled = true;
+        // CubeCheck를 큐브 위로 이동 후 CubeCheck 활성화
+        _cubeChecker.RePosition(transform.position);
+        _cubeCheckerObj.SetActive(true);
 
         // 회전 종료, 이동 가능
         IsRolling = false;
@@ -222,8 +220,8 @@ public class CubeMove : MonoBehaviour
         // 중복 이동 방지
         IsRolling = true;
 
-        // 이동 중 다른 콜라이더와 접촉하지 않도록 CubeCheck 비활성화
-        _cubeUpCheck.enabled = false;
+        // 이동 중 스탬프 사용을 막기 위해 CubeCheck 비활성화
+        _cubeCheckerObj.SetActive(false);
 
         // 회전 방향에 따른 기준점을 구함
         Vector3 positionToRotation = _moveDir[(int)cubePos];
@@ -293,9 +291,9 @@ public class CubeMove : MonoBehaviour
         // 회전이 180도보다 적거나 많이 될 때 180도로 조정
         transform.RotateAround(point, axis, 180f - angle);
 
-        // CubeCheck를 큐브 위로 이동 후 콜라이더 활성화
-        _cubeUpCheck.transform.position = transform.position + Vector3.up * 0.5f;
-        _cubeUpCheck.enabled = true;
+        // CubeCheck를 큐브 위로 이동 후 CubeCheck를 활성화
+        _cubeChecker.RePosition(transform.position);
+        _cubeCheckerObj.SetActive(true);
 
         // 경사로 끝에서 position을 반올림해서 보정
         transform.position = new Vector3((float)Math.Round(transform.position.x), (float)Math.Round(transform.position.y), (float)Math.Round(transform.position.z));
@@ -329,7 +327,7 @@ public class CubeMove : MonoBehaviour
         transform.GetComponent<BoxCollider>().size = Vector3.one;
 
         // CubeCheck를 큐브 위로 이동
-        _cubeUpCheck.transform.position = transform.position + Vector3.up * 0.5f;
+        _cubeChecker.RePosition(transform.position);
 
         // 낙하 이후 position을 반올림해서 보정
         transform.position = new Vector3((float)Math.Round(transform.position.x), (float)Math.Round(transform.position.y), (float)Math.Round(transform.position.z));
