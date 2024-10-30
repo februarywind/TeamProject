@@ -17,14 +17,32 @@ public class YellowMover : MonoBehaviour
     // 인스펙터에서 입력되는 거리를 저장 함
     private float _moveDistance;
 
+    [Header("YellowChecker_Manager")]
+    [SerializeField] YellowChecker yellowPrefab;       // 갈 수 있는지 확인해주는 체커 프리팹
+    [SerializeField] YellowChecker[] yellowCheckers;   // 최대 갈 수 있는 거리만큼 체커를 담아두기
+    [SerializeField] bool[] result;                     // 인스펙터 창으로 갈 수 있는 거리 디버깅 용도
+
     void Start()
     {
+        enabled = true;
+
         GameObject player = GameObject.FindWithTag("Player");
         if (player != null)
         {
             playerTransform = player.transform; // 플레이어 오브젝트의 transform을 가져옴
         }
         _moveDistance = moveDistance;
+
+        yellowCheckers = new YellowChecker[(int)_moveDistance];    // 갈 수 있는 거리만큼 생성
+        result = new bool[yellowCheckers.Length];                   // 인스펙터 창에서 디버깅 용도로 사용
+
+        for (int i = 0; i < _moveDistance; i++)
+        {
+            yellowCheckers[i] = Instantiate(yellowPrefab);
+            yellowCheckers[i].gameObject.SetActive(false);
+        }
+
+        enabled = false;
     }
 
     void Update()
@@ -50,10 +68,9 @@ public class YellowMover : MonoBehaviour
 
                 moveDirection.Normalize(); // 방향 정규화
 
-                // Raycast로 이동 거리를 변경함
-                moveDistance = StartRay(moveDirection);
-
-                moveDirection *= moveDistance; // 이동 거리 설정
+                // Raycast로 이동 거리를 변경함 -> 이동 거리 설정을 코루틴에서 관리
+                // moveDistance = StartRay(moveDirection);
+                // moveDirection *= moveDistance; // 이동 거리 설정
 
                 StartCoroutine(SmoothMove(moveDirection)); // 이동
             }
@@ -64,6 +81,40 @@ public class YellowMover : MonoBehaviour
     {
         // 이동 중 큐브의 회전을 막음
         cubeMove.IsRolling = true;
+
+        cubeMove.IsRolling = true;
+        // 거리 계산 부분
+        moveDistance = 0;
+        for (int index = 1; index <= yellowCheckers.Length; index++)
+        {
+            // 플레이어가 바라보고 있는 방향에서 최대 이동 거리만큼 하나씩 배치                                                                
+            yellowCheckers[index - 1].gameObject.transform.position = new Vector3(playerTransform.position.x + (index * direction.x),   // 플레이어가 바라보고 있는 방향에서 최대 이동 거리만큼 하나씩 배치
+                                                                                  playerTransform.position.y + 0.1f, // 너무 가운데에 있으면 다른 콜라이더에 닿을까봐 높이를 살짝 높임      
+                                                                                  playerTransform.position.z + (index * direction.z));
+            yellowCheckers[index - 1].gameObject.SetActive(true);   // 해당 오브젝트를 활성화 -> Collider 작동
+            yellowCheckers[index - 1].CheckRay();                   // 해당 오브젝트의 아래 방향으로 Ray 발싸 -> 아래에 갈 수 있는 땅이 있는지 확인
+            yield return null;
+        }
+        yield return null;
+
+        for (int index = 0; index < result.Length; index++)
+        {
+            result[index] = yellowCheckers[index].CanMove;         // 디버깅 용도로 담기
+            if (result[index]) moveDistance++;                     // 만약 갈 수 있으면 갈 수 있는 거리 +1
+            else break;                                            // 못가면 현재 갈 수 있는 만큼만 갈 수 있으니 더 이상 탐색 안하기
+
+            yield return null;
+        }
+
+        yield return null;
+
+        for (int index = 0; index < yellowCheckers.Length; index++)
+        {
+            yellowCheckers[index].gameObject.SetActive(false);      // 오브젝트를 다 사용했으니 비활성화
+            yield return null;
+        }
+
+        direction *= moveDistance; // 이동 거리 설정
 
         isMoving = true; // 이동 시작
         Vector3 startPosition = playerTransform.position; // 플레이어 오브젝트의 시작 위치
