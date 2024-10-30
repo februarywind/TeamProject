@@ -37,6 +37,7 @@ public class BlueMover : MonoBehaviour
     // 파란 스탬프 비 활성화 시 cubeMove를 true로 바꿔서 해결 함
     private void OnDisable()
     {
+        if (!cubeMove) return;
         cubeMove.enabled = true;
     }
 

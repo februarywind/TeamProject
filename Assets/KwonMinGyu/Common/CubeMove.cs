@@ -4,7 +4,7 @@ using System.Linq;
 using UnityEngine;
 public enum CubePos
 {
-    Up, Down, Right, Left
+    Up, Down, Right, Left, None
 }
 public class CubeMove : MonoBehaviour
 {
@@ -41,7 +41,7 @@ public class CubeMove : MonoBehaviour
 
     // 특정 칸에서 큐브 이동을 막기 위한 필드, CubeMoveBlocking와 Trigger될 때 자동 입력됨
     public bool IsBlockingForward;
-    public CubePos[] BlockingDir;
+    public CubePos[] BlockingDir = { CubePos.None, CubePos.None, CubePos.None, CubePos.None };
 
     void Start()
     {
@@ -155,7 +155,7 @@ public class CubeMove : MonoBehaviour
         }
 
         // 이동 못하는 방향으로 이동 시 리턴
-        if (IsBlockingForward && BlockingDir.Contains(_cubePos))
+        if (BlockingDir.Contains(_cubePos))
             return;
 
         // 경사로 앞에서 경사로 쪽으로 이동시 경사로 이동 코루틴 실행
