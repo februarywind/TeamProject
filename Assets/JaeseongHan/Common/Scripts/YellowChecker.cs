@@ -27,6 +27,7 @@ public class YellowChecker : MonoBehaviour
 
         // 해당 Ray에 걸린 오브젝트(Map)가 있으면 갈 수 있다
         canMove = (hit.collider) ? true : false;
+       
 
         // 그런데 Map인데 ClearStampTile(리셋, 지우기) 타일이면?
         // 바로 앞에 멈추게 (못가게 해야한다)
@@ -38,6 +39,9 @@ public class YellowChecker : MonoBehaviour
         }
         else if (canMove
             && hit.collider.gameObject.name.Contains("slope")) canMove = false;
+        else if (canMove
+            && hit.collider.gameObject.GetComponent<Elevator>() is not null) canMove = false;
+     
     }
 
     private void OnTriggerEnter(Collider other)
