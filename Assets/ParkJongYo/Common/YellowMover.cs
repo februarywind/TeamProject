@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class YellowMover : MonoBehaviour
 {
@@ -117,18 +118,34 @@ public class YellowMover : MonoBehaviour
         direction *= moveDistance; // 이동 거리 설정
 
         isMoving = true; // 이동 시작
+        int yellowCheckerindex = 0;
         Vector3 startPosition = playerTransform.position; // 플레이어 오브젝트의 시작 위치
         Vector3 endPosition = startPosition + direction; // 끝 위치 계산
         float elapsedTime = 0;
 
+        float gap;  // 능력 사용 중 파괴할 오브젝트와의 거리
+        //디버깅용 로그 Debug.Log($" first :{yellowCheckerindex} vector : {Vector3.Magnitude(yellowCheckers[yellowCheckerindex].transform.position - playerTransform.position)}");
+        yellowCheckers[yellowCheckerindex++].DestroyTarget(); // 1번 째 체커의 오브젝트 파괴
         while (elapsedTime < moveDistance / moveSpeed)
         {
+            // 파괴할 오브젝트와의 거리 계산
+            gap = Vector3.Magnitude(yellowCheckers[yellowCheckerindex].transform.position - playerTransform.position);
+            if ( 0.99f <= gap && gap <= 1.1f ) { // 거리가 1일 때 (오차 범위 : -0.01 ~ 0.1)
+                //디버깅용 로그 Debug.Log($" in loop :{yellowCheckerindex} vector : {gap}"); 
+                yellowCheckers[yellowCheckerindex].DestroyTarget(); // 2 ~ n - 1 번째 체커의 오브젝트 파괴
+                // 만약 현재 체커가 마지막 바로 전이 아니라면
+                if (yellowCheckerindex < yellowCheckers.Length - 1) yellowCheckerindex++; 
+             }
+
             playerTransform.position = Vector3.Lerp(startPosition, endPosition, elapsedTime / (moveDistance / moveSpeed)); // 플레이어 오브젝트 위치 업데이트
             elapsedTime += Time.deltaTime;
             yield return null;
         }
 
         playerTransform.position = endPosition; // 마지막 위치 설정
+
+        //디버깅용 로그Debug.Log($"last : {yellowCheckerindex}");
+        yellowCheckers[yellowCheckerindex].DestroyTarget(); // 마지막 체커의 오브젝트 파괴
         isMoving = false; // 이동 완료
 
         // cubeChecker를 큐브 위로 이동
@@ -137,6 +154,7 @@ public class YellowMover : MonoBehaviour
         // 큐브 회전이 가능 하도록 원복
         cubeMove.IsRolling = false;
     }
+
     private float StartRay(Vector3 _dir)
     {
         // 노랑색 스템프의 이동 방향으로 Raycast
