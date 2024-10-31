@@ -65,6 +65,8 @@ public class CubeMove : MonoBehaviour
 
     void Update()
     {
+        _cubeChecker.RePosition(transform.position);
+
         float _HMove = Input.GetAxisRaw("Horizontal");
         float _VMove = Input.GetAxisRaw("Vertical");
 
@@ -342,5 +344,14 @@ public class CubeMove : MonoBehaviour
     {
         if (!_cubeChecker.IsGround())
             CubeFall();
+    }
+
+    // 큐브의 블로킹을 제거하는 함수
+    public void BlockingReset()
+    {
+        for (int i = 0; i < 4; i++)
+        {
+            BlockingDir[i] = CubePos.None;
+        }
     }
 }

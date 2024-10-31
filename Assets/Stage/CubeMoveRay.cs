@@ -11,6 +11,9 @@ public class CubeMoveRay : MonoBehaviour
     // 바닥이 가지는 레이를 입력
     [SerializeField] private LayerMask _layerMask;
 
+    // 벽면이 가지는 레이를 입력 해당 레이어는 큐브가 통과 못함
+    [SerializeField] private LayerMask _WallLayer;
+
     // 큐브기준 오프셋
     [SerializeField] private Vector3 _offSet;
 
@@ -20,7 +23,7 @@ public class CubeMoveRay : MonoBehaviour
     private void OnTriggerStay(Collider other)
     {
         // 맵이 가지는 레이어(Default)가 아니라면 리턴
-        if (other.gameObject.layer != 0) return;
+        if ((_WallLayer & (1 << other.gameObject.layer)) == 0) return;
 
         // 트리거 되면 해당 방향을 막음
         _cubeMove.BlockingDir[(int)_blockingDir] = _blockingDir;
@@ -31,7 +34,7 @@ public class CubeMoveRay : MonoBehaviour
     private void OnTriggerExit(Collider other)
     {
         // 맵이 가지는 레이어(Default)가 아니라면 리턴
-        if (other.gameObject.layer != 0) return;
+        if ((_WallLayer & (1 << other.gameObject.layer)) == 0) return;
 
         // 벽면에서 빠져 나왔음으로 BlockingDir을 None으로 변경
         _cubeMove.BlockingDir[(int)_blockingDir] = CubePos.None;
