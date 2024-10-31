@@ -28,8 +28,9 @@ public class RedStamp4 : MonoBehaviour
     // 능력 사용 횟수를 저장할 변수
     [SerializeField] private int useRedGround;
 
-    // 능력 사용 위치를 저장할 변수
+    // 능력 사용 위치를 저장할 변수와 오브젝트
     [SerializeField] private Vector3 _startPos;
+    [SerializeField] private GameObject _startObj;
 
     // 오브젝트 풀을 위한 리스트
     [SerializeField] private List<GameObject> pool;
@@ -50,6 +51,10 @@ public class RedStamp4 : MonoBehaviour
 
                 // 능력 사용 위치 저장
                 _startPos = _cubeMove4.transform.position;
+
+                // 시작 위치 오브젝트
+                _startObj.transform.position = _startPos;
+                _startObj.SetActive(true);
             }
         }
         // 능력이 활성화 상태 && 큐브가 이동을 시작할 때
@@ -57,7 +62,7 @@ public class RedStamp4 : MonoBehaviour
         {
             // 큐브의 이번 움직임으로 바닥을 생성 했다면 리턴
             if (_groundSet) return;
-            Debug.Log(1);
+
             // 능력 사용 횟수를 초과 했다면 리턴
             if (!(useRedGround < maxRedGround)) return;
             // 능력 사용
@@ -101,12 +106,19 @@ public class RedStamp4 : MonoBehaviour
     {
         // 다른 스탬프로 전환이 가능하도록 cubeChecker 활성화
         _cubeChecker4.enabled = true;
+
         // 능력 미 사용 상태
         _active = false;
+
         // 큐브 위치를 시작 위치로
         _cubeMove4.transform.position = _startPos;
+
+        // 시작 위치 오브젝트 비활성화
+        _startObj.SetActive(false);
+
         // 능력 횟수 초기화
         useRedGround = 0;
+
         // 생성된 바닥 비활성화
         foreach (var item in pool)
         {
