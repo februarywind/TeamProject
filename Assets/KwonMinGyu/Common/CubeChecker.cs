@@ -10,6 +10,7 @@ public class CubeChecker : MonoBehaviour
     [SerializeField] private StampType.Type _activeStampType;
     [SerializeField] private BlueMover _blue;
     [SerializeField] private YellowMover _yellow;
+    [SerializeField] private RedStamp _red;
     private void Start()
     {
         _blue = GetComponent<BlueMover>();
@@ -25,6 +26,7 @@ public class CubeChecker : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
+        if (!enabled) return;
         _activeStamp = other.GetComponent<StampType>();
         if (_activeStamp == null) return;
         _activeStampType = _activeStamp.GetStampType;
@@ -41,12 +43,17 @@ public class CubeChecker : MonoBehaviour
                 ActiveNone();
                 _yellow.enabled = true; 
                 break;
+            case StampType.Type.Red:
+                ActiveNone();
+                _red.enabled = true; 
+                break;
         }
     }
     private void ActiveNone()
     {
         _blue.enabled = false;
         _yellow.enabled = false;
+        _red.enabled = false;
     }
 
     public void RePosition(Vector3 Cubeposition)

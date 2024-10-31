@@ -7,11 +7,13 @@ public class RedStamp : MonoBehaviour
     [SerializeField] private CubeChecker _cubeChecker;
 
     // 큐브 이동 제어를 위한 스크립트
-    [SerializeField] private CubeMove4 _cubeMove4;
+    [SerializeField] private CubeMove _cubeMove;
 
-    // 스탬프 능력 사용 시 바닥이 될 4개의 오브젝트와 위치
-    [SerializeField] GameObject[] _redGrounds;
-    private Vector3[] _redGroundPos = { Vector3.forward, Vector3.back, Vector3.right, Vector3.left };
+    // 스탬프 능력 사용 시 바닥이 될 오브젝트
+    [SerializeField] GameObject _redGrounds;
+
+    // _redGrounds의 레이어를 입력
+    [SerializeField] private LayerMask _layerMask;
 
     // 큐브가 _redGrounds 에 닿을 때 그 자리를 대체할 프리팹
     [SerializeField] private GameObject _useGround;
@@ -34,13 +36,16 @@ public class RedStamp : MonoBehaviour
 
     // 오브젝트 풀을 위한 리스트
     [SerializeField] private List<GameObject> pool;
+
+    // 낙하가 가능하도록 하는 오브젝트
+    [SerializeField] private GameObject _plane;
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.E))
         {
             // 능력이 활성화 중 이라면 비활성화 함수 실행
             if (_active)
-                RedDisable();
+                RedDisable(true);
             else
             {
                 // 능력 활성화
@@ -50,15 +55,20 @@ public class RedStamp : MonoBehaviour
                 _cubeChecker.enabled = false;
 
                 // 능력 사용 위치 저장
-                _startPos = _cubeMove4.transform.position;
+                _startPos = _cubeMove.transform.position;
 
                 // 시작 위치 오브젝트
                 _startObj.transform.position = _startPos;
                 _startObj.SetActive(true);
+
+                // 낙하 유도 오브젝트 활성화
+                _plane.SetActive(true);
+                _plane.transform.position = _cubeMove.transform.position + Vector3.down * 5f;
             }
         }
-        // 능력이 활성화 상태 && 큐브가 이동을 시작할 때
-        if (_active && _cubeMove4.IsRolling)
+        if (!_active) return;
+        // 큐브가 이동을 시작할 때
+        if (_cubeMove.IsRolling)
         {
             // 큐브의 이번 움직임으로 바닥을 생성 했다면 리턴
             if (_groundSet) return;
@@ -69,15 +79,21 @@ public class RedStamp : MonoBehaviour
             RedActive();
         }
         // 큐브 이동 종료로 다시 바닥을 생성할 수 있음
-        if (!_cubeMove4.IsRolling) _groundSet = false;
+        if (!_cubeMove.IsRolling)
+        { 
+            _groundSet = false;
+            GroundCheck();
+        }
     }
     private void RedActive()
     {
-        // 바닥을 큐브 아래칸 주위에 배치
-        for (int i = 0; i < 4; i++)
-            _redGrounds[i].transform.position = _cubeMove4.transform.position + _redGroundPos[i] + Vector3.down * 2;
+        // 바닥을 큐브 아래칸에 배치
+        _redGrounds.transform.position = _cubeMove.transform.position + Vector3.down * 2;
         // 능력 사용 체크
         _groundSet = true;
+
+        // 낙하 유도 오브젝트 활성화
+        _plane.transform.position = _cubeMove.transform.position + Vector3.down * 5f;
     }
 
     // 해당 함수는 _redGrounds와 플레이어의 물리적 충돌 시 활성화 됨
@@ -87,6 +103,7 @@ public class RedStamp : MonoBehaviour
         Pool(_useGround, _transform);
         // 바닥 생성 카운트
         useRedGround++;
+        if (useRedGround == maxRedGround) _plane.SetActive(false);
     }
 
     private void Pool(GameObject _prefab, Transform _transform)
@@ -102,16 +119,16 @@ public class RedStamp : MonoBehaviour
     }
 
     // 빨간 스탬프 능력 해제
-    private void RedDisable()
+    private void RedDisable(bool reset)
     {
         // 다른 스탬프로 전환이 가능하도록 cubeChecker 활성화
         _cubeChecker.enabled = true;
 
-        // 능력 미 사용 상태
+        // 능력 미사용 상태
         _active = false;
 
         // 큐브 위치를 시작 위치로
-        _cubeMove4.transform.position = _startPos;
+        if (reset) _cubeMove.transform.position = _startPos;
 
         // 시작 위치 오브젝트 비활성화
         _startObj.SetActive(false);
@@ -121,25 +138,29 @@ public class RedStamp : MonoBehaviour
 
         // 생성된 바닥 비활성화
         foreach (var item in pool)
-        {
             item.SetActive(false);
-        }
-    }
 
+        // 낙하 유도 오브젝트 비활성화
+        _plane.SetActive(false);
+
+        // 블로킹 초기화
+        _cubeMove.BlockingReset();
+    }
+    private void GroundCheck()
+    {
+        if (!Physics.Raycast(_cubeMove.transform.position, Vector3.down, out RaycastHit hit, 1, _layerMask)) return;
+        if (useRedGround == 0 || hit.transform.gameObject.layer != 0) return;
+        RedDisable(false);
+    }
 
     // 레이캐스트를 지속적으로 사용하는 _redGrounds는 RedStamp가 활성화 일 때만 활성화
     private void OnEnable()
     {
-        foreach (var item in _redGrounds)
-        {
-            item.SetActive(true);
-        }
+        _redGrounds.SetActive(true);
     }
     private void OnDisable()
     {
-        foreach (var item in _redGrounds)
-        {
-            item.SetActive(false);
-        }
+        if (!_redGrounds) return;
+        _redGrounds.SetActive(false);
     }
 }
