@@ -1,7 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Events;
 
 /// <summary>
 ///  노란색 스탬프 확인 클래스 
@@ -30,7 +28,7 @@ public class YellowChecker : MonoBehaviour
 
         // 해당 Ray에 걸린 오브젝트(Map)가 있으면 갈 수 있다
         canMove = (hit.collider) ? true : false;
-       
+
 
         // 그런데 Map인데 ClearStampTile(리셋, 지우기) 타일이면?
         // 바로 앞에 멈추게 (못가게 해야한다)
@@ -44,13 +42,13 @@ public class YellowChecker : MonoBehaviour
             && hit.collider.gameObject.name.Contains("slope")) canMove = false;
         else if (canMove
             && hit.collider.gameObject.GetComponent<Elevator>() is not null) canMove = false;
-     
+
     }
 
     private void OnTriggerEnter(Collider other)
     {
         // 충돌을 했는데 해당 오브젝트가 파괴가 가능한 오브젝트이면
-        if(other.gameObject.CompareTag("CrackedRock"))
+        if (other.gameObject.CompareTag("CrackedRock"))
         {
             // 파괴할 오브젝트를 담아놓기
             destroyTarget = other.gameObject;
