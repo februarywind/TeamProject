@@ -25,7 +25,6 @@ public class YellowMover : MonoBehaviour
 
     void Start()
     {
-        enabled = true;
 
         GameObject player = GameObject.FindWithTag("Player");
         if (player != null)
@@ -43,7 +42,6 @@ public class YellowMover : MonoBehaviour
             yellowCheckers[i].gameObject.SetActive(false);
         }
 
-        enabled = false;
     }
 
     void Update()
@@ -132,7 +130,10 @@ public class YellowMover : MonoBehaviour
             gap = Vector3.Magnitude(yellowCheckers[yellowCheckerindex].transform.position - playerTransform.position);
             if ( 0.99f <= gap && gap <= 1.1f ) { // 거리가 1일 때 (오차 범위 : -0.01 ~ 0.1)
                 //디버깅용 로그 Debug.Log($" in loop :{yellowCheckerindex} vector : {gap}"); 
+                
                 yellowCheckers[yellowCheckerindex].DestroyTarget(); // 2 ~ n - 1 번째 체커의 오브젝트 파괴
+                yield return null;
+
                 // 만약 현재 체커가 마지막 바로 전이 아니라면
                 if (yellowCheckerindex < yellowCheckers.Length - 1) yellowCheckerindex++; 
              }
@@ -145,7 +146,8 @@ public class YellowMover : MonoBehaviour
         playerTransform.position = endPosition; // 마지막 위치 설정
 
         //디버깅용 로그Debug.Log($"last : {yellowCheckerindex}");
-        yellowCheckers[yellowCheckerindex].DestroyTarget(); // 마지막 체커의 오브젝트 파괴
+        yellowCheckers[yellowCheckers.Length - 1].DestroyTarget(); // 마지막 n번째 체커의 오브젝트 파괴
+
         isMoving = false; // 이동 완료
 
         // cubeChecker를 큐브 위로 이동

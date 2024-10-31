@@ -1,7 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Events;
 
 /// <summary>
 ///  노란색 스탬프 확인 클래스 
@@ -14,14 +12,21 @@ public class YellowChecker : MonoBehaviour
     [SerializeField] float distance;        // 레이캐스트 거리
     [SerializeField] GameObject destroyTarget;  // 능력 사용 중 파괴할 타겟
 
+    [SerializeField] UnityEvent destroyCubeEvent;   // 파괴할 타겟에게 파괴하라고 명령하는 이벤트
+
     /// <summary>
     /// 돌진 가능 여부를 가져오는 프로퍼티
     /// </summary>
     public bool CanMove { get { return canMove; } private set { } }
-    public void DestroyTarget() { if(destroyTarget is not null) Destroy(destroyTarget); }
+    public void DestroyTarget()
+    {
+        if (destroyTarget is not null) destroyCubeEvent?.Invoke();
+    }
 
     public void CheckRay()
     {
+        // 일단 초기화 
+        destroyCubeEvent.RemoveAllListeners();
         RaycastHit hit;
 
         // Ray를 checker의 아래 방향으로 발사하고
@@ -30,7 +35,7 @@ public class YellowChecker : MonoBehaviour
 
         // 해당 Ray에 걸린 오브젝트(Map)가 있으면 갈 수 있다
         canMove = (hit.collider) ? true : false;
-       
+
 
         // 그런데 Map인데 ClearStampTile(리셋, 지우기) 타일이면?
         // 바로 앞에 멈추게 (못가게 해야한다)
@@ -44,18 +49,25 @@ public class YellowChecker : MonoBehaviour
             && hit.collider.gameObject.name.Contains("slope")) canMove = false;
         else if (canMove
             && hit.collider.gameObject.GetComponent<Elevator>() is not null) canMove = false;
-     
+
     }
 
     private void OnTriggerEnter(Collider other)
     {
         // 충돌을 했는데 해당 오브젝트가 파괴가 가능한 오브젝트이면
-        if(other.gameObject.CompareTag("CrackedRock"))
+        if (other.gameObject.CompareTag("CrackedRock"))
         {
             // 파괴할 오브젝트를 담아놓기
             destroyTarget = other.gameObject;
             // 움직여서 파괴할 수 있으니 움직이 가능으로 설정
             canMove = true;
+
+            DestroyCube script = other.gameObject.GetComponent<DestroyCube>();
+            // 혹시 모를 한번 더 검증
+            if (script is not null)
+            {
+                destroyCubeEvent.AddListener(script.Remove);
+            }
         }
         else canMove = false;
     }
