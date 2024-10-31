@@ -23,6 +23,6 @@ public class Stage1Goal : MonoBehaviour
         // WaitTime만큼 대기
         yield return new WaitForSeconds(WaitTime);
         // Stage2로 전환
-        SceneManager.LoadScene("Stage2");
+        SceneManager.LoadScene("Stage2 temp");
     }
 }
