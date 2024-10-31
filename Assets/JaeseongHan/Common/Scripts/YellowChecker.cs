@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 /// <summary>
@@ -11,11 +12,13 @@ public class YellowChecker : MonoBehaviour
     [SerializeField] LayerMask layerMask;   // 확인할 레이어 마스크
 
     [SerializeField] float distance;        // 레이캐스트 거리
+    [SerializeField] GameObject destroyTarget;  // 능력 사용 중 파괴할 타겟
 
     /// <summary>
     /// 돌진 가능 여부를 가져오는 프로퍼티
     /// </summary>
     public bool CanMove { get { return canMove; } private set { } }
+    public void DestroyTarget() { if(destroyTarget is not null) Destroy(destroyTarget); }
 
     public void CheckRay()
     {
@@ -46,6 +49,14 @@ public class YellowChecker : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        canMove = false;
+        // 충돌을 했는데 해당 오브젝트가 파괴가 가능한 오브젝트이면
+        if(other.gameObject.CompareTag("CrackedRock"))
+        {
+            // 파괴할 오브젝트를 담아놓기
+            destroyTarget = other.gameObject;
+            // 움직여서 파괴할 수 있으니 움직이 가능으로 설정
+            canMove = true;
+        }
+        else canMove = false;
     }
 }
