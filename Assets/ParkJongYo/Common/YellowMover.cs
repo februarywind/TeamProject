@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class YellowMover : MonoBehaviour
 {
@@ -48,8 +49,6 @@ public class YellowMover : MonoBehaviour
 
     void Update()
     {
-        // 스탬스 사용 가능 상태 확인
-        if (!CubeChecker.Instance.IsStampUse) return;
         // 플레이어 오브젝트가 존재할 때만 이동 처리
         if (playerTransform != null && !isMoving)
         {
@@ -123,11 +122,13 @@ public class YellowMover : MonoBehaviour
         // stamp의 rigidvody 시작 끝 위치 설정
         Vector3[] rigidStartPositions = new Vector3[stampRigidbodies.Length];
         Vector3[] rigidEndPositions = new Vector3[stampRigidbodies.Length];
-        for (int index = 0; index < stampRigidbodies.Length; index++)
+
+        for(int index = 0; index < stampRigidbodies.Length; index++)
         {
             rigidStartPositions[index] = stampRigidbodies[index].position;
             rigidEndPositions[index] = rigidStartPositions[index] + direction;
         }
+
         float elapsedTime = 0;
 
         float pastGap;  // 능력 사용 중 파괴할 오브젝트와의 거리
@@ -145,9 +146,9 @@ public class YellowMover : MonoBehaviour
             pastPos = playerTransform.position;
 
             playerTransform.position = Vector3.Lerp(startPosition, endPosition, elapsedTime / (moveDistance / moveSpeed)); // 플레이어 오브젝트 위치 업데이트
-                                                                                                                           //playerRigid.position = Vector3.Lerp(startPosition, endPosition, elapsedTime / (moveDistance / moveSpeed));
-
+                                                                                                                           
             yield return null;
+
             // Stamp 옮기는 부분
             for (int index = 0; index < stampRigidbodies.Length; index++)
             {
@@ -161,7 +162,7 @@ public class YellowMover : MonoBehaviour
             curGap = Vector3.Magnitude(yellowCheckers[yellowCheckerindex].transform.position - curPos);
 
             if (1f <= pastGap && curGap < 1f)
-            {
+            { 
                 //디버깅용 로그
                 // Debug.Log($" in loop :{yellowCheckerindex} vector : {curGap}"); 
 
@@ -175,13 +176,14 @@ public class YellowMover : MonoBehaviour
             yield return null;
         }
 
-        playerTransform.position = endPosition; // 마지막 위치 설정
         // 마지막 위치 설정
         for (int index = 0; index < stampRigidbodies.Length; index++)
         {
             stampRigidbodies[index].position = rigidEndPositions[index]; // 각 스탬프의 마지막 위치 설정
         }
+
         playerTransform.position = endPosition;  // 플레이어의 마지막 위치 설정
+
 
         //디버깅용 로그
         // Debug.Log($"last : {yellowCheckerindex}");

@@ -37,7 +37,7 @@ public class StampTile2 : MonoBehaviour
     private void Init()
     {
         // 초기 위치 box의 머리에
-        gameObject.transform.localPosition = new Vector3 (0, 0.55f, 0);
+        gameObject.transform.localPosition = new Vector3 (0, 0.51f, 0);
         gameObject.transform.rotation = Quaternion.Euler(-90f, 0f, 0f);
         // 콜라이더는 트리거로
         collider.isTrigger = true;

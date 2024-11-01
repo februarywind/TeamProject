@@ -209,7 +209,9 @@ public class CubeMove : MonoBehaviour
         transform.RotateAround(point, axis, 90 - angle);
 
         // 이동 했을 때 높이 보정
+
         transform.position = new Vector3(transform.position.x, Mathf.Round(transform.position.y), transform.position.z);
+
 
         // CubeCheck를 큐브 위로 이동 후 CubeCheck 활성화
         _cubeChecker.RePosition(transform.position);
