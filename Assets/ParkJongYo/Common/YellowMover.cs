@@ -45,6 +45,26 @@ public class YellowMover : MonoBehaviour
             yellowCheckers[i].gameObject.SetActive(false);
         }
 
+        for (int index = 0; index < player.transform.childCount; index++)
+        {
+            // 플레이어의 자식 중에 StampPoint를 찾는데 있으면
+            if (player.transform.GetChild(index).name.Equals("StampPoint"))
+            {
+                // StampPoint를 가져오고
+                Transform stampPoints = player.transform.GetChild(index);
+                stampRigidbodies = new Rigidbody[stampPoints.childCount];
+                // StampPoint 각 면에 있는 Stamp를
+                for (int stampIndex = 0; stampIndex < stampPoints.childCount; stampIndex++)
+                {
+                    //Debug.Log($"{stampPoints.GetChild(stampIndex).GetComponent<Rigidbody>() is not null}");
+                    // stamps 배열에 다 넣는다 
+                    stampRigidbodies[stampIndex] = stampPoints.GetChild(stampIndex).GetComponent<Rigidbody>();
+                }
+                // 다 넣었으면 반복문을 종료한다
+                break;
+            }
+        }
+
     }
 
     void Update()
