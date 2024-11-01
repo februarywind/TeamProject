@@ -129,7 +129,11 @@ public class RedStamp : MonoBehaviour
         _active = false;
 
         // 큐브 위치를 시작 위치로
-        if (reset) _cubeMove.transform.position = _startPos;
+        if (reset) 
+        {
+            _cubeMove.transform.position = _startPos;
+            _cubeMove.FallCheck();
+        }
 
         // 시작 위치 오브젝트 비활성화
         _startObj.SetActive(false);

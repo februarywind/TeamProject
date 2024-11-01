@@ -20,6 +20,7 @@ public class CubeChecker : MonoBehaviour
         Instance = this;
         _blue = GetComponent<BlueMover>();
         _yellow = GetComponent<YellowMover>();
+        _red = GetComponent<RedStamp>();
     }
     public bool IsGround()
     {
