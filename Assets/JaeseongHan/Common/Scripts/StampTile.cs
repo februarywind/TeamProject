@@ -3,6 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
+// 스탬프 위치 열거형
+enum StampDir
+{
+    Up, Forward, Back, Right, Left
+}
+
 // 한번에 몰아서 하나씩 넣기
 [RequireComponent(typeof(BoxCollider))]
 [RequireComponent(typeof(Rigidbody))]
@@ -21,11 +27,14 @@ public class StampTile : MonoBehaviour
 
     [SerializeField] SpriteRenderer render;     // 그림을 설정할 스프라이트
 
+
     /// <summary>
     /// 스탬프의 이미지가 담겨있는 배열
     /// </summary>
     public Sprite[] stampSprites = new Sprite[(int)StampType.Type.Size];
 
+    // 스탬프 방향 설정
+    [SerializeField] StampDir _stampDir;
     private void Awake()
     {
         render = GetComponent<SpriteRenderer>();
@@ -53,6 +62,23 @@ public class StampTile : MonoBehaviour
         render.sprite = stampSprites[(int)stampType];
         render.drawMode = SpriteDrawMode.Sliced;
         render.size = new Vector2(0.8f, 0.8f);
+        switch (_stampDir)
+        {
+            case StampDir.Up:
+                break;
+            case StampDir.Forward:
+                transform.parent.rotation = Quaternion.Euler(90f, 0f, 0f);
+                break;
+            case StampDir.Back:
+                transform.parent.rotation = Quaternion.Euler(-90f, 0f, 0f);
+                break;
+            case StampDir.Right:
+                transform.parent.rotation = Quaternion.Euler(0f, 0f, -90f);
+                break;
+            case StampDir.Left:
+                transform.parent.rotation = Quaternion.Euler(-0f, 0f, 90f);
+                break;
+        }
     }
 
     private void OnTriggerEnter(Collider other)

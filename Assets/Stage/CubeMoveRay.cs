@@ -18,7 +18,8 @@ public class CubeMoveRay : MonoBehaviour
     [SerializeField] private Vector3 _offSet;
 
     // 트리거 상태 일 때 트루
-    bool _wallTrigger;
+    [SerializeField] bool _wallTrigger;
+    [SerializeField] Transform _transform;
 
     private void OnTriggerStay(Collider other)
     {
@@ -30,6 +31,8 @@ public class CubeMoveRay : MonoBehaviour
 
         // 트리거 진입 상태
         _wallTrigger = true;
+
+        _transform = other.transform;
     }
     private void OnTriggerExit(Collider other)
     {
@@ -53,5 +56,12 @@ public class CubeMoveRay : MonoBehaviour
 
         // 바닥이 감지 안돼면 해당 방향을 블로킹
         _cubeMove.BlockingDir[(int)_blockingDir] = Physics.Raycast(transform.position, Vector3.down, out RaycastHit _hit, 5f, _layerMask) ? CubePos.None : _blockingDir;
+    }
+
+    // 트리거 중 오브젝트가 파괴 혹은 비활성화 시 Exit을 대체하는 함수
+    public void TriggerExit()
+    {
+        _cubeMove.BlockingDir[(int)_blockingDir] = CubePos.None;
+        _wallTrigger = false;
     }
 }
