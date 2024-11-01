@@ -49,6 +49,9 @@ public class YellowMover : MonoBehaviour
 
     void Update()
     {
+        // 스탬스 사용 가능 상태 확인
+        if (!CubeChecker.Instance.IsStampUse) return;
+
         // 플레이어 오브젝트가 존재할 때만 이동 처리
         if (playerTransform != null && !isMoving)
         {
