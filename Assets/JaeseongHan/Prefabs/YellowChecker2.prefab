@@ -64,7 +64,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   target: {fileID: 0}
-  distance: 1
+  distance: 0.7
 --- !u!54 &4096096801578446207
 Rigidbody:
   m_ObjectHideFlags: 0
