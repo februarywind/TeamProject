@@ -70,7 +70,7 @@ public class YellowMover : MonoBehaviour
     void Update()
     {
         // 플레이어 오브젝트가 존재할 때만 이동 처리
-        if (playerTransform != null && !isMoving)
+        if (playerTransform != null && !isMoving && playerTransform.gameObject.GetComponent<Rigidbody>().isKinematic)
         {
             if (Input.GetMouseButtonDown(0))
             {
