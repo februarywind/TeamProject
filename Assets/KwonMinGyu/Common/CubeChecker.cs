@@ -15,9 +15,12 @@ public class CubeChecker : MonoBehaviour
 
     // 능력 사용을 제한하는 트리거
     public bool IsStampUse { get; private set; } = true;
-    private void Start()
+    private void Awake()
     {
         Instance = this;
+    }
+    private void Start()
+    {
         _blue = GetComponent<BlueMover>();
         _yellow = GetComponent<YellowMover>();
         _red = GetComponent<RedStamp>();

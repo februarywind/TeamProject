@@ -44,6 +44,9 @@ public class CubeMove : MonoBehaviour
     public bool IsBlockingForward;
     public CubePos[] BlockingDir = { CubePos.None, CubePos.None, CubePos.None, CubePos.None };
 
+    // 레드 스탬프를 큐브 무브에서 실행
+    private RedStamp _redStamp;
+
     void Start()
     {
         Instance = this;
@@ -63,11 +66,14 @@ public class CubeMove : MonoBehaviour
         // 시작 낙하를 위한 바닥 체크
         if (!_cubeChecker.IsGround())
             CubeFall();
+
+        // 레드 스탬프
+        _redStamp = CubeChecker.Instance.GetComponent<RedStamp>();
     }
 
     void Update()
     {
-        _cubeChecker.RePosition(transform.position);
+        //_cubeChecker.RePosition(transform.position);
 
         float _HMove = Input.GetAxisRaw("Horizontal");
         float _VMove = Input.GetAxisRaw("Vertical");
@@ -221,6 +227,9 @@ public class CubeMove : MonoBehaviour
 
         // 회전 후 공중이라면 추락
         FallCheck();
+
+        // 이동 후 레드 스탬프 능력이 활성화 상태라면 능력 실행
+        if (_redStamp != null && _redStamp._active) _redStamp.RedActive();
     }
 
     IEnumerator SlopeMove(CubePos cubePos)

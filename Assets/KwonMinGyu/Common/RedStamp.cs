@@ -19,7 +19,7 @@ public class RedStamp : MonoBehaviour
     [SerializeField] private GameObject _redGround;
 
     // 빨간 스탬프 능력 활성화 여부
-    [SerializeField] private bool _active;
+    public bool _active { get; private set; }
 
     // _redGrounds의 생성 제한에 사용할 변수 
     [SerializeField] private bool _groundSet;
@@ -44,7 +44,6 @@ public class RedStamp : MonoBehaviour
     [SerializeField] private CubeMoveRay[] _cubeMoveRays;
     private void Update()
     {
-        GroundCheck();
         if (!CubeChecker.Instance.IsStampUse) return;
         if (Input.GetKeyDown(KeyCode.E))
         {
@@ -71,25 +70,9 @@ public class RedStamp : MonoBehaviour
             }
         }
         if (!_active) return;
-        // 큐브가 이동을 시작할 때
-        if (_cubeMove.IsRolling)
-        {
-            // 큐브의 이번 움직임으로 바닥을 생성 했다면 리턴
-            if (_groundSet) return;
-
-            // 능력 사용 횟수를 초과 했다면 리턴
-            if (!(useRedGround < maxRedGround)) return;
-            // 능력 사용
-            RedActive();
-        }
-        // 큐브 이동 종료로 다시 바닥을 생성할 수 있음
-        if (!_cubeMove.IsRolling)
-        { 
-            _groundSet = false;
-            GroundCheck();
-        }
+        GroundCheck();
     }
-    private void RedActive()
+    public void RedActive()
     {
         // 바닥을 큐브 아래칸에 배치
         _redTrigger.transform.position = _cubeMove.transform.position + Vector3.down * 2;
@@ -123,6 +106,9 @@ public class RedStamp : MonoBehaviour
     // 빨간 스탬프 능력 해제
     private void RedDisable(bool reset)
     {
+        // 레드 트리거 비활성화
+        _redTrigger.SetActive(false);
+
         // 다른 스탬프로 전환이 가능하도록 cubeChecker 활성화
         _cubeChecker.enabled = true;
 
@@ -130,7 +116,7 @@ public class RedStamp : MonoBehaviour
         _active = false;
 
         // 큐브 위치를 시작 위치로
-        if (reset) 
+        if (reset)
         {
             _cubeMove.transform.position = _startPos;
             _cubeMove.FallCheck();
@@ -167,10 +153,5 @@ public class RedStamp : MonoBehaviour
     private void OnEnable()
     {
         _redTrigger.SetActive(true);
-    }
-    private void OnDisable()
-    {
-        if (!_redTrigger) return;
-        _redTrigger.SetActive(false);
     }
 }
