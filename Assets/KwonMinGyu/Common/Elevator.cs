@@ -21,19 +21,21 @@ public class Elevator : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (!other.CompareTag("Player")) return;
+        if (_elevatorCoroutine != null)
+            StopCoroutine(_elevatorCoroutine);
         _elevatorCoroutine = StartCoroutine(ElevatorEnter(other.GetComponent<CubeMove>()));
     }
 
     private void OnTriggerExit(Collider other)
     {
         if (!other.CompareTag("Player")) return;
+        if (_elevatorCoroutine != null)
+            StopCoroutine(_elevatorCoroutine);
         _elevatorCoroutine = StartCoroutine(ElevatorExit());
     }
 
     IEnumerator ElevatorEnter(CubeMove _cube)
     {
-        if (_elevatorCoroutine != null) 
-            StopCoroutine( _elevatorCoroutine);
         CubeChecker.Instance.StampControll(false);
         while (true)
         {
@@ -47,11 +49,10 @@ public class Elevator : MonoBehaviour
             yield return null;
         }
         CubeChecker.Instance.StampControll(true);
+        CubeChecker.Instance.RePosition(CubeMove.Instance.transform.position);
     }
     IEnumerator ElevatorExit()
     {
-        if (_elevatorCoroutine != null)
-            StopCoroutine(_elevatorCoroutine);
         CubeChecker.Instance.StampControll(true);
         while (true)
         {
