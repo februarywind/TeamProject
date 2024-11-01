@@ -14,7 +14,6 @@ public class CubeMove : MonoBehaviour
     [SerializeField] private float _rotationSpeed;
 
     // 큐브 윗면 체크 및 바닥 체크를 위한 CubeChecker 스크립트
-    [SerializeField] private GameObject _cubeCheckerObj;
     [SerializeField] private CubeChecker _cubeChecker;
     [SerializeField] private BoxCollider[] stampPoints; // 스탬프 콜라이더들
 
@@ -180,7 +179,7 @@ public class CubeMove : MonoBehaviour
         IsRolling = true;
 
         // 이동 중 스탬프 사용을 막기 위해 CubeCheck 비활성화
-        _cubeCheckerObj.SetActive(false);
+        _cubeChecker.StampControll(false);
 
         // 회전 방향에 따른 기준점을 구함
         Vector3 positionToRotation = _moveDir[(int)cubePos];
@@ -215,7 +214,7 @@ public class CubeMove : MonoBehaviour
 
         // CubeCheck를 큐브 위로 이동 후 CubeCheck 활성화
         _cubeChecker.RePosition(transform.position);
-        _cubeCheckerObj.SetActive(true);
+        _cubeChecker.StampControll(true);
 
         // 회전 종료, 이동 가능
         IsRolling = false;
@@ -230,7 +229,7 @@ public class CubeMove : MonoBehaviour
         IsRolling = true;
 
         // 이동 중 스탬프 사용을 막기 위해 CubeCheck 비활성화
-        _cubeCheckerObj.SetActive(false);
+        _cubeChecker.StampControll(false);
 
         // 회전 방향에 따른 기준점을 구함
         Vector3 positionToRotation = _moveDir[(int)cubePos];
@@ -302,7 +301,7 @@ public class CubeMove : MonoBehaviour
 
         // CubeCheck를 큐브 위로 이동 후 CubeCheck를 활성화
         _cubeChecker.RePosition(transform.position);
-        _cubeCheckerObj.SetActive(true);
+        _cubeChecker.StampControll(true);
 
         // 경사로 끝에서 position을 반올림해서 보정
         transform.position = new Vector3((float)Math.Round(transform.position.x), (float)Math.Round(transform.position.y), (float)Math.Round(transform.position.z));

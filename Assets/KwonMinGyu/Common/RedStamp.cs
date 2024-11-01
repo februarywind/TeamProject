@@ -44,6 +44,7 @@ public class RedStamp : MonoBehaviour
     [SerializeField] private CubeMoveRay[] _cubeMoveRays;
     private void Update()
     {
+        GroundCheck();
         if (!CubeChecker.Instance.IsStampUse) return;
         if (Input.GetKeyDown(KeyCode.E))
         {
