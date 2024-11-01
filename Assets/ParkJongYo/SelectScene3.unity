@@ -476,8 +476,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1089255086}
-        m_TargetAssemblyTypeName: SelectStage3, Assembly-CSharp
+      - m_Target: {fileID: 1089255083}
+        m_TargetAssemblyTypeName: SelectStage, Assembly-CSharp
         m_MethodName: LoadStage
         m_Mode: 3
         m_Arguments:
@@ -536,7 +536,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1089255085}
   - component: {fileID: 1089255084}
-  - component: {fileID: 1089255086}
+  - component: {fileID: 1089255083}
   m_Layer: 0
   m_Name: StageManager
   m_TagString: Untagged
@@ -544,6 +544,18 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &1089255083
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1089255082}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec11b8166a6f1634abd6c8b751dfe666, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1089255084
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -575,18 +587,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1089255086
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1089255082}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ec11b8166a6f1634abd6c8b751dfe666, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1093708424
 GameObject:
   m_ObjectHideFlags: 0
@@ -806,8 +806,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1089255086}
-        m_TargetAssemblyTypeName: SelectStage3, Assembly-CSharp
+      - m_Target: {fileID: 1089255083}
+        m_TargetAssemblyTypeName: SelectStage, Assembly-CSharp
         m_MethodName: LoadStage
         m_Mode: 3
         m_Arguments:
@@ -940,8 +940,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1089255086}
-        m_TargetAssemblyTypeName: SelectStage3, Assembly-CSharp
+      - m_Target: {fileID: 1089255083}
+        m_TargetAssemblyTypeName: SelectStage, Assembly-CSharp
         m_MethodName: LoadStage
         m_Mode: 3
         m_Arguments:
@@ -1628,8 +1628,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1089255086}
-        m_TargetAssemblyTypeName: SelectStage3, Assembly-CSharp
+      - m_Target: {fileID: 1089255083}
+        m_TargetAssemblyTypeName: SelectStage, Assembly-CSharp
         m_MethodName: LoadStage
         m_Mode: 3
         m_Arguments:
