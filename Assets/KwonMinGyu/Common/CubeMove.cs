@@ -332,6 +332,9 @@ public class CubeMove : MonoBehaviour
 
         // 콜라이더 축소로 낙하 유도
         transform.GetComponent<BoxCollider>().size = new Vector3(0.9f, 0.9f, 0.9f);
+
+        // 공중에서 스탬프 사용 불가
+        CubeChecker.Instance.StampControll(false);
     }
 
     // CubeFall()에서 물리가 활성화 될 때만 OnCollisionEnter가 실행될 수 있음
@@ -354,6 +357,9 @@ public class CubeMove : MonoBehaviour
 
         // 스탬프 콜라이더들 활성화
         foreach (BoxCollider box in stampPoints) box.enabled = true;
+
+        // 스탬프 사용 가능 상태로 전환
+        CubeChecker.Instance.StampControll(true);
     }
     public void FallCheck()
     {
