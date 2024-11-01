@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class CubeChecker : MonoBehaviour
@@ -37,30 +35,30 @@ public class CubeChecker : MonoBehaviour
         _activeStamp = other.GetComponent<StampType>();
         if (_activeStamp == null) return;
         _activeStampType = _activeStamp.GetStampType;
-        switch (_activeStampType) 
-        { 
+        switch (_activeStampType)
+        {
             case StampType.Type.None:
                 ActiveNone();
                 break;
             case StampType.Type.Blue:
                 ActiveNone();
-                _blue.enabled = true; 
+                _blue.enabled = true;
                 break;
             case StampType.Type.Yellow:
                 ActiveNone();
-                _yellow.enabled = true; 
+                _yellow.enabled = true;
                 break;
             case StampType.Type.Red:
                 ActiveNone();
-                _red.enabled = true; 
+                _red.enabled = true;
                 break;
         }
     }
     private void ActiveNone()
     {
-        _blue.enabled = false;
-        _yellow.enabled = false;
-        _red.enabled = false;
+        if (_blue) _blue.enabled = false;
+        if (_yellow) _yellow.enabled = false;
+        if (_red) _red.enabled = false;
     }
 
     public void RePosition(Vector3 Cubeposition)
