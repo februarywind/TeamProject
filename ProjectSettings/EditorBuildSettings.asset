@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Stage/Stage2 temp.unity
     guid: 286ca796b9ff8264ea5cfb9bd8b03186
+  - enabled: 1
+    path: Assets/Stage/Stage3 temp.unity
+    guid: 11343aac2dfff0240a66236cb3ad2bea
   m_configObjects: {}
