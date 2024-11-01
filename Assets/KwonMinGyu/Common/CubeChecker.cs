@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class CubeChecker : MonoBehaviour
 {
+    // CubeChecker의 사용 빈도가 높아짐에 따라 static으로 변경함
+    public static CubeChecker Instance;
+
     [SerializeField] private LayerMask layerMask;
     [SerializeField] private CubeMove move;
     [SerializeField] private StampType _activeStamp;
@@ -11,8 +14,12 @@ public class CubeChecker : MonoBehaviour
     [SerializeField] private BlueMover _blue;
     [SerializeField] private YellowMover _yellow;
     [SerializeField] private RedStamp _red;
+
+    // 능력 사용을 제한하는 트리거
+    public bool IsStampUse { get; private set; } = true;
     private void Start()
     {
+        Instance = this;
         _blue = GetComponent<BlueMover>();
         _yellow = GetComponent<YellowMover>();
     }
@@ -59,5 +66,10 @@ public class CubeChecker : MonoBehaviour
     public void RePosition(Vector3 Cubeposition)
     {
         transform.position = Cubeposition + Vector3.up * 0.4f;
+    }
+
+    public void StampControll(bool possibility)
+    {
+        IsStampUse = possibility;
     }
 }

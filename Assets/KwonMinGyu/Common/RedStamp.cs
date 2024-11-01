@@ -41,6 +41,7 @@ public class RedStamp : MonoBehaviour
     [SerializeField] private GameObject _plane;
     private void Update()
     {
+        if (!CubeChecker.Instance.IsStampUse) return;
         if (Input.GetKeyDown(KeyCode.E))
         {
             // 능력이 활성화 중 이라면 비활성화 함수 실행

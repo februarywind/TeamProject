@@ -9,6 +9,8 @@ public class BlueMover : MonoBehaviour
     [SerializeField] CubeMove cubeMove;
     void Update()
     {
+        // 스탬스 사용 가능 상태 확인
+        if (!CubeChecker.Instance.IsStampUse) return;
         if (Input.GetKey(KeyCode.E))
         {
             // CubeMove 입력 막기
