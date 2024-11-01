@@ -5,11 +5,13 @@ using UnityEngine;
 /// <summary>
 /// 스탬프를 입히는 스크립트
 /// </summary>
+[RequireComponent(typeof(Rigidbody))]
 public class StampType : MonoBehaviour
 {
     [SerializeField] Type curType;         // 현재 이 면의 스탬프
     [SerializeField] SpriteRenderer render;     // 그림을 설정할 스프라이트
-
+    [SerializeField] Rigidbody body;            // 스탬프의 충격을 설정할 RigidBody
+    
     /// <summary>
     /// None, Red, Blue, Yellow
     /// 없음, 빨강, 파랑, 노랑
@@ -39,6 +41,10 @@ public class StampType : MonoBehaviour
     private void Awake()
     {
         render = GetComponent<SpriteRenderer>();
+        body = GetComponent<Rigidbody>();
+
+        body.useGravity = false;
+        body.isKinematic = true;
     }
 
     private void ChangeSprite()
