@@ -47,9 +47,13 @@ public class CubeMove : MonoBehaviour
     // 레드 스탬프를 큐브 무브에서 실행
     private RedStamp _redStamp;
 
-    void Start()
+    private void Awake()
     {
         Instance = this;
+    }
+
+    void Start()
+    {
         // bound.size값으로 콜라이더의 월드기준 size를 구할 수 있음
         // 아래 값들은 RotateAround의 회전 기준점이 됨
         bound = GetComponent<BoxCollider>().bounds;
