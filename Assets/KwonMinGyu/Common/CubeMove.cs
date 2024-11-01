@@ -8,6 +8,7 @@ public enum CubePos
 }
 public class CubeMove : MonoBehaviour
 {
+    // CubeMove의 사용 빈도가 높아짐에 따라 static으로 변경함
     public static CubeMove Instance;
     // 큐브 회전속도
     [SerializeField] private float _rotationSpeed;
