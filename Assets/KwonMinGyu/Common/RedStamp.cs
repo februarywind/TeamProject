@@ -9,14 +9,14 @@ public class RedStamp : MonoBehaviour
     // 큐브 이동 제어를 위한 스크립트
     [SerializeField] private CubeMove _cubeMove;
 
-    // 스탬프 능력 사용 시 바닥이 될 오브젝트
-    [SerializeField] GameObject _redGrounds;
+    // 스탬프 능력 사용 시 임시로 바닥이 될 오브젝트
+    [SerializeField] GameObject _redTrigger;
 
-    // _redGrounds의 레이어를 입력
-    [SerializeField] private LayerMask _layerMask;
+    // 기본 바닥의 레이어를 입력
+    [SerializeField] private LayerMask _GroundLayer;
 
-    // 큐브가 _redGrounds 에 닿을 때 그 자리를 대체할 프리팹
-    [SerializeField] private GameObject _useGround;
+    // 큐브가 _redTrigger 에 닿을 때 그 자리를 대체할 프리팹
+    [SerializeField] private GameObject _redGround;
 
     // 빨간 스탬프 능력 활성화 여부
     [SerializeField] private bool _active;
@@ -39,6 +39,9 @@ public class RedStamp : MonoBehaviour
 
     // 낙하가 가능하도록 하는 오브젝트
     [SerializeField] private GameObject _plane;
+
+    // 트리거 초기화를 위한 CubeMoveRay
+    [SerializeField] private CubeMoveRay[] _cubeMoveRays;
     private void Update()
     {
         if (!CubeChecker.Instance.IsStampUse) return;
@@ -64,7 +67,6 @@ public class RedStamp : MonoBehaviour
 
                 // 낙하 유도 오브젝트 활성화
                 _plane.SetActive(true);
-                _plane.transform.position = _cubeMove.transform.position + Vector3.down * 5f;
             }
         }
         if (!_active) return;
@@ -89,19 +91,17 @@ public class RedStamp : MonoBehaviour
     private void RedActive()
     {
         // 바닥을 큐브 아래칸에 배치
-        _redGrounds.transform.position = _cubeMove.transform.position + Vector3.down * 2;
+        _redTrigger.transform.position = _cubeMove.transform.position + Vector3.down * 2;
+
         // 능력 사용 체크
         _groundSet = true;
-
-        // 낙하 유도 오브젝트 활성화
-        _plane.transform.position = _cubeMove.transform.position + Vector3.down * 5f;
     }
 
     // 해당 함수는 _redGrounds와 플레이어의 물리적 충돌 시 활성화 됨
     public void UseRedGround(Transform _transform)
     {
         // 오브젝트 풀로 충돌 위치를 대체할 바닥을 생성
-        Pool(_useGround, _transform);
+        Pool(_redGround, _transform);
         // 바닥 생성 카운트
         useRedGround++;
         if (useRedGround == maxRedGround) _plane.SetActive(false);
@@ -146,22 +146,26 @@ public class RedStamp : MonoBehaviour
 
         // 블로킹 초기화
         _cubeMove.BlockingReset();
+
+        // 트리거 초기화
+        foreach (var item in _cubeMoveRays)
+            item.TriggerExit();
     }
     private void GroundCheck()
     {
-        if (!Physics.Raycast(_cubeMove.transform.position, Vector3.down, out RaycastHit hit, 1, _layerMask)) return;
-        if (useRedGround == 0 || hit.transform.gameObject.layer != 0) return;
+        if (!Physics.Raycast(_cubeMove.transform.position, Vector3.down, out RaycastHit hit, 1, _GroundLayer)) return;
+        if (useRedGround == 0 || (_GroundLayer & (1 << hit.transform.gameObject.layer)) == 0) return;
         RedDisable(false);
     }
 
     // 레이캐스트를 지속적으로 사용하는 _redGrounds는 RedStamp가 활성화 일 때만 활성화
     private void OnEnable()
     {
-        _redGrounds.SetActive(true);
+        _redTrigger.SetActive(true);
     }
     private void OnDisable()
     {
-        if (!_redGrounds) return;
-        _redGrounds.SetActive(false);
+        if (!_redTrigger) return;
+        _redTrigger.SetActive(false);
     }
 }

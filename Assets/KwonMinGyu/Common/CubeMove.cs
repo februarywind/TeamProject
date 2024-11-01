@@ -8,6 +8,7 @@ public enum CubePos
 }
 public class CubeMove : MonoBehaviour
 {
+    public static CubeMove Instance;
     // 큐브 회전속도
     [SerializeField] private float _rotationSpeed;
 
@@ -45,6 +46,7 @@ public class CubeMove : MonoBehaviour
 
     void Start()
     {
+        Instance = this;
         // bound.size값으로 콜라이더의 월드기준 size를 구할 수 있음
         // 아래 값들은 RotateAround의 회전 기준점이 됨
         bound = GetComponent<BoxCollider>().bounds;
