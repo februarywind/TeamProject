@@ -55,7 +55,7 @@ public class CubeMoveRay : MonoBehaviour
         if (_wallTrigger) return;
 
         // 바닥이 감지 안돼면 해당 방향을 블로킹
-        _cubeMove.BlockingDir[(int)_blockingDir] = Physics.Raycast(transform.position, Vector3.down, out RaycastHit _hit, 5f, _layerMask) ? CubePos.None : _blockingDir;
+        _cubeMove.BlockingDir[(int)_blockingDir] = Physics.Raycast(transform.position, Vector3.down, out RaycastHit _hit, 7f, _layerMask) ? CubePos.None : _blockingDir;
     }
 
     // 트리거 중 오브젝트가 파괴 혹은 비활성화 시 Exit을 대체하는 함수
