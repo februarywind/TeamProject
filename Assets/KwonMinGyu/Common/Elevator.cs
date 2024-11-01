@@ -36,11 +36,11 @@ public class Elevator : MonoBehaviour
 
     IEnumerator ElevatorEnter(CubeMove _cube)
     {
-        CubeChecker.Instance.StampControll(false);
         while (true)
         {
             if (!_cube.IsRolling)
             {
+                CubeChecker.Instance.StampControll(false);
                 transform.position = Vector3.MoveTowards(transform.position, _targetPos, _speed * Time.deltaTime);
                 _cube.gameObject.transform.position = transform.position;
                 if (Mathf.Abs(_targetPos.sqrMagnitude - transform.position.sqrMagnitude) < 0.01f)
@@ -53,7 +53,6 @@ public class Elevator : MonoBehaviour
     }
     IEnumerator ElevatorExit()
     {
-        CubeChecker.Instance.StampControll(true);
         while (true)
         {
             transform.position = Vector3.MoveTowards(transform.position, _startPos, _speed * Time.deltaTime);

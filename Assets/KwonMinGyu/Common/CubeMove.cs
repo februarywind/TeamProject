@@ -47,9 +47,13 @@ public class CubeMove : MonoBehaviour
     // 레드 스탬프를 큐브 무브에서 실행
     private RedStamp _redStamp;
 
-    void Start()
+    private void Awake()
     {
         Instance = this;
+    }
+
+    void Start()
+    {
         // bound.size값으로 콜라이더의 월드기준 size를 구할 수 있음
         // 아래 값들은 RotateAround의 회전 기준점이 됨
         bound = GetComponent<BoxCollider>().bounds;
@@ -332,6 +336,9 @@ public class CubeMove : MonoBehaviour
 
         // 콜라이더 축소로 낙하 유도
         transform.GetComponent<BoxCollider>().size = new Vector3(0.9f, 0.9f, 0.9f);
+
+        // 공중에서 스탬프 사용 불가
+        CubeChecker.Instance.StampControll(false);
     }
 
     // CubeFall()에서 물리가 활성화 될 때만 OnCollisionEnter가 실행될 수 있음
@@ -354,6 +361,9 @@ public class CubeMove : MonoBehaviour
 
         // 스탬프 콜라이더들 활성화
         foreach (BoxCollider box in stampPoints) box.enabled = true;
+
+        // 스탬프 사용 가능 상태로 전환
+        CubeChecker.Instance.StampControll(true);
     }
     public void FallCheck()
     {
