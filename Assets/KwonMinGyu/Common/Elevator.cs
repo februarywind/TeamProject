@@ -34,6 +34,7 @@ public class Elevator : MonoBehaviour
     {
         if (_elevatorCoroutine != null) 
             StopCoroutine( _elevatorCoroutine);
+        CubeChecker.Instance.StampControll(false);
         while (true)
         {
             if (!_cube.IsRolling)
@@ -45,11 +46,13 @@ public class Elevator : MonoBehaviour
             }
             yield return null;
         }
+        CubeChecker.Instance.StampControll(true);
     }
     IEnumerator ElevatorExit()
     {
         if (_elevatorCoroutine != null)
             StopCoroutine(_elevatorCoroutine);
+        CubeChecker.Instance.StampControll(true);
         while (true)
         {
             transform.position = Vector3.MoveTowards(transform.position, _startPos, _speed * Time.deltaTime);

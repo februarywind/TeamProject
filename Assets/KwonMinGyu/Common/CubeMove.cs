@@ -8,6 +8,8 @@ public enum CubePos
 }
 public class CubeMove : MonoBehaviour
 {
+    // CubeMove의 사용 빈도가 높아짐에 따라 static으로 변경함
+    public static CubeMove Instance;
     // 큐브 회전속도
     [SerializeField] private float _rotationSpeed;
 
@@ -45,6 +47,7 @@ public class CubeMove : MonoBehaviour
 
     void Start()
     {
+        Instance = this;
         // bound.size값으로 콜라이더의 월드기준 size를 구할 수 있음
         // 아래 값들은 RotateAround의 회전 기준점이 됨
         bound = GetComponent<BoxCollider>().bounds;
@@ -206,7 +209,9 @@ public class CubeMove : MonoBehaviour
         transform.RotateAround(point, axis, 90 - angle);
 
         // 이동 했을 때 높이 보정
-        transform.position = new Vector3(transform.position.x , Mathf.Round(transform.position.y), transform.position.z);
+
+        transform.position = new Vector3(transform.position.x, Mathf.Round(transform.position.y), transform.position.z);
+
 
         // CubeCheck를 큐브 위로 이동 후 CubeCheck 활성화
         _cubeChecker.RePosition(transform.position);
