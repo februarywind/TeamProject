@@ -1832,7 +1832,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1876288281}
-        m_TargetAssemblyTypeName: ResetButton3, Assembly-CSharp
+        m_TargetAssemblyTypeName: ResetData3, Assembly-CSharp
         m_MethodName: ResetPlayerPrefs
         m_Mode: 1
         m_Arguments:
@@ -1890,6 +1890,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 1876288276}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 41002df204b2df842af4cdfbd8a77d93, type: 3}
+  m_Script: {fileID: 11500000, guid: 9c5bf4e73a33a294eb62765fd051b7a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
