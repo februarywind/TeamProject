@@ -37,18 +37,9 @@ public class YellowChecker : MonoBehaviour
         canMove = (hit.collider) ? true : false;
 
 
-        // 그런데 Map인데 ClearStampTile(리셋, 지우기) 타일이면?
-        // 바로 앞에 멈추게 (못가게 해야한다)
+        // 만약 경사로 타일이 있으면 해당 위로는 못가게
         if (canMove
-            && hit.collider.gameObject.GetComponent<ClearStampTile>() is not null
-            && hit.collider.gameObject.GetComponent<ClearStampTile>().enabled.Equals(true))
-        {
-            canMove = false;
-        }
-        else if (canMove
             && hit.collider.gameObject.name.Contains("slope")) canMove = false;
-        else if (canMove
-            && hit.collider.gameObject.GetComponent<Elevator>() is not null) canMove = false;
 
     }
 
