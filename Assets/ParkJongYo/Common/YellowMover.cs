@@ -23,6 +23,9 @@ public class YellowMover : MonoBehaviour
     [SerializeField] YellowChecker[] yellowCheckers;   // 최대 갈 수 있는 거리만큼 체커를 담아두기
     [SerializeField] bool[] result;                     // 인스펙터 창으로 갈 수 있는 거리 디버깅 용도
 
+    [Header("Stamps")]
+    [SerializeField] Rigidbody[] stampRigidbodies;      // 스탬프들의 중력들
+
     void Start()
     {
 
@@ -116,6 +119,16 @@ public class YellowMover : MonoBehaviour
         Vector3 startPosition = playerTransform.position; // 플레이어 오브젝트의 시작 위치
         Vector3 endPosition = startPosition + direction; // 끝 위치 계산
 
+        // stamp의 rigidvody 시작 끝 위치 설정
+        Vector3[] rigidStartPositions = new Vector3[stampRigidbodies.Length];
+        Vector3[] rigidEndPositions = new Vector3[stampRigidbodies.Length];
+
+        for(int index = 0; index < stampRigidbodies.Length; index++)
+        {
+            rigidStartPositions[index] = stampRigidbodies[index].position;
+            rigidEndPositions[index] = rigidStartPositions[index] + direction;
+        }
+
         float elapsedTime = 0;
 
         float pastGap;  // 능력 사용 중 파괴할 오브젝트와의 거리
@@ -133,7 +146,14 @@ public class YellowMover : MonoBehaviour
             pastPos = playerTransform.position;
 
             playerTransform.position = Vector3.Lerp(startPosition, endPosition, elapsedTime / (moveDistance / moveSpeed)); // 플레이어 오브젝트 위치 업데이트
-            //playerRigid.position = Vector3.Lerp(startPosition, endPosition, elapsedTime / (moveDistance / moveSpeed));
+                                                                                                                           
+            yield return null;
+
+            // Stamp 옮기는 부분
+            for (int index = 0; index < stampRigidbodies.Length; index++)
+            {
+                stampRigidbodies[index].position = Vector3.Lerp(rigidStartPositions[index], rigidEndPositions[index], elapsedTime / (moveDistance / moveSpeed));
+            }
 
             curPos = playerTransform.position;
 
@@ -156,7 +176,14 @@ public class YellowMover : MonoBehaviour
             yield return null;
         }
 
-        playerTransform.position = endPosition; // 마지막 위치 설정
+        // 마지막 위치 설정
+        for (int index = 0; index < stampRigidbodies.Length; index++)
+        {
+            stampRigidbodies[index].position = rigidEndPositions[index]; // 각 스탬프의 마지막 위치 설정
+        }
+
+        playerTransform.position = endPosition;  // 플레이어의 마지막 위치 설정
+
 
         //디버깅용 로그
         // Debug.Log($"last : {yellowCheckerindex}");
@@ -166,6 +193,9 @@ public class YellowMover : MonoBehaviour
 
         // cubeChecker를 큐브 위로 이동
         cubeChecker.RePosition(cubeMove.transform.position);
+        // rigid를 움직여서 충돌을 인식 못하수도 있어서 한번 껏다 켜보기
+        cubeChecker.gameObject.SetActive(false);
+        cubeChecker.gameObject.SetActive(true);
 
         // 큐브 회전이 가능 하도록 원복
         cubeMove.IsRolling = false;

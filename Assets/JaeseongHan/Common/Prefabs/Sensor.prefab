@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3404852352743734181}
   - component: {fileID: 3404852352743734182}
-  - component: {fileID: 3404852352743734183}
+  - component: {fileID: 7819849686321048325}
   - component: {fileID: 3404852352743734184}
   - component: {fileID: 1107464088538849317}
   - component: {fileID: -1063600980061344377}
@@ -88,7 +88,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!65 &3404852352743734183
+--- !u!65 &7819849686321048325
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -99,8 +99,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.5, y: 0.5, z: 0.05}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.5, y: 0.5, z: 0.2}
+  m_Center: {x: 0, y: 0, z: -0.08}
 --- !u!54 &3404852352743734184
 Rigidbody:
   m_ObjectHideFlags: 0
