@@ -12,6 +12,7 @@ public class CubeChecker : MonoBehaviour
     [SerializeField] private BlueMover _blue;
     [SerializeField] private YellowMover _yellow;
     [SerializeField] private RedStamp _red;
+    [SerializeField] private PurpleStamp _purple;
 
     // 능력 사용을 제한하는 트리거
     public bool IsStampUse { get; private set; } = true;
@@ -24,6 +25,7 @@ public class CubeChecker : MonoBehaviour
         _blue = GetComponent<BlueMover>();
         _yellow = GetComponent<YellowMover>();
         _red = GetComponent<RedStamp>();
+        _purple = GetComponent<PurpleStamp>();
     }
     public bool IsGround()
     {
@@ -56,6 +58,10 @@ public class CubeChecker : MonoBehaviour
                 ActiveNone();
                 _red.enabled = true;
                 break;
+            case StampType.Type.Purple:
+                ActiveNone();
+                _purple.enabled = true;
+                break;
         }
     }
     private void ActiveNone()
@@ -63,6 +69,7 @@ public class CubeChecker : MonoBehaviour
         if (_blue) _blue.enabled = false;
         if (_yellow) _yellow.enabled = false;
         if (_red) _red.enabled = false;
+        if (_purple) _purple.enabled = false;
     }
 
     public void RePosition(Vector3 Cubeposition)

@@ -16,7 +16,7 @@ public class StampType : MonoBehaviour
     /// None, Red, Blue, Yellow
     /// 없음, 빨강, 파랑, 노랑
     /// </summary>
-    public enum Type { None, Red, Blue, Yellow, Size }
+    public enum Type { None, Red, Blue, Yellow, Purple, Size }
 
     /// <summary>
     /// 현재 면의 스탬프의 종류를 가져오는 프로퍼티

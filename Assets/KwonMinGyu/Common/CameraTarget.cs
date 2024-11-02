@@ -13,6 +13,6 @@ public class CameraTarget : MonoBehaviour
 
     void Update()
     {
-        transform.position = Vector3.Lerp(transform.position, _player.position, _speed);
+        transform.position = Vector3.Lerp(transform.position, _player.position, _speed * Time.deltaTime);
     }
 }
