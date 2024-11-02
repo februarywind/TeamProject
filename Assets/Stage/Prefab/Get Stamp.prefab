@@ -161,9 +161,10 @@ MonoBehaviour:
   render: {fileID: 0}
   stampSprites:
   - {fileID: 0}
-  - {fileID: 21300000, guid: bf670cb2d00804525aa1448f684b3c3b, type: 3}
-  - {fileID: 21300000, guid: a15be1c5df2514c09833edbec3afd26b, type: 3}
-  - {fileID: 21300000, guid: 1897ecea99cf84580bc3a541451ec66f, type: 3}
+  - {fileID: 21300000, guid: 248582e7af9a74a94b873333d58f79cd, type: 3}
+  - {fileID: 21300000, guid: cec60a7055c064a05995347d1814bd9c, type: 3}
+  - {fileID: 21300000, guid: 5b8e9b0d882494822955aee27709a689, type: 3}
+  _stampDir: 0
 --- !u!1 &4347539089114683261
 GameObject:
   m_ObjectHideFlags: 0

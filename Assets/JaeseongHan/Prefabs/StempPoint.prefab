@@ -115,9 +115,9 @@ MonoBehaviour:
   render: {fileID: 0}
   stampSprites:
   - {fileID: 0}
-  - {fileID: 21300000, guid: bf670cb2d00804525aa1448f684b3c3b, type: 3}
+  - {fileID: 21300000, guid: 248582e7af9a74a94b873333d58f79cd, type: 3}
   - {fileID: 21300000, guid: cec60a7055c064a05995347d1814bd9c, type: 3}
-  - {fileID: 21300000, guid: 2ae03f3ab16384724b598413d008c4d1, type: 3}
+  - {fileID: 21300000, guid: 5b8e9b0d882494822955aee27709a689, type: 3}
 --- !u!1 &2336183557909554561
 GameObject:
   m_ObjectHideFlags: 0
@@ -233,9 +233,9 @@ MonoBehaviour:
   render: {fileID: 0}
   stampSprites:
   - {fileID: 0}
-  - {fileID: 21300000, guid: bf670cb2d00804525aa1448f684b3c3b, type: 3}
+  - {fileID: 21300000, guid: 248582e7af9a74a94b873333d58f79cd, type: 3}
   - {fileID: 21300000, guid: cec60a7055c064a05995347d1814bd9c, type: 3}
-  - {fileID: 21300000, guid: 2ae03f3ab16384724b598413d008c4d1, type: 3}
+  - {fileID: 21300000, guid: 5b8e9b0d882494822955aee27709a689, type: 3}
 --- !u!1 &3666921535788189229
 GameObject:
   m_ObjectHideFlags: 0
@@ -388,9 +388,9 @@ MonoBehaviour:
   render: {fileID: 0}
   stampSprites:
   - {fileID: 0}
-  - {fileID: 21300000, guid: bf670cb2d00804525aa1448f684b3c3b, type: 3}
+  - {fileID: 21300000, guid: 248582e7af9a74a94b873333d58f79cd, type: 3}
   - {fileID: 21300000, guid: cec60a7055c064a05995347d1814bd9c, type: 3}
-  - {fileID: 21300000, guid: 2ae03f3ab16384724b598413d008c4d1, type: 3}
+  - {fileID: 21300000, guid: 5b8e9b0d882494822955aee27709a689, type: 3}
 --- !u!1 &6298335770059172328
 GameObject:
   m_ObjectHideFlags: 0
@@ -506,9 +506,9 @@ MonoBehaviour:
   render: {fileID: 0}
   stampSprites:
   - {fileID: 0}
-  - {fileID: 21300000, guid: bf670cb2d00804525aa1448f684b3c3b, type: 3}
+  - {fileID: 21300000, guid: 248582e7af9a74a94b873333d58f79cd, type: 3}
   - {fileID: 21300000, guid: cec60a7055c064a05995347d1814bd9c, type: 3}
-  - {fileID: 21300000, guid: 2ae03f3ab16384724b598413d008c4d1, type: 3}
+  - {fileID: 21300000, guid: 5b8e9b0d882494822955aee27709a689, type: 3}
 --- !u!1 &8875167794454046386
 GameObject:
   m_ObjectHideFlags: 0
@@ -624,9 +624,9 @@ MonoBehaviour:
   render: {fileID: 0}
   stampSprites:
   - {fileID: 0}
-  - {fileID: 21300000, guid: bf670cb2d00804525aa1448f684b3c3b, type: 3}
+  - {fileID: 21300000, guid: 248582e7af9a74a94b873333d58f79cd, type: 3}
   - {fileID: 21300000, guid: cec60a7055c064a05995347d1814bd9c, type: 3}
-  - {fileID: 21300000, guid: 2ae03f3ab16384724b598413d008c4d1, type: 3}
+  - {fileID: 21300000, guid: 5b8e9b0d882494822955aee27709a689, type: 3}
 --- !u!1 &8966152008306893663
 GameObject:
   m_ObjectHideFlags: 0
@@ -742,6 +742,6 @@ MonoBehaviour:
   render: {fileID: 0}
   stampSprites:
   - {fileID: 0}
-  - {fileID: 21300000, guid: bf670cb2d00804525aa1448f684b3c3b, type: 3}
+  - {fileID: 21300000, guid: 248582e7af9a74a94b873333d58f79cd, type: 3}
   - {fileID: 21300000, guid: cec60a7055c064a05995347d1814bd9c, type: 3}
-  - {fileID: 21300000, guid: 2ae03f3ab16384724b598413d008c4d1, type: 3}
+  - {fileID: 21300000, guid: 5b8e9b0d882494822955aee27709a689, type: 3}

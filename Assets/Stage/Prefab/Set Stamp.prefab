@@ -259,6 +259,7 @@ MonoBehaviour:
   render: {fileID: 0}
   stampSprites:
   - {fileID: 0}
-  - {fileID: 21300000, guid: bf670cb2d00804525aa1448f684b3c3b, type: 3}
-  - {fileID: 21300000, guid: a15be1c5df2514c09833edbec3afd26b, type: 3}
-  - {fileID: 21300000, guid: 1897ecea99cf84580bc3a541451ec66f, type: 3}
+  - {fileID: 21300000, guid: b49eed438a6a61d488c1efd98a36a059, type: 3}
+  - {fileID: 21300000, guid: 2106ebfe0eaee96428d37e6db67b91c7, type: 3}
+  - {fileID: 21300000, guid: 07e2e43b1669b7e498af4827e8e04212, type: 3}
+  _stampDir: 0
