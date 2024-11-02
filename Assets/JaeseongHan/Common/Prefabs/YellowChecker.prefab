@@ -78,7 +78,7 @@ MonoBehaviour:
   canMove: 0
   layerMask:
     serializedVersion: 2
-    m_Bits: 65
+    m_Bits: 1
   distance: 0.7
   destroyTarget: {fileID: 0}
   destroyCubeEvent:
