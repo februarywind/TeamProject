@@ -15,7 +15,6 @@ public class CubeMove : MonoBehaviour
 
     // 큐브 윗면 체크 및 바닥 체크를 위한 CubeChecker 스크립트
     [SerializeField] private CubeChecker _cubeChecker;
-    [SerializeField] private BoxCollider[] stampPoints; // 스탬프 콜라이더들
 
     // 큐브 낙하를 위한 Rigidbody
     [SerializeField] private Rigidbody _rigidbody;
@@ -77,8 +76,6 @@ public class CubeMove : MonoBehaviour
 
     void Update()
     {
-        //_cubeChecker.RePosition(transform.position);
-
         float _HMove = Input.GetAxisRaw("Horizontal");
         float _VMove = Input.GetAxisRaw("Vertical");
 
@@ -180,7 +177,6 @@ public class CubeMove : MonoBehaviour
         }
 
         StartCoroutine(Roll(_cubePos));
-
     }
 
     IEnumerator Roll(CubePos cubePos)
@@ -218,22 +214,25 @@ public class CubeMove : MonoBehaviour
         transform.RotateAround(point, axis, 90 - angle);
 
         // 이동 했을 때 높이 보정
-
         transform.position = new Vector3(transform.position.x, Mathf.Round(transform.position.y), transform.position.z);
-
 
         // CubeCheck를 큐브 위로 이동 후 CubeCheck 활성화
         _cubeChecker.RePosition(transform.position);
         _cubeChecker.StampControll(true);
+
+        // 이동 후 레드 스탬프 능력이 활성화 상태라면 능력 실행
+        if (_redStamp != null && _redStamp._active)
+        {
+            _redStamp.RedActive();
+            _redStamp.GroundCheck();
+            yield return null;
+        }
 
         // 회전 종료, 이동 가능
         IsRolling = false;
 
         // 회전 후 공중이라면 추락
         FallCheck();
-
-        // 이동 후 레드 스탬프 능력이 활성화 상태라면 능력 실행
-        if (_redStamp != null && _redStamp._active) _redStamp.RedActive();
     }
 
     IEnumerator SlopeMove(CubePos cubePos)
@@ -325,9 +324,6 @@ public class CubeMove : MonoBehaviour
 
     private void CubeFall()
     {
-        // 스탬프 콜라이더들 비활성화
-        foreach (BoxCollider box in stampPoints) box.enabled = false;
-
         // 낙하 중 이동 막기
         IsRolling = true;
 
@@ -358,9 +354,6 @@ public class CubeMove : MonoBehaviour
 
         // 낙하 종료, 이동 가능
         IsRolling = false;
-
-        // 스탬프 콜라이더들 활성화
-        foreach (BoxCollider box in stampPoints) box.enabled = true;
 
         // 스탬프 사용 가능 상태로 전환
         CubeChecker.Instance.StampControll(true);
