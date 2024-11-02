@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class AudioManager : MonoBehaviour
@@ -18,7 +16,14 @@ public class AudioManager : MonoBehaviour
     AudioSource[] sfxPlayers;    // 효과음 재생을 위한 오디오 소스 배열
     int channelIndex;            // 현재 사용 중인 채널 인덱스
 
-    public enum Sfx { Clicks, Bullet, Dead } // 예시 효과음 종류 설정
+    public enum Sfx
+    {
+        Approach, Stage1CubeMove, Stage2CubeMove, Stage3CubeMove, Stage4CubeMove,
+        NotCubeMove, Fall, GetStamp, CheckTile, WaterTile, ResetTile, Runway,
+        ElevatorTiles, GateOpen, Clear, Destruction, TeleportationTile, Slip,
+        RotatelnPlace, Rush, RedPurpleStamp, Scaffolding, ScaffoldingEnd, TeleportPos,
+        MousePos, MouseCheck
+    } // 예시 효과음 종류 설정
 
     private void Awake()
     {
