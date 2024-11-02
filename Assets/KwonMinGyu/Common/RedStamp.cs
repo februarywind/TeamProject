@@ -69,8 +69,6 @@ public class RedStamp : MonoBehaviour
                 _plane.SetActive(true);
             }
         }
-        if (!_active) return;
-        GroundCheck();
     }
     public void RedActive()
     {
@@ -106,6 +104,9 @@ public class RedStamp : MonoBehaviour
     // 빨간 스탬프 능력 해제
     private void RedDisable(bool reset)
     {
+        // 낙하 유도 오브젝트 비활성화
+        _plane.SetActive(false);
+
         // 레드 트리거 비활성화
         _redTrigger.SetActive(false);
 
@@ -132,9 +133,6 @@ public class RedStamp : MonoBehaviour
         foreach (var item in pool)
             item.SetActive(false);
 
-        // 낙하 유도 오브젝트 비활성화
-        _plane.SetActive(false);
-
         // 블로킹 초기화
         _cubeMove.BlockingReset();
 
@@ -142,7 +140,7 @@ public class RedStamp : MonoBehaviour
         foreach (var item in _cubeMoveRays)
             item.TriggerExit();
     }
-    private void GroundCheck()
+    public void GroundCheck()
     {
         if (!Physics.Raycast(_cubeMove.transform.position, Vector3.down, out RaycastHit hit, 1, _GroundLayer)) return;
         if (useRedGround == 0 || (_GroundLayer & (1 << hit.transform.gameObject.layer)) == 0) return;
