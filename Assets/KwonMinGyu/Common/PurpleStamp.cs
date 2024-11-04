@@ -69,8 +69,11 @@ public class PurpleStamp : MonoBehaviour
             {
                 if (Physics.Raycast(startPos + new Vector3(j, 0, -i), Vector3.down, out RaycastHit hit, 7, _teleportLayer))
                 {
-                    _teleportSpots[i * 7 + j] = hit.point;
-                    MarkerPool(hit.point);
+                    if(hit.transform.CompareTag("Untagged"))
+                    {
+                        _teleportSpots[i * 7 + j] = hit.point;
+                        MarkerPool(hit.point);
+                    }
                 }
             }
         }
