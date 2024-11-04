@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Elevator : MonoBehaviour
@@ -20,7 +19,7 @@ public class Elevator : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (!other.CompareTag("Player")) return;
+        if (!other.CompareTag("Player") || !enabled) return;
         if (_elevatorCoroutine != null)
             StopCoroutine(_elevatorCoroutine);
         _elevatorCoroutine = StartCoroutine(ElevatorEnter(other.GetComponent<CubeMove>()));
@@ -28,7 +27,8 @@ public class Elevator : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (!other.CompareTag("Player")) return;
+        if (!other.CompareTag("Player") || !enabled) return;
+        if (!enabled) return;
         if (_elevatorCoroutine != null)
             StopCoroutine(_elevatorCoroutine);
         _elevatorCoroutine = StartCoroutine(ElevatorExit());
