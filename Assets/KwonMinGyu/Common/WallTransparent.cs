@@ -4,28 +4,20 @@ using UnityEngine;
 
 public class WallTransparent : MonoBehaviour
 {
-    void Update()
-    {
-        transform.position = CubeMove.Instance.transform.position;
-        transform.LookAt(Camera.main.transform);
-    }
-
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.layer != 0) return;
-        foreach (var item in other.GetComponentsInChildren<Renderer>())
+        foreach (var item in other.GetComponentsInChildren<MeshRenderer>())
         {
-            Material temp = item.GetComponent<Material>();
-            temp.color = new Color(temp.color.r, temp.color.g, temp.color.b, 1f);
+            item.enabled = false;
         }
     }
     private void OnTriggerExit(Collider other)
     {
         if (other.gameObject.layer != 0) return;
-        foreach (var item in other.GetComponentsInChildren<Renderer>())
+        foreach (var item in other.GetComponentsInChildren<MeshRenderer>())
         {
-            Material temp = item.GetComponent<Material>();
-            temp.color = new Color(temp.color.r, temp.color.g, temp.color.b, 0f);
+            item.enabled = true;
         }
     }
 }

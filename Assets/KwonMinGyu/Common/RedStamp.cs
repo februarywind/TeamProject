@@ -21,9 +21,6 @@ public class RedStamp : MonoBehaviour
     // 빨간 스탬프 능력 활성화 여부
     public bool _active { get; private set; }
 
-    // _redGrounds의 생성 제한에 사용할 변수 
-    [SerializeField] private bool _groundSet;
-
     // 최대 능력 사용 횟수
     [SerializeField] private int maxRedGround;
 
@@ -32,6 +29,7 @@ public class RedStamp : MonoBehaviour
 
     // 능력 사용 위치를 저장할 변수와 오브젝트
     [SerializeField] private Vector3 _startPos;
+    [SerializeField] Quaternion _startRot;
     [SerializeField] private GameObject _startObj;
 
     // 오브젝트 풀을 위한 리스트
@@ -60,6 +58,7 @@ public class RedStamp : MonoBehaviour
 
                 // 능력 사용 위치 저장
                 _startPos = _cubeMove.transform.position;
+                _startRot = _cubeMove.transform.rotation;
 
                 // 시작 위치 오브젝트
                 _startObj.transform.position = _startPos;
@@ -74,9 +73,6 @@ public class RedStamp : MonoBehaviour
     {
         // 바닥을 큐브 아래칸에 배치
         _redTrigger.transform.position = _cubeMove.transform.position + Vector3.down * 2;
-
-        // 능력 사용 체크
-        _groundSet = true;
     }
 
     // 해당 함수는 _redGrounds와 플레이어의 물리적 충돌 시 활성화 됨
@@ -120,6 +116,7 @@ public class RedStamp : MonoBehaviour
         if (reset)
         {
             _cubeMove.transform.position = _startPos;
+            _cubeMove.transform.rotation = _startRot;
             _cubeMove.FallCheck();
         }
 
