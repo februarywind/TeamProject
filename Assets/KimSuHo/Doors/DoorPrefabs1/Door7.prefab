@@ -264,6 +264,7 @@ GameObject:
   - component: {fileID: 1677441512541051696}
   - component: {fileID: 448090916311121615}
   - component: {fileID: 6442142519466008378}
+  - component: {fileID: -5193170740688557623}
   m_Layer: 0
   m_Name: Door7
   m_TagString: Untagged
@@ -325,7 +326,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8893978457372784395}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 32252267e095c7641ae499a374a83d22, type: 2}
   m_CullingMode: 0
@@ -390,6 +391,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 3, y: 0.7, z: 1}
   m_Center: {x: 0, y: 2.7, z: 0}
+--- !u!114 &-5193170740688557623
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8893978457372784395}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 307e060e132edc04f99519d1352f77cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &5503139183159990664
 PrefabInstance:
   m_ObjectHideFlags: 0

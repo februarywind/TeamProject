@@ -427,6 +427,7 @@ GameObject:
   - component: {fileID: 7417692251357414146}
   - component: {fileID: 7217745694794844529}
   - component: {fileID: 7217745694794844526}
+  - component: {fileID: -4875787558811176552}
   m_Layer: 0
   m_Name: MiniDoor4
   m_TagString: Untagged
@@ -512,7 +513,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7218890494800515506}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: dc5b71f420a7ff640a8eec4f1d466d7e, type: 2}
   m_CullingMode: 0
@@ -525,6 +526,18 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &-4875787558811176552
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7218890494800515506}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 307e060e132edc04f99519d1352f77cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7218891985881122790
 GameObject:
   m_ObjectHideFlags: 0
