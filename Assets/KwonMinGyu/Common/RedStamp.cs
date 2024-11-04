@@ -41,9 +41,6 @@ public class RedStamp : MonoBehaviour
     // 트리거 초기화를 위한 CubeMoveRay
     [SerializeField] private CubeMoveRay[] _cubeMoveRays;
 
-    public bool[] Iscliff = new bool[4];
-
-    public bool IsRealCliff;
     private void Update()
     {
         if (!CubeChecker.Instance.IsStampUse) return;
@@ -54,11 +51,8 @@ public class RedStamp : MonoBehaviour
                 RedDisable(true);
             else
             {
-                int temp = 0;
-
-                foreach (var item in Iscliff)
-                    temp += item ? 1 : 0;
-                if (temp == 0 && !IsRealCliff) return;
+                // 낭떠러지가 아니라면 능력 사용 불가
+                if (!IsCliff()) return;
 
                 // 능력 활성화
                 _active = true;
@@ -158,5 +152,19 @@ public class RedStamp : MonoBehaviour
     private void OnEnable()
     {
         _redTrigger.SetActive(true);
+    }
+
+    // 방향 지정용 배열
+    private Vector3[] _redRayVec = { Vector3.forward, Vector3.back, Vector3.right, Vector3.left };
+
+    // 4방향 아래로 레이를 날려 하나라도 인식하지 못한다면 낭떠러지
+    private bool IsCliff()
+    {
+        foreach (var item in _redRayVec)
+        {
+            if (!Physics.Raycast(transform.position + item, Vector3.down,out RaycastHit hit,  2f, _GroundLayer))
+                return true;
+        }
+        return false;
     }
 }

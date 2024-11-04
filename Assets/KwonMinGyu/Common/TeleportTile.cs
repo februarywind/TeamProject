@@ -9,5 +9,6 @@ public class TeleportTile : MonoBehaviour
         if (!other.transform.CompareTag("Player")) return;
         if (CubeMove.Instance.IsRolling) return;
         other.transform.position = _teleportPos;
+        CubeChecker.Instance.RePosition();
     }
 }
