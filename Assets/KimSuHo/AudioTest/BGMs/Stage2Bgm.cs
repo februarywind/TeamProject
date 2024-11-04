@@ -4,15 +4,21 @@ using UnityEngine;
 
 public class Stage2Bgm : MonoBehaviour
 {
-    // Start is called before the first frame update
+    [SerializeField] float bgmVolume = 0.2f;
+
     void Start()
     {
-        
+        AudioManager.Instance.PlayBgm(2);
+        AudioManager.Instance.SetBgmVolume(bgmVolume);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    //private void Update()
+    //{
+    //    if (Input.GetKeyDown(KeyCode.V))
+    //    {
+    //        bgmVolume += 0.1f;
+    //        bgmVolume = Mathf.Clamp(bgmVolume, 0.0f, 1.0f);
+    //        AudioManager.Instance.SetBgmVolume(bgmVolume);
+    //    }
+    //}
 }

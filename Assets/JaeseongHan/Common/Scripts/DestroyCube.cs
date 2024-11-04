@@ -11,6 +11,7 @@ public class DestroyCube : MonoBehaviour
     {
         // 삭제하라고 명령이 오면 삭제 시작
         StartCoroutine(RemoveRoutine());
+        AudioManager.Instance.PlaySfx(AudioManager.Sfx.Destruction);
     }
 
     private IEnumerator RemoveRoutine()
