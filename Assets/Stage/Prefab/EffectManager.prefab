@@ -44,5 +44,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3fa8db669d4822c43a27fb342b5194b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  effectPrefabs: []
-  effectDurations: []
+  effectPrefabs:
+  - {fileID: 1857989084323932508, guid: 129fdc45f40d29342941bc34213ee406, type: 3}
+  - {fileID: 3767206883215730155, guid: fec549ee6c7e13c47b88aac87ea989fb, type: 3}
+  - {fileID: 9158635742410941698, guid: 0767fdb081295684aa29dc66fa58825d, type: 3}
+  - {fileID: 1384003342207238, guid: f4bfd9255bc6d18439035306986c1412, type: 3}
+  - {fileID: 187952, guid: c05e92eaee7a00844867e5edc8e0dde1, type: 3}
+  effectDurations:
+  - 0.25
+  - 1
+  - 2
+  - 1
+  - 0.15
