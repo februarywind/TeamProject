@@ -759,6 +759,7 @@ GameObject:
   - component: {fileID: 419861672}
   - component: {fileID: 419861674}
   - component: {fileID: 419861673}
+  - component: {fileID: 419861675}
   m_Layer: 5
   m_Name: Text_ESC
   m_TagString: Untagged
@@ -883,6 +884,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 419861671}
   m_CullTransparentMesh: 1
+--- !u!114 &419861675
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 419861671}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 116f1ee2f978f074694aaf6d38475698, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lobbySceneName: 110_LobbyScene
 --- !u!1 &424555990
 GameObject:
   m_ObjectHideFlags: 0
@@ -2714,6 +2728,7 @@ GameObject:
   - component: {fileID: 1210755291}
   - component: {fileID: 1210755290}
   - component: {fileID: 1210755289}
+  - component: {fileID: 1210755292}
   m_Layer: 5
   m_Name: Slider_Mouse
   m_TagString: Untagged
@@ -2851,6 +2866,20 @@ MonoBehaviour:
       m_Calls: []
   sliderAnimator: {fileID: 0}
   saveValue: 0
+--- !u!114 &1210755292
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1210755287}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b542b1ca095a8b84ba411de393e1de5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sensitivitySlider: {fileID: 1210755290}
+  sensitivityValueText: {fileID: 2074064941}
 --- !u!1 &1357700972
 GameObject:
   m_ObjectHideFlags: 0
