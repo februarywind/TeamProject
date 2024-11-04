@@ -12,7 +12,8 @@ public class EffectManager : MonoBehaviour
     private Dictionary<int, Queue<GameObject>> effectPools; // 오브젝트 풀
 
     // 이펙트 종류를 열거형 표시 추가 가능
-    public enum Effect { Fire, Smoke, Explosion } // 예시, 다른 이펙트 추가 가능
+    public enum Effect { CheckTile, InactiveTile, GateOpen, WaterTile, Destruction } 
+    // 예시, 다른 이펙트 추가 가능
 
     private void Awake()
     {

@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class Test1 : MonoBehaviour
 {
-    [SerializeField] Transform ffff;
+    //[SerializeField] Transform ffff;
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-            EffectManager.Instance.PlayEffect(EffectManager.Effect.Fire, ffff.position);
-        }
-    }
+    //private void Update()
+    //{
+    //    if (Input.GetKeyDown(KeyCode.A))
+    //    {
+    //        EffectManager.Instance.PlayEffect(EffectManager.Effect.Fire, ffff.position);
+    //    }
+    //}
 }
