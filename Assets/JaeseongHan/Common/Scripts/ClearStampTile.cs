@@ -15,6 +15,9 @@ public class ClearStampTile : MonoBehaviour
     [SerializeField] State curState;                    // 하나 삭제, 전체 삭제
     private enum State { ONE, ALL }
 
+    [Header("Effect")]
+    [SerializeField] EffectManager.Effect effect;       // 해당 면에 닿았을 때 발동하는 이펙트
+
     [Header("PlayerStamps")]
     [SerializeField] StampType[] stamps = new StampType[6];   // 플레이어의 부착한 모든 면
 
@@ -93,6 +96,7 @@ public class ClearStampTile : MonoBehaviour
     // 스탬프 단면 지우기
     private void ClearStempOne(StampType type)
     {
+        EffectManager.Instance.PlayEffect(effect, transform.position);
         AudioManager.Instance.PlaySfx(AudioManager.Sfx.WaterTile);
         type.ClearTile();
     }
