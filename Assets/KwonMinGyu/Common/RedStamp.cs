@@ -40,6 +40,10 @@ public class RedStamp : MonoBehaviour
 
     // 트리거 초기화를 위한 CubeMoveRay
     [SerializeField] private CubeMoveRay[] _cubeMoveRays;
+
+    public bool[] Iscliff = new bool[4];
+
+    public bool IsRealCliff;
     private void Update()
     {
         if (!CubeChecker.Instance.IsStampUse) return;
@@ -50,6 +54,12 @@ public class RedStamp : MonoBehaviour
                 RedDisable(true);
             else
             {
+                int temp = 0;
+
+                foreach (var item in Iscliff)
+                    temp += item ? 1 : 0;
+                if (temp == 0 && !IsRealCliff) return;
+
                 // 능력 활성화
                 _active = true;
 

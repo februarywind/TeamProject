@@ -21,6 +21,12 @@ public class CubeMoveRay : MonoBehaviour
     [SerializeField] bool _wallTrigger;
     [SerializeField] Transform _transform;
 
+    RedStamp _redStamp;
+    private void Start()
+    {
+        _redStamp = CubeChecker.Instance.GetComponent<RedStamp>();
+    }
+
     private void OnTriggerStay(Collider other)
     {
         // 맵이 가지는 레이어(Default)가 아니라면 리턴
@@ -55,7 +61,16 @@ public class CubeMoveRay : MonoBehaviour
         if (_wallTrigger) return;
 
         // 바닥이 감지 안돼면 해당 방향을 블로킹
-        _cubeMove.BlockingDir[(int)_blockingDir] = Physics.Raycast(transform.position, Vector3.down, out RaycastHit _hit, 15f, _layerMask) ? CubePos.None : _blockingDir;
+        if (Physics.Raycast(transform.position, Vector3.down, out RaycastHit _hit, 15f, _layerMask))
+        {
+            _cubeMove.BlockingDir[(int)_blockingDir] = CubePos.None;
+            _redStamp.Iscliff[(int)_blockingDir] = false;
+        }
+        else
+        {
+            _cubeMove.BlockingDir[(int)_blockingDir] = _blockingDir;
+            _redStamp.Iscliff[(int)_blockingDir] = true;
+        }
     }
 
     // 트리거 중 오브젝트가 파괴 혹은 비활성화 시 Exit을 대체하는 함수

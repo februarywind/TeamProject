@@ -11,10 +11,13 @@ public class Elevator : MonoBehaviour
 
     private Coroutine _elevatorCoroutine;
 
+    private RedStamp _redStamp;
+
     private void Start()
     {
         _startPos = transform.position;
         _targetPos = transform.position + Vector3.up * _targetFloor;
+        _redStamp = CubeChecker.Instance.GetComponent<RedStamp>();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -56,9 +59,11 @@ public class Elevator : MonoBehaviour
         }
         CubeChecker.Instance.StampControll(true);
         CubeChecker.Instance.RePosition(CubeMove.Instance.transform.position);
+        _redStamp.IsRealCliff = true;
     }
     IEnumerator ElevatorExit()
     {
+        _redStamp.IsRealCliff = false;
         while (true)
         {
             transform.position = Vector3.MoveTowards(transform.position, _startPos, _speed * Time.deltaTime);
