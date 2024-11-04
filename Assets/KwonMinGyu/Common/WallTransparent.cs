@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class WallTransparent : MonoBehaviour
 {
+    [SerializeField] LayerMask layerMask;
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.layer != 0) return;
+        if (((1 << other.transform.gameObject.layer)) == 0) return;
         foreach (var item in other.GetComponentsInChildren<MeshRenderer>())
         {
             item.enabled = false;
@@ -14,7 +15,7 @@ public class WallTransparent : MonoBehaviour
     }
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.layer != 0) return;
+        if (((1 << other.transform.gameObject.layer)) == 0) return;
         foreach (var item in other.GetComponentsInChildren<MeshRenderer>())
         {
             item.enabled = true;
