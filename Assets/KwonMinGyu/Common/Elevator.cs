@@ -36,6 +36,7 @@ public class Elevator : MonoBehaviour
 
     IEnumerator ElevatorEnter(CubeMove _cube)
     {
+        AudioManager.Instance.PlaySfx(AudioManager.Sfx.ElevatorTiles);
         while (true)
         {
             if (!_cube.IsRolling)

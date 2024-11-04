@@ -99,6 +99,7 @@ public class ClearStampTile : MonoBehaviour
     // 스탬프 다 지우기
     private void ClearStempAll()
     {
+        AudioManager.Instance.PlaySfx(AudioManager.Sfx.ResetTile);
         foreach (StampType type in stamps)
         {
             type.ClearTile();

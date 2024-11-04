@@ -46,6 +46,8 @@ public class CubeMove : MonoBehaviour
     // 레드 스탬프를 큐브 무브에서 실행
     private RedStamp _redStamp;
 
+    [SerializeField] AudioManager.Sfx _cubeMoveSfx;
+
     private void Awake()
     {
         Instance = this;
@@ -227,6 +229,9 @@ public class CubeMove : MonoBehaviour
             _redStamp.GroundCheck();
             yield return null;
         }
+
+        // 큐브 움직임 소리
+        AudioManager.Instance.PlaySfx(_cubeMoveSfx);
 
         // 회전 종료, 이동 가능
         IsRolling = false;
