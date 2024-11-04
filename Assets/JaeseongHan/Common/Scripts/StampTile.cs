@@ -23,8 +23,7 @@ public class StampTile : MonoBehaviour
 
     [Header("Set")]
     [SerializeField] UnityEvent tileInteraction;        // 상호작용할 이벤트
-    //Todo: Effact Manager 등록 시 해당 주석 해제
-  // [SerializeField] EffectManager.Effect effect;       // 상호작용 시 나타날 파티클
+    [SerializeField] EffectManager.Effect effect;       // 상호작용 시 나타 날 파티클
     [Header("isElevatorCheck")]
     [Space]
     [SerializeField] bool isElevatorCheck;              // 엘리베이터 타일 전용 설정
@@ -110,8 +109,7 @@ public class StampTile : MonoBehaviour
                 // 상호작용 함수 실행
                 tileInteraction?.Invoke();
 
-                //Todo: Effact Manager 등록 시 해당 주석 해제
-                //EffectManager.Instance.PlayEffect(effect, transform.position);
+                EffectManager.Instance.PlayEffect(effect, transform.position);
                 AudioManager.Instance.PlaySfx(AudioManager.Sfx.CheckTile);
             }
         }

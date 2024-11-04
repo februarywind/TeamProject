@@ -6,9 +6,17 @@ public class DestroyCube : MonoBehaviour
 {
     // 내려가는 속도
     [SerializeField] float moveSpeed = 10f;
+    // 이펙트 생성 위치
+    [SerializeField] Vector3 effectPosition;
+
+    private void Awake()
+    {
+        effectPosition = transform.position;
+    }
 
     public void Remove()
     {
+        EffectManager.Instance.PlayEffect(EffectManager.Effect.Destruction, effectPosition);
         // 삭제하라고 명령이 오면 삭제 시작
         StartCoroutine(RemoveRoutine());
         AudioManager.Instance.PlaySfx(AudioManager.Sfx.Destruction);
