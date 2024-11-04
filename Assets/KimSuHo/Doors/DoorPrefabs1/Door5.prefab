@@ -264,6 +264,7 @@ GameObject:
   - component: {fileID: 647184288401662996}
   - component: {fileID: 647184288401662999}
   - component: {fileID: 647184288401662992}
+  - component: {fileID: 300587024346103216}
   m_Layer: 0
   m_Name: Door5
   m_TagString: Untagged
@@ -378,7 +379,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 648333324284658407}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 3ba53876a86c2d940a1ade7403b5cd46, type: 2}
   m_CullingMode: 0
@@ -391,6 +392,18 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &300587024346103216
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 648333324284658407}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 307e060e132edc04f99519d1352f77cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &647184286811797541
 PrefabInstance:
   m_ObjectHideFlags: 0
