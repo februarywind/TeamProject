@@ -8,11 +8,11 @@ public class EffectManager : MonoBehaviour
 
     [Header("Effect")]
     public GameObject[] effectPrefabs; // 이펙트 프리팹 배열
-    public float effectDuration = 5f; // 이펙트가 유지되는 시간
+    public float[] effectDurations; // 이펙트마다 지속 시간을 저장할 배열
     private Dictionary<int, Queue<GameObject>> effectPools; // 오브젝트 풀
 
     // 이펙트 종류를 열거형 표시 추가 가능
-    public enum Effect { Fire } // 예시 
+    public enum Effect { Fire, Smoke, Explosion } // 예시, 다른 이펙트 추가 가능
 
     private void Awake()
     {
@@ -31,7 +31,6 @@ public class EffectManager : MonoBehaviour
     // 오브젝트 풀 초기화
     private void InitializePools()
     {
-        // 부모 오브젝트 생성 및 자식으로 이펙트 인스턴스 할당
         GameObject effectObject = new GameObject("EffectPlayer");
         effectPools = new Dictionary<int, Queue<GameObject>>();
         effectObject.transform.parent = transform;
@@ -75,8 +74,11 @@ public class EffectManager : MonoBehaviour
             effectInstance.transform.position = position;
             effectInstance.SetActive(true); // 활성화
 
+            // 이펙트의 지속 시간 가져오기
+            float duration = effectDurations[effectIndex];
+
             // 이펙트가 지정된 시간 후 비활성화하고 풀로 반환
-            StartCoroutine(ReturnToPool(effectInstance, effectDuration, pool));
+            StartCoroutine(ReturnToPool(effectInstance, duration, pool));
         }
     }
 
@@ -91,7 +93,6 @@ public class EffectManager : MonoBehaviour
     // 모든 이펙트를 정지하는 메소드 (예: 게임 종료 시)
     public void StopAllEffects()
     {
-        // 현재 활성화된 모든 이펙트를 비활성화
         foreach (var pool in effectPools.Values)
         {
             while (pool.Count > 0)
