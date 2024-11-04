@@ -105,6 +105,29 @@ public class AudioManager : MonoBehaviour
             }
         }
     }
+
+    // 배경음악 볼륨 조절 메소드
+    public void SetBgmVolume(float volume)
+    {
+        bgmVolume = Mathf.Clamp(volume, 0f, 1f); // 볼륨을 0에서 1 사이로 제한
+        if (bgmPlayer != null)
+        {
+            bgmPlayer.volume = bgmVolume; // BGM 플레이어 볼륨 설정
+        }
+    }
+
+    // 효과음 볼륨 조절 메소드
+    public void SetSfxVolume(float volume)
+    {
+        sfxVolume = Mathf.Clamp(volume, 0f, 1f); // 볼륨을 0에서 1 사이로 제한
+        for (int i = 0; i < sfxPlayers.Length; i++)
+        {
+            if (sfxPlayers[i] != null)
+            {
+                sfxPlayers[i].volume = sfxVolume; // 각 SFX 플레이어 볼륨 설정
+            }
+        }
+    }
 }
 
 
@@ -115,3 +138,9 @@ public class AudioManager : MonoBehaviour
 
 // 효과음
 // AudioManager.Instance.PlaySfx(AudioManager.Sfx.Clicks); 선택한 효과음 재생 및 종료
+
+// 배경음 볼륨을 50%로 설정
+// AudioManager.Instance.SetBgmVolume(0.5f);
+
+// SFX 볼륨을 70%로 설정
+// AudioManager.Instance.SetSfxVolume(0.7f);
