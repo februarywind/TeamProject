@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -23,6 +24,10 @@ public class StampTile : MonoBehaviour
 
     [Header("Set")]
     [SerializeField] UnityEvent tileInteraction;        // 상호작용할 이벤트
+    [Header("isElevatorCheck")]
+    [Space]
+    [SerializeField] bool isElevatorCheck;              // 엘리베이터 타일 전용 설정
+    [SerializeField] UnityEvent eixtInteraction;        // 타일에서 나갈 때 상호작용할 이벤트
     public enum StampTileType { Get, Set }              // 획득, 사용
 
     [SerializeField] SpriteRenderer render;     // 그림을 설정할 스프라이트
@@ -100,12 +105,26 @@ public class StampTile : MonoBehaviour
             else if (stampType.Equals(type.GetStampType))
             {
                 // 한번 상호작용하면 더이상 안되게
-                collider.enabled = false;
+                collider.enabled = isElevatorCheck;
                 // 상호작용 함수 실행
                 tileInteraction?.Invoke();
 
                 AudioManager.Instance.PlaySfx(AudioManager.Sfx.CheckTile);
             }
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (!enabled) return;
+
+        StampType type = other.gameObject.GetComponent<StampType>();
+
+        // type != null -> 충돌 한 스탬프가 나갔다
+        if (type is not null && isElevatorCheck)
+        {
+            // 상호작용 함수 실행
+            eixtInteraction?.Invoke();
         }
     }
 }

@@ -29,6 +29,11 @@ public class Elevator : MonoBehaviour
     {
         if (!other.CompareTag("Player") || !enabled) return;
         if (!enabled) return;
+        StartEixtElevator();
+    }
+
+    public void StartEixtElevator()
+    {
         if (_elevatorCoroutine != null)
             StopCoroutine(_elevatorCoroutine);
         _elevatorCoroutine = StartCoroutine(ElevatorExit());
