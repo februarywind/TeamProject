@@ -26,6 +26,7 @@ public class CameraMove : MonoBehaviour
     // 좌우 각도 (Y축 회전)
     private float _yaw = 0f;
 
+    // 보라 스탬프 활성화 상태
     public bool _purpleState = false;
 
 
@@ -37,6 +38,7 @@ public class CameraMove : MonoBehaviour
 
     void LateUpdate()
     {
+        // 카메라를 큐브 위에서 고정
         if (_purpleState)
         {
             transform.position = _cubeTransform.position + Vector3.up * 9;
@@ -86,5 +88,9 @@ public class CameraMove : MonoBehaviour
         else
             _cameraPos = CameraPos.Down;
         return _cameraPos;
+    }
+    public void SetMouseSensitivity(float sensitivity)
+    {
+        _mouseSensitivity = sensitivity;
     }
 }
