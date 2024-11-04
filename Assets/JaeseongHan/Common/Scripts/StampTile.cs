@@ -91,7 +91,11 @@ public class StampTile : MonoBehaviour
         if (type is not null)
         {
             // 획득이면 해당 면에 스탬프 부착
-            if (tileType.Equals(StampTileType.Get)) type.ChangeType = stampType;
+            if (tileType.Equals(StampTileType.Get))
+            {
+                type.ChangeType = stampType;
+                AudioManager.Instance.PlaySfx(AudioManager.Sfx.GetStamp);
+            }
             // 획득이 아니고(=> 사용이고) 타일이 같다면 
             else if (stampType.Equals(type.GetStampType))
             {
@@ -99,6 +103,8 @@ public class StampTile : MonoBehaviour
                 collider.enabled = false;
                 // 상호작용 함수 실행
                 tileInteraction?.Invoke();
+
+                AudioManager.Instance.PlaySfx(stampType == StampType.Type.None ? AudioManager.Sfx.WaterTile : AudioManager.Sfx.CheckTile);
             }
         }
     }
