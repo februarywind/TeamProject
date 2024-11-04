@@ -93,6 +93,7 @@ public class ClearStampTile : MonoBehaviour
     // 스탬프 단면 지우기
     private void ClearStempOne(StampType type)
     {
+        AudioManager.Instance.PlaySfx(AudioManager.Sfx.WaterTile);
         type.ClearTile();
     }
 
