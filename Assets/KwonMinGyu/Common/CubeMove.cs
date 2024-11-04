@@ -219,7 +219,7 @@ public class CubeMove : MonoBehaviour
         transform.position = new Vector3(transform.position.x, Mathf.Round(transform.position.y), transform.position.z);
 
         // CubeCheck를 큐브 위로 이동 후 CubeCheck 활성화
-        _cubeChecker.RePosition(transform.position);
+        _cubeChecker.RePosition();
         _cubeChecker.StampControll(true);
 
         // 이동 후 레드 스탬프 능력이 활성화 상태라면 능력 실행
@@ -317,7 +317,7 @@ public class CubeMove : MonoBehaviour
         transform.RotateAround(point, axis, 180f - angle);
 
         // CubeCheck를 큐브 위로 이동 후 CubeCheck를 활성화
-        _cubeChecker.RePosition(transform.position);
+        _cubeChecker.RePosition();
         _cubeChecker.StampControll(true);
 
         // 경사로 끝에서 position을 반올림해서 보정
@@ -352,7 +352,7 @@ public class CubeMove : MonoBehaviour
         transform.GetComponent<BoxCollider>().size = Vector3.one;
 
         // CubeCheck를 큐브 위로 이동
-        _cubeChecker.RePosition(transform.position);
+        _cubeChecker.RePosition();
 
         // 낙하 이후 position을 반올림해서 보정
         transform.position = new Vector3((float)Math.Round(transform.position.x), (float)Math.Round(transform.position.y), (float)Math.Round(transform.position.z));

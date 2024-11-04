@@ -215,7 +215,7 @@ public class YellowMover : MonoBehaviour
         isMoving = false; // 이동 완료
 
         // cubeChecker를 큐브 위로 이동
-        cubeChecker.RePosition(cubeMove.transform.position);
+        cubeChecker.RePosition();
         // rigid를 움직여서 충돌을 인식 못하수도 있어서 한번 껏다 켜보기
         cubeChecker.gameObject.SetActive(false);
         cubeChecker.gameObject.SetActive(true);

@@ -21,6 +21,12 @@ public class CubeMoveRay : MonoBehaviour
     [SerializeField] bool _wallTrigger;
     [SerializeField] Transform _transform;
 
+    RedStamp _redStamp;
+    private void Start()
+    {
+        _redStamp = CubeChecker.Instance.GetComponent<RedStamp>();
+    }
+
     private void OnTriggerStay(Collider other)
     {
         // 맵이 가지는 레이어(Default)가 아니라면 리턴

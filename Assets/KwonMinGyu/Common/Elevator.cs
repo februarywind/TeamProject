@@ -10,7 +10,6 @@ public class Elevator : MonoBehaviour
     private Vector3 _startPos;
 
     private Coroutine _elevatorCoroutine;
-
     private void Start()
     {
         _startPos = transform.position;
@@ -55,7 +54,7 @@ public class Elevator : MonoBehaviour
             yield return null;
         }
         CubeChecker.Instance.StampControll(true);
-        CubeChecker.Instance.RePosition(CubeMove.Instance.transform.position);
+        CubeChecker.Instance.RePosition();
     }
     IEnumerator ElevatorExit()
     {

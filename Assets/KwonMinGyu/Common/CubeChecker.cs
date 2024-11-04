@@ -72,9 +72,9 @@ public class CubeChecker : MonoBehaviour
         if (_purple) _purple.enabled = false;
     }
 
-    public void RePosition(Vector3 Cubeposition)
+    public void RePosition()
     {
-        transform.position = Cubeposition + Vector3.up * 0.4f;
+        transform.position = move.transform.position + Vector3.up * 0.4f;
     }
 
     public void StampControll(bool possibility)
