@@ -24,7 +24,9 @@ public class CameraMove : MonoBehaviour
     private float _pitch = 0f;  
 
     // 좌우 각도 (Y축 회전)
-    private float _yaw = 0f;  
+    private float _yaw = 0f;
+
+    public bool _purpleState = false;
 
 
     void Start()
@@ -35,6 +37,12 @@ public class CameraMove : MonoBehaviour
 
     void LateUpdate()
     {
+        if (_purpleState)
+        {
+            transform.position = _cubeTransform.position + Vector3.up * 9;
+            transform.LookAt(_cubeTransform.position);
+            return;
+        }
         // 마우스 입력 받기
         float mouseX = Input.GetAxis("Mouse X") * _mouseSensitivity * Time.deltaTime;
         float mouseY = Input.GetAxis("Mouse Y") * _mouseSensitivity * Time.deltaTime;

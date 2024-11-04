@@ -85,6 +85,8 @@ public class PurpleStamp : MonoBehaviour
         _teleportPoint.SetActive(true);
 
         SearchTeleportSpot();
+
+        Camera.main.transform.GetComponent<CameraMove>()._purpleState = true;
     }
     private void PurpleUnActivate()
     {
@@ -99,6 +101,7 @@ public class PurpleStamp : MonoBehaviour
         {
             item.SetActive(false);
         }
+        Camera.main.transform.GetComponent<CameraMove>()._purpleState = false;
     }
 
     private void MarkerPool(Vector3 _pos)
