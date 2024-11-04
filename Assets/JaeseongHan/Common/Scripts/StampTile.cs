@@ -104,7 +104,7 @@ public class StampTile : MonoBehaviour
                 // 상호작용 함수 실행
                 tileInteraction?.Invoke();
 
-                AudioManager.Instance.PlaySfx(stampType == StampType.Type.None ? AudioManager.Sfx.WaterTile : AudioManager.Sfx.CheckTile);
+                AudioManager.Instance.PlaySfx(AudioManager.Sfx.CheckTile);
             }
         }
     }
