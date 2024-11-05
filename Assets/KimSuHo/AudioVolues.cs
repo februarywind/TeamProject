@@ -20,6 +20,7 @@ public class AudioVolues : MonoBehaviour
         // AddListener : 슬라이더의 값이 변경 될 때 호출할 메서드를 지정 해준다.
         bgmSlider.onValueChanged.AddListener(SetBgmVolume);
         sfxSlider.onValueChanged.AddListener(SetSfxVolume);
+        if (!mouseSlider) return;
         mouseSlider.onValueChanged.AddListener(Camera.main.GetComponent<CameraMove>().SetMouseSensitivity);
     }
 

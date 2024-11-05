@@ -13,6 +13,7 @@ public class StartSceneManager : MonoBehaviour
         if (Input.anyKeyDown)
         {
             SceneManager.LoadScene(lobbySceneName);
+            AudioManager.Instance.PlaySfx(AudioManager.Sfx.MouseCheck);
         }
     }
 }

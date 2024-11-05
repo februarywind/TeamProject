@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 
 public class SceneLoader : MonoBehaviour
 {
-    public string loadingSceneName = "LoadingScene2"; // 로딩 씬 이름
+    [SerializeField] GameObject _loadScene;
     public string targetSceneName = "Stage2 temp_remodeled"; // 목표 씬 이름
 
     private void Update()
@@ -20,9 +20,9 @@ public class SceneLoader : MonoBehaviour
     private IEnumerator LoadSceneWithDelay()
     {
         // 로딩 씬으로 전환
-        AsyncOperation loadLoadingScene = SceneManager.LoadSceneAsync(loadingSceneName);
+        _loadScene.SetActive(true);
 
-        
+
         // 3초 대기
         Debug.Log("3초 대기 중...");
         yield return new WaitForSeconds(3f);
