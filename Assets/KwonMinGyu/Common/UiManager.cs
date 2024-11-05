@@ -12,6 +12,7 @@ public class UiManager : MonoBehaviour
         {
             _uiObj.SetActive(!_uiObj.activeSelf);
             Cursor.lockState = _uiObj.activeSelf ? CursorLockMode.None : CursorLockMode.Locked;
+            Time.timeScale = (_uiObj.activeSelf) ? 0f : 1f;
         }
     }
 
