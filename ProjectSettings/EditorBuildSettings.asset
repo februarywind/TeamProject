@@ -12,12 +12,6 @@ EditorBuildSettings:
     path: Assets/KweonHyeckJun/UI_Scenes/110_LobbyScene.unity
     guid: a968719277ba2bb408652a79ba33b01d
   - enabled: 1
-    path: Assets/KweonHyeckJun/UI_Scenes/112_StageSelectionScene.unity
-    guid: 57c0d0d7ebf5df34bb07f6cd6282d0e5
-  - enabled: 1
-    path: Assets/KweonHyeckJun/UI_Scenes/113_SettingScene.unity
-    guid: 3cf070e426363db478b13d1c928e155b
-  - enabled: 1
     path: Assets/KweonHyeckJun/UI_Scenes/LoadingScene1.unity
     guid: ab6b964f7f66c11498e31020170ba0ab
   - enabled: 1
@@ -32,9 +26,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Stage/Stage2 temp_remodeled.unity
     guid: 5962c3d78bb2ec44cb2b16d5347c3817
-  - enabled: 1
-    path: Assets/KweonHyeckJun/UI_Scenes/222_StageClearScene.unity
-    guid: 3b2106e41549a584fa133075eba1c128
   - enabled: 1
     path: Assets/KweonHyeckJun/UI_Scenes/LoadingScene3.unity
     guid: 58b4ba1f9c2bd504085ebd433011f088
@@ -53,4 +44,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/KweonHyeckJun/UI_Scenes/242_Stage4ClearScene.unity
     guid: c217115dfec9343408438ad503bbf302
+  - enabled: 1
+    path: Assets/KweonHyeckJun/UI_Scenes/222_Stage2ClearScene.unity
+    guid: 37adabc7dba6f2440b56f2964089e087
   m_configObjects: {}
