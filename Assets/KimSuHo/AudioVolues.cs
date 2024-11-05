@@ -7,6 +7,7 @@ public class AudioVolues : MonoBehaviour
 {
     public Slider bgmSlider; // BGM 슬라이더
     public Slider sfxSlider; // SFX 슬라이더
+    public Slider mouseSlider; // 마우스 감도 슬라이더
 
     void Start()
     {
@@ -19,6 +20,7 @@ public class AudioVolues : MonoBehaviour
         // AddListener : 슬라이더의 값이 변경 될 때 호출할 메서드를 지정 해준다.
         bgmSlider.onValueChanged.AddListener(SetBgmVolume);
         sfxSlider.onValueChanged.AddListener(SetSfxVolume);
+        mouseSlider.onValueChanged.AddListener(Camera.main.GetComponent<CameraMove>().SetMouseSensitivity);
     }
 
     // BGM 볼륨 설정 메서드
