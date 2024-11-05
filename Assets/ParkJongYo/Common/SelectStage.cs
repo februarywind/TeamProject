@@ -7,7 +7,7 @@ public class SelectStage : MonoBehaviour
 {
     public void LoadStage(int stageNumber)
     {
-        string sceneName = "Stage" + stageNumber + " temp";
+        string sceneName = "Stage" + stageNumber + " temp" + "_remodeled";
         SceneManager.LoadScene(sceneName);
     }
 }
