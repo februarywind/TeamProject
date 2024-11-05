@@ -43,7 +43,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 265041254242950240}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 0958381015a16674d80f8922d3f9ece0, type: 2}
   m_CullingMode: 0
@@ -149,6 +149,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8244945487086574230}
   - component: {fileID: 2156917577196930263}
+  - component: {fileID: 7186200255874970739}
   m_Layer: 0
   m_Name: InactiveTile8 (7)
   m_TagString: Untagged
@@ -201,6 +202,19 @@ LODGroup:
     renderers:
     - renderer: {fileID: 3860207569112331099}
   m_Enabled: 1
+--- !u!114 &7186200255874970739
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 887860443599198667}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a2053d2cf8316240bc9c536e30f8fd1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 0}
 --- !u!1 &1271267995752000576
 GameObject:
   m_ObjectHideFlags: 0
@@ -294,6 +308,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7885269109271718711}
   - component: {fileID: 4864101067451486552}
+  - component: {fileID: 5630266514206845938}
   m_Layer: 0
   m_Name: InactiveTile8 (6)
   m_TagString: Untagged
@@ -346,6 +361,19 @@ LODGroup:
     renderers:
     - renderer: {fileID: 8166464200303749332}
   m_Enabled: 1
+--- !u!114 &5630266514206845938
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1697050397295424127}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a2053d2cf8316240bc9c536e30f8fd1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 0}
 --- !u!1 &2399274391509830873
 GameObject:
   m_ObjectHideFlags: 0
@@ -979,6 +1007,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8744202400561218977}
   - component: {fileID: 3400224273362070055}
+  - component: {fileID: 6560165608907853749}
   m_Layer: 0
   m_Name: InactiveTile8 (8)
   m_TagString: Untagged
@@ -1031,3 +1060,16 @@ LODGroup:
     renderers:
     - renderer: {fileID: 7240767594100282639}
   m_Enabled: 1
+--- !u!114 &6560165608907853749
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8622855275683830703}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a2053d2cf8316240bc9c536e30f8fd1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 0}

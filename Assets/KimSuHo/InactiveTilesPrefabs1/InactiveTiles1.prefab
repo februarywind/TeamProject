@@ -74,6 +74,7 @@ GameObject:
   - component: {fileID: 6431677204992310918}
   - component: {fileID: 6606341355268036610}
   - component: {fileID: 2876697569019523143}
+  - component: {fileID: 7006534311410041754}
   m_Layer: 0
   m_Name: block_stone1_5_LOD0
   m_TagString: Untagged
@@ -159,6 +160,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &7006534311410041754
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1109850164186896350}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a2053d2cf8316240bc9c536e30f8fd1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 0}
 --- !u!1 &1214001223879958749
 GameObject:
   m_ObjectHideFlags: 0
@@ -316,6 +330,7 @@ GameObject:
   - component: {fileID: 6112432880684660232}
   - component: {fileID: 3651649843769739280}
   - component: {fileID: 5715543672786030436}
+  - component: {fileID: 1661347964390090755}
   m_Layer: 0
   m_Name: block_stone1_5_LOD0
   m_TagString: Untagged
@@ -401,6 +416,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1661347964390090755
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1793020470231247959}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a2053d2cf8316240bc9c536e30f8fd1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 0}
 --- !u!1 &1796449098754305223
 GameObject:
   m_ObjectHideFlags: 0
@@ -579,6 +607,7 @@ GameObject:
   - component: {fileID: 910287169826293421}
   - component: {fileID: 5498839726925318017}
   - component: {fileID: 8897132617175868885}
+  - component: {fileID: 154260721200715240}
   m_Layer: 0
   m_Name: block_stone1_5_LOD0
   m_TagString: Untagged
@@ -664,6 +693,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &154260721200715240
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2112171674523349259}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a2053d2cf8316240bc9c536e30f8fd1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 0}
 --- !u!1 &2153098258273278972
 GameObject:
   m_ObjectHideFlags: 0
@@ -987,6 +1029,7 @@ GameObject:
   - component: {fileID: 2969571741604357689}
   - component: {fileID: 2961101772499518897}
   - component: {fileID: 2973417457774976364}
+  - component: {fileID: 2957507220309728489}
   m_Layer: 0
   m_Name: block_stone1_5_LOD0
   m_TagString: Untagged
@@ -1072,6 +1115,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &2957507220309728489
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2974093856625658985}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a2053d2cf8316240bc9c536e30f8fd1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 0}
 --- !u!1 &2974155909259946381
 GameObject:
   m_ObjectHideFlags: 0
@@ -1374,6 +1430,7 @@ GameObject:
   - component: {fileID: 8423202568097831459}
   - component: {fileID: 4672592771289277500}
   - component: {fileID: 2677879111424137817}
+  - component: {fileID: 212851581893902204}
   m_Layer: 0
   m_Name: block_stone1_5_LOD0
   m_TagString: Untagged
@@ -1459,6 +1516,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &212851581893902204
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3806842689295163556}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a2053d2cf8316240bc9c536e30f8fd1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 0}
 --- !u!1 &3836254317212089228
 GameObject:
   m_ObjectHideFlags: 0
@@ -1720,6 +1790,7 @@ GameObject:
   - component: {fileID: 5731250483192814606}
   - component: {fileID: 5689705309878297042}
   - component: {fileID: 8868050783901059187}
+  - component: {fileID: 2374134653907654272}
   m_Layer: 0
   m_Name: block_stone1_5_LOD0
   m_TagString: Untagged
@@ -1805,6 +1876,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &2374134653907654272
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5019711403595272700}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a2053d2cf8316240bc9c536e30f8fd1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 0}
 --- !u!1 &5120273723523108134
 GameObject:
   m_ObjectHideFlags: 0
@@ -1817,6 +1901,7 @@ GameObject:
   - component: {fileID: 7396468028005620788}
   - component: {fileID: 3735640198054010216}
   - component: {fileID: 1117301686427115662}
+  - component: {fileID: 6159718534556828454}
   m_Layer: 0
   m_Name: block_stone1_5_LOD0
   m_TagString: Untagged
@@ -1902,6 +1987,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &6159718534556828454
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5120273723523108134}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a2053d2cf8316240bc9c536e30f8fd1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 0}
 --- !u!1 &6163432033030972176
 GameObject:
   m_ObjectHideFlags: 0
@@ -1997,6 +2095,7 @@ GameObject:
   - component: {fileID: 6486336316513392763}
   - component: {fileID: 800059280443912957}
   - component: {fileID: 4658961982943429010}
+  - component: {fileID: 2357636920192291619}
   m_Layer: 0
   m_Name: block_stone1_5_LOD0
   m_TagString: Untagged
@@ -2082,6 +2181,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &2357636920192291619
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6485996988965717269}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a2053d2cf8316240bc9c536e30f8fd1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 0}
 --- !u!1 &6655782079653907980
 GameObject:
   m_ObjectHideFlags: 0
@@ -2275,7 +2387,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7371050532830693054}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: b4be1847fddaaf94393b03919b6fc800, type: 2}
   m_CullingMode: 0

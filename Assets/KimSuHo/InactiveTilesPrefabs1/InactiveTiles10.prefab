@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8184762587385678146}
   - component: {fileID: 6879466585846510381}
+  - component: {fileID: 6199744115831186859}
   m_Layer: 0
   m_Name: InactiveTile10 (1)
   m_TagString: Untagged
@@ -62,6 +63,19 @@ LODGroup:
     renderers:
     - renderer: {fileID: 7903007707564280481}
   m_Enabled: 1
+--- !u!114 &6199744115831186859
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 825607987593547786}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a2053d2cf8316240bc9c536e30f8fd1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 0}
 --- !u!1 &962776150446788149
 GameObject:
   m_ObjectHideFlags: 0
@@ -155,6 +169,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7967969949128259811}
   - component: {fileID: 78510991613699746}
+  - component: {fileID: 3318999621347715993}
   m_Layer: 0
   m_Name: InactiveTile10 (2)
   m_TagString: Untagged
@@ -207,6 +222,19 @@ LODGroup:
     renderers:
     - renderer: {fileID: 2984252796992311598}
   m_Enabled: 1
+--- !u!114 &3318999621347715993
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1200864686772222910}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a2053d2cf8316240bc9c536e30f8fd1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 0}
 --- !u!1 &2257879918261976597
 GameObject:
   m_ObjectHideFlags: 0
@@ -249,7 +277,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2257879918261976597}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 8974b988a2e3a9641990b2ae3d559392, type: 2}
   m_CullingMode: 0
