@@ -6,12 +6,45 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Stage/Stage1 temp.unity
-    guid: 9f0dae3e9e812ca4ba0718e4e1757e74
+    path: Assets/KweonHyeckJun/UI_Scenes/100_StartScene.unity
+    guid: 6144cf11a77489948bd47fd6d9725f04
+  - enabled: 1
+    path: Assets/KweonHyeckJun/UI_Scenes/110_LobbyScene.unity
+    guid: a968719277ba2bb408652a79ba33b01d
+  - enabled: 1
+    path: Assets/KweonHyeckJun/UI_Scenes/111_StorageScene.unity
+    guid: dc33c8111679dfe40b12737de4a6cdbb
+  - enabled: 1
+    path: Assets/KweonHyeckJun/UI_Scenes/112_StageSelectionScene.unity
+    guid: 57c0d0d7ebf5df34bb07f6cd6282d0e5
+  - enabled: 1
+    path: Assets/KweonHyeckJun/UI_Scenes/113_SettingScene.unity
+    guid: 3cf070e426363db478b13d1c928e155b
+  - enabled: 1
+    path: Assets/KweonHyeckJun/UI_Scenes/LoadingScene1.unity
+    guid: ab6b964f7f66c11498e31020170ba0ab
+  - enabled: 1
+    path: Assets/Stage/Stage1 temp_remodeled.unity
+    guid: e9dae60fbb9bc5143b6cb1f20c30dde8
+  - enabled: 1
+    path: Assets/KweonHyeckJun/UI_Scenes/LoadingScene2.unity
+    guid: 410dee9e6e1099e45937971395244fd7
   - enabled: 1
     path: Assets/Stage/Stage2 temp.unity
     guid: 286ca796b9ff8264ea5cfb9bd8b03186
   - enabled: 1
+    path: Assets/Stage/Stage2 temp_remodeled.unity
+    guid: 5962c3d78bb2ec44cb2b16d5347c3817
+  - enabled: 1
+    path: Assets/KweonHyeckJun/UI_Scenes/LoadingScene3.unity
+    guid: 58b4ba1f9c2bd504085ebd433011f088
+  - enabled: 1
     path: Assets/Stage/Stage3 temp.unity
     guid: 11343aac2dfff0240a66236cb3ad2bea
+  - enabled: 1
+    path: Assets/KweonHyeckJun/UI_Scenes/LoadingScene4.unity
+    guid: 7f3842ad5b1707140a86c5a32846c457
+  - enabled: 1
+    path: Assets/Stage/Stage4 temp.unity
+    guid: f14cd738502f0c840922cd47d0a18027
   m_configObjects: {}
