@@ -18,6 +18,7 @@ public class GateOpen : MonoBehaviour
         if (animator != null && animator.enabled && !audioPlay)
         {
             AudioManager.Instance.PlaySfx(AudioManager.Sfx.GateOpen);
+            EffectManager.Instance.PlayEffect(EffectManager.Effect.GateOpen, transform.position);
             audioPlay = true;
             StartCoroutine(Opens());
         }
@@ -25,7 +26,7 @@ public class GateOpen : MonoBehaviour
 
     IEnumerator Opens ()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(2.2f);
         this.enabled = false;
     }
 }

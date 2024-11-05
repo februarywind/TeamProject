@@ -39,7 +39,7 @@ public class EffectManager : MonoBehaviour
         for (int i = 0; i < effectPrefabs.Length; i++)
         {
             Queue<GameObject> pool = new Queue<GameObject>();
-            for (int j = 0; j < 5; j++) // 각 이펙트에 대해 5개의 인스턴스를 미리 생성
+            for (int j = 0; j < 10; j++) // 각 이펙트에 대해 5개의 인스턴스를 미리 생성
             {
                 GameObject obj = Instantiate(effectPrefabs[i]);
                 obj.SetActive(false); // 초기에는 비활성화
