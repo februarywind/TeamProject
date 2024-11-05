@@ -5,13 +5,13 @@ using UnityEngine.SceneManagement;
 
 public class LobbySceneManager : MonoBehaviour
 {
-    [SerializeField] private string storageSceneName = "111_StorageScene";
+    [SerializeField] private string selectionSceneName = "112_StageSelectionScene";
     [SerializeField] private string settingSceneName = "113_SettingScene";
 
     // Play 버튼 클릭 시 호출될 메서드
-    public void LoadStorageScene()
+    public void LoadSelectionScene()
     {
-        SceneManager.LoadScene(storageSceneName);
+        SceneManager.LoadScene(selectionSceneName);
     }
 
     // Setting 버튼 클릭 시 호출될 메서드
