@@ -78,7 +78,7 @@ public class StageManager : MonoBehaviour
             CheckStageUnlocks();
 
             // 다음 스테이지 로딩 호출
-            LoadNextStageWithLoading(currentStage);
+            //LoadNextStageWithLoading(currentStage);
         }
     }
 

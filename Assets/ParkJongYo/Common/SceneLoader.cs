@@ -6,6 +6,7 @@ public class SceneLoader : MonoBehaviour
 {
     [SerializeField] GameObject _loadScene;
     public string targetSceneName = "Stage2 temp_remodeled"; // 목표 씬 이름
+    public int currentStageNumber = 1; // 현재 스테이지 번호 (잠금 해제를 위해 필요)
 
     private void Update()
     {
@@ -22,10 +23,12 @@ public class SceneLoader : MonoBehaviour
         // 로딩 씬으로 전환
         _loadScene.SetActive(true);
 
-
         // 3초 대기
         Debug.Log("3초 대기 중...");
         yield return new WaitForSeconds(3f);
+
+        // 다음 스테이지 잠금 해제
+        UnlockNextStage();
 
         // 목표 씬으로 전환
         Debug.Log($"목표 씬 '{targetSceneName}'로 전환 중...");
@@ -39,5 +42,21 @@ public class SceneLoader : MonoBehaviour
         }
 
         Debug.Log($"목표 씬 '{targetSceneName}' 로드 완료");
+    }
+
+    private void UnlockNextStage()
+    {
+        // StageManager 찾기
+        StageManager stageManager = FindObjectOfType<StageManager>();
+        if (stageManager != null)
+        {
+            // 현재 스테이지를 클리어하고 다음 스테이지 잠금 해제
+            stageManager.UnlockNextStage(currentStageNumber);
+            Debug.Log($"스테이지 {currentStageNumber + 1} 잠금 해제");
+        }
+        else
+        {
+            Debug.LogWarning("StageManager를 찾을 수 없습니다.");
+        }
     }
 }

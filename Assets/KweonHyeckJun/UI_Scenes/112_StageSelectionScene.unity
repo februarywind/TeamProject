@@ -496,7 +496,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 116f1ee2f978f074694aaf6d38475698, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lobbySceneName: 110_LobbyScene
 --- !u!1 &247855641
 GameObject:
   m_ObjectHideFlags: 0
@@ -1947,18 +1946,6 @@ MonoBehaviour:
   clickEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 259400011}
-        m_TargetAssemblyTypeName: SelectStage, Assembly-CSharp
-        m_MethodName: LoadStage
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 4
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 259400012}
         m_TargetAssemblyTypeName: StageManager, Assembly-CSharp
         m_MethodName: LoadStage4
@@ -2914,18 +2901,6 @@ MonoBehaviour:
   clickEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 259400011}
-        m_TargetAssemblyTypeName: SelectStage, Assembly-CSharp
-        m_MethodName: LoadStage
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 3
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 259400012}
         m_TargetAssemblyTypeName: StageManager, Assembly-CSharp
         m_MethodName: LoadStage3
@@ -3086,18 +3061,6 @@ MonoBehaviour:
   clickEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 259400011}
-        m_TargetAssemblyTypeName: SelectStage, Assembly-CSharp
-        m_MethodName: LoadStage
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 2
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 259400012}
         m_TargetAssemblyTypeName: StageManager, Assembly-CSharp
         m_MethodName: LoadStage2
@@ -3895,18 +3858,6 @@ MonoBehaviour:
   clickEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 259400011}
-        m_TargetAssemblyTypeName: SelectStage, Assembly-CSharp
-        m_MethodName: LoadStage
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 1
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 259400012}
         m_TargetAssemblyTypeName: StageManager, Assembly-CSharp
         m_MethodName: LoadStage1

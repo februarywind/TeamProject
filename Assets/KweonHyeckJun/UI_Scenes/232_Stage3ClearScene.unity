@@ -860,6 +860,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _loadScene: {fileID: 1326702749}
   targetSceneName: Stage4 temp
+  currentStageNumber: 3
 --- !u!4 &1380307623
 Transform:
   m_ObjectHideFlags: 0
