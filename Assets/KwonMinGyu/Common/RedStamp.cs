@@ -57,6 +57,9 @@ public class RedStamp : MonoBehaviour
                 // 능력 활성화
                 _active = true;
 
+                // 빨강 모드 활성화
+                AudioManager.Instance.PlaySfx(AudioManager.Sfx.RedPurpleStamp);
+
                 // cubeChecke를 비 활성화 함으로 다른 능력 사용을 방지
                 _cubeChecker.enabled = false;
 
@@ -84,6 +87,8 @@ public class RedStamp : MonoBehaviour
     {
         // 오브젝트 풀로 충돌 위치를 대체할 바닥을 생성
         Pool(_redGround, _transform);
+        // 빨강 모드 발판 생성 효과음 
+        AudioManager.Instance.PlaySfx(AudioManager.Sfx.Scaffolding);
         // 바닥 생성 카운트
         useRedGround++;
         if (useRedGround == maxRedGround) _plane.SetActive(false);
@@ -104,6 +109,9 @@ public class RedStamp : MonoBehaviour
     // 빨간 스탬프 능력 해제
     private void RedDisable(bool reset)
     {
+        // 빨강 모드 종료 효과음
+        AudioManager.Instance.PlaySfx(AudioManager.Sfx.ScaffoldingEnd);
+
         // 낙하 유도 오브젝트 비활성화
         _plane.SetActive(false);
 

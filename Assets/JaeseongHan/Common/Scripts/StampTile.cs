@@ -99,6 +99,7 @@ public class StampTile : MonoBehaviour
             if (tileType.Equals(StampTileType.Get))
             {
                 type.ChangeType = stampType;
+                // 스탬프 장착 효과음
                 AudioManager.Instance.PlaySfx(AudioManager.Sfx.GetStamp);
             }
             // 획득이 아니고(=> 사용이고) 타일이 같다면 
@@ -110,6 +111,7 @@ public class StampTile : MonoBehaviour
                 tileInteraction?.Invoke();
 
                 EffectManager.Instance.PlayEffect(effect, transform.position);
+                // 스탬프 체크 효과음
                 AudioManager.Instance.PlaySfx(AudioManager.Sfx.CheckTile);
             }
         }

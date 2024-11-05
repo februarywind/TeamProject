@@ -45,6 +45,8 @@ public class BlueMover : MonoBehaviour
 
     private IEnumerator Rotate(Transform player, float angle)
     {
+        // 파란 모드 능력 사용 효과음
+        AudioManager.Instance.PlaySfx(AudioManager.Sfx.RotatelnPlace);
         isRotating = true; // 회전 중임을 표시
         float targetAngle = player.transform.eulerAngles.y + angle; // 목표 각도
         float currentAngle = player.transform.eulerAngles.y; // 현재 각도
