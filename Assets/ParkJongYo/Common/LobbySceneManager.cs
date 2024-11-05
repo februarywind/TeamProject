@@ -22,7 +22,7 @@ public class LobbySceneManager : MonoBehaviour
     public void QuitGame()
     {
         // 에디터에서 실행 중일 때는 플레이 모드 중지
-        UnityEditor.EditorApplication.isPlaying = false;
+        // UnityEditor.EditorApplication.isPlaying = false;
         // 빌드된 게임에서 종료
         Application.Quit();
     }
