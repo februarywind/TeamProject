@@ -97,6 +97,7 @@ public class ClearStampTile : MonoBehaviour
     private void ClearStempOne(StampType type)
     {
         EffectManager.Instance.PlayEffect(effect, transform.position);
+        // 물 타일 효과음
         AudioManager.Instance.PlaySfx(AudioManager.Sfx.WaterTile);
         type.ClearTile();
     }
@@ -104,6 +105,7 @@ public class ClearStampTile : MonoBehaviour
     // 스탬프 다 지우기
     private void ClearStempAll()
     {
+        // 리셋 타일 효과음
         AudioManager.Instance.PlaySfx(AudioManager.Sfx.ResetTile);
         foreach (StampType type in stamps)
         {

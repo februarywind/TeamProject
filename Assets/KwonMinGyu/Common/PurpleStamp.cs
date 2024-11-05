@@ -37,11 +37,11 @@ public class PurpleStamp : MonoBehaviour
         }
         if (!_isActive) return;
 
-        // WASD로 인덱스 변경
-        if (Input.GetKeyDown(KeyCode.W)) { index += -7; dir = -1; }
-        if (Input.GetKeyDown(KeyCode.A)) { index += -1; dir = -1; }
-        if (Input.GetKeyDown(KeyCode.S)) { index += 7; dir = 1; }
-        if (Input.GetKeyDown(KeyCode.D)) { index += 1; dir = 1; }
+        // WASD로 인덱스 변경                                         // 보라 모드 이동 중 칸 선택 효과음
+        if (Input.GetKeyDown(KeyCode.W)) { index += -7; dir = -1; AudioManager.Instance.PlaySfx(AudioManager.Sfx.TeleportPos); }
+        if (Input.GetKeyDown(KeyCode.A)) { index += -1; dir = -1; AudioManager.Instance.PlaySfx(AudioManager.Sfx.TeleportPos); }
+        if (Input.GetKeyDown(KeyCode.S)) { index += 7; dir = 1; AudioManager.Instance.PlaySfx(AudioManager.Sfx.TeleportPos); }
+        if (Input.GetKeyDown(KeyCode.D)) { index += 1; dir = 1; AudioManager.Instance.PlaySfx(AudioManager.Sfx.TeleportPos); }
         while (true)
         {
             if (index > 48) index -= 49;
@@ -82,6 +82,8 @@ public class PurpleStamp : MonoBehaviour
     {
         // 능력 비활성화
         _isActive = true;
+        // 보라 능력 활성화 효과음
+        AudioManager.Instance.PlaySfx(AudioManager.Sfx.RedPurpleStamp);
         // 큐브 이동 가능
         _cubeMove.IsRolling = true;
         // 텔레포트 위치 표식 비활성화
@@ -95,6 +97,8 @@ public class PurpleStamp : MonoBehaviour
     {
         // 능력 비활성화
         _isActive = false;
+        // 보라 능력 종료 효과음
+        AudioManager.Instance.PlaySfx(AudioManager.Sfx.ScaffoldingEnd);
         // 큐브 이동 가능
         _cubeMove.IsRolling = false;
         // 텔레포트 위치 표식 비활성화

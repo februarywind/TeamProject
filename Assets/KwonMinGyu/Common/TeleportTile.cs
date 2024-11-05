@@ -8,6 +8,8 @@ public class TeleportTile : MonoBehaviour
     {
         if (!other.transform.CompareTag("Player")) return;
         if (CubeMove.Instance.IsRolling) return;
+        // 순간이동 효과음
+        AudioManager.Instance.PlaySfx(AudioManager.Sfx.TeleportationTile);
         other.transform.position = _teleportPos;
         CubeChecker.Instance.RePosition();
     }

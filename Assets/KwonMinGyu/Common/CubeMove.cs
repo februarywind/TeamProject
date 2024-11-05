@@ -169,8 +169,13 @@ public class CubeMove : MonoBehaviour
 
         // 이동 못하는 방향으로 이동 시 리턴
         if (BlockingDir.Contains(_cubePos))
-            return;
+        {
+            // 이동 불가 효과음
+            AudioManager.Instance.PlaySfx(AudioManager.Sfx.NotCubeMove);
 
+            return;
+        }
+        
         // 경사로 앞에서 경사로 쪽으로 이동시 경사로 이동 코루틴 실행
         if (IsSlopeForward && SlopeDir == _cubePos)
         {
@@ -329,6 +334,9 @@ public class CubeMove : MonoBehaviour
 
     private void CubeFall()
     {
+        // 떨어지는 효과음
+        AudioManager.Instance.PlaySfx(AudioManager.Sfx.Fall);
+
         // 낙하 중 이동 막기
         IsRolling = true;
 

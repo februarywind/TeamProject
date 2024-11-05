@@ -104,6 +104,9 @@ public class YellowMover : MonoBehaviour
 
     IEnumerator SmoothMove(Vector3 direction)
     {
+        // 큐브 돌진 효과음
+        AudioManager.Instance.PlaySfx(AudioManager.Sfx.Rush);
+
         // 이동 중 큐브의 회전을 막음
         cubeMove.IsRolling = true;
 
