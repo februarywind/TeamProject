@@ -47,7 +47,7 @@ public class AudioManager : MonoBehaviour
         bgmPlayer = bgmObject.AddComponent<AudioSource>();
         bgmPlayer.playOnAwake = false;
         bgmPlayer.loop = true;
-        bgmPlayer.volume = bgmVolume;
+        //bgmPlayer.volume = bgmVolume;
 
         // 효과음 플레이어 초기화
         GameObject sfxObject = new GameObject("SfxPlayer");
@@ -58,7 +58,7 @@ public class AudioManager : MonoBehaviour
         {
             sfxPlayers[index] = sfxObject.AddComponent<AudioSource>();
             sfxPlayers[index].playOnAwake = false;
-            sfxPlayers[index].volume = sfxVolume;
+            //sfxPlayers[index].volume = sfxVolume;
         }
     }
 
