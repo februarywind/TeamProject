@@ -9,7 +9,7 @@ public class Stage3Bgm : MonoBehaviour
     void Start()
     {
         AudioManager.Instance.PlayBgm(3);
-        AudioManager.Instance.SetBgmVolume(bgmVolume);
+        //AudioManager.Instance.SetBgmVolume(bgmVolume);
     }
 
     //private void Update()
