@@ -91,7 +91,11 @@ public class RedStamp : MonoBehaviour
         AudioManager.Instance.PlaySfx(AudioManager.Sfx.Scaffolding);
         // 바닥 생성 카운트
         useRedGround++;
-        if (useRedGround == maxRedGround) _plane.SetActive(false);
+        if (useRedGround == maxRedGround)
+        {
+            _plane.SetActive(false);
+            _redTrigger.SetActive(false);
+        }
     }
 
     private void Pool(GameObject _prefab, Transform _transform)
@@ -100,6 +104,7 @@ public class RedStamp : MonoBehaviour
         {
             if (item.activeSelf) continue;
             item.transform.position = _transform.position;
+            item.transform.GetComponent<MeshRenderer>().enabled = true;
             item.SetActive(true);
             return;
         }
